@@ -1,0 +1,146 @@
+---
+import Home from "../../paths/home.astro";
+
+import { Required } from "../../../defaults";
+const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+
+export interface PageRequired {
+        dl: string
+        dlc: string
+        dlc_gme: string
+        dlc_lts: string
+        dlc_ver: string
+        dl_title: string
+        timeline: string
+        tl_rd: string
+        tl_ver: string
+}
+const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver } = Astro.props as PageRequired
+
+---
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<div id="head">
+  <h1 class="txtd">{dl}</h1>
+</div>
+<span
+  style="
+    position: absolute;
+    left: var(--nsw);
+    width: 18vw;
+    top: 25vh;
+    height: 1vh;
+    background: #ff7518;
+  "
+></span>
+<div class="dl bgw show-on-scroll" id="dl">
+  <div class="bgsw">
+    <img loading="lazy" src="/res/img/logo.png" alt="Team Fuho Vietnam" />
+    <div>
+      <h2 class="txtd">
+        {dlc}
+      </h2>
+      <p class="txtd">
+        {dlc_ver}
+        1.4
+        <strong
+          >(
+          {dlc_lts})</strong
+        >
+      </p>
+      <p class="txtd">{dlc_gme}: <strong>Java Edition 1.14.4</strong></p>
+      <a
+        target="_blank"
+        href="https://teamfuho.net/download/Happy_Vietnam_1.4.zip"
+      >
+        {dl_title}</a
+      >
+    </div>
+  </div>
+  <div class="bgsw">
+    <img loading="lazy" src="/res/img/logo.png" alt="Team Fuho Vietnam" />
+    <div>
+      <h2 class="txtd">
+        {dlc}
+      </h2>
+      <p class="txtd">
+        {dlc_ver}
+        1.4
+      </p>
+      <p class="txtd">
+        {dlc_gme}: <strong>Bedrock Edition ≥1.18.10</strong>
+      </p>
+      <a
+        target="_blank"
+        href="https://teamfuho.net/download/Happy_Vietnam_1.4_Bedrock_Edition.zip"
+      >
+        {dl_title}</a
+      >
+    </div>
+  </div>
+</div>
+<span class="hsp show-on-scroll"></span>
+<div class="show-on-scroll">
+  <h1
+    style="
+      font-family: bvnpro, lato-f;
+      font-size: 6.4vh;
+      width: 100%;
+      color: #002049;
+    "
+  >
+    {timeline}
+  </h1>
+  <ul class="timeline">
+    <li>
+      <div>
+        <span>
+          <h1>{tl_ver}: 1.4</h1>
+          <p>{tl_rd}: 3/4/2022</p>
+        </span>
+        <span>
+          <a class="lnk" href=""
+            >{dl_title}
+            (Java)</a
+          >
+          <a class="lnk" href=""
+            >{dl_title}
+            (Bedrock)</a
+          >
+        </span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <span>
+          <h1>{tl_ver}: 1.3</h1>
+          <p>{tl_rd}: 22/01/2020</p>
+        </span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <span>
+          <h1>{tl_ver}: 1.2</h1>
+          <p>{tl_rd}: 14/7/2019</p>
+        </span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <span>
+          <h1>{tl_ver}: 1.1</h1>
+          <p>{tl_rd}: 26/6/2019</p>
+        </span>
+      </div>
+    </li>
+    <li>
+      <div>
+        <span>
+          <h1>{tl_ver}: 1.0</h1>
+          <p>{tl_rd}: 10/6/2019</p>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
+</Home>

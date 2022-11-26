@@ -1,0 +1,16 @@
+{
+    "editor.tabCompletion": "on",
+    "diffEditor.codeLens": true,
+    "tslint.jsEnable": false,
+    "tslint.packageManager": "pnpm",
+    "typescript.suggest.objectLiteralMethodSnippets.enabled": false,
+    "astro.typescript.enabled": true,
+    "astro.typescript.definitions.enabled": true,
+    "astro.typescript.documentSymbols.enabled": true,
+    "astro.typescript.rename.enabled": true,
+    "astro.trace.server": "verbose",
+    "astro.typescript.allowArbitraryAttributes": true,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true
+}

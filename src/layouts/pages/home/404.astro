@@ -1,0 +1,24 @@
+---
+import Home from "../../paths/home.astro";
+
+import { Required } from "../../../defaults";
+const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+
+export interface PageRequired {
+  "404_title": string,
+  err_desc: string,
+  err_navi: string
+}
+const { err_desc, err_navi } = Astro.props as PageRequired
+const err_title=Astro.props["404_title"]
+---
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<div
+  id="lll"
+  style="width: 94vw; color: #888; font-size: 3vh; margin: 10vh 3vw 0; display: flex;align-items: center;flex-direction: column; justify-content: center;"
+>
+  <h1 style="margin: 0">{err_title}</h1>
+  <p>{err_desc}</p>
+  <p>{err_navi}</p>
+</div>
+</Home>

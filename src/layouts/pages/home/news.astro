@@ -1,0 +1,51 @@
+---
+import Home from "../../paths/home.astro";
+
+import { Required } from "../../../defaults";
+const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+
+export interface PageRequired {
+  news: string,
+  search: string
+}
+const { news, search } = Astro.props as PageRequired
+
+---
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<script type="text/javascript"></script>
+<div id="head">
+  <h1 class="txtd">{news}</h1>
+  <div>
+    <div>
+      <input
+        type="text"
+        placeholder={search}
+        onfocus="document.getElementById('srr').style.display='block'"
+        onblur="setTimeout(()=>document.getElementById('srr').style.display='none',500)"
+        oninput="srfv(this)"
+      />
+      <svg viewBox="0 0 24 24">
+        <path
+          fill="#002049"
+          d="m 9.0518744,15.505 v -0.79 l 0.27,-0.28 c 1.3999996,1.2 3.3099996,1.82 5.3399996,1.48 2.78,-0.47 5,-2.79 5.34,-5.59 0.52,-4.23 -3.04,-7.79 -7.27,-7.27 -2.7999996,0.34 -5.1199996,2.56 -5.5899996,5.34 -0.34,2.03 0.28,3.94 1.48,5.34 l -0.28,0.27 h -0.79 l -4.25,4.25 c -0.41,0.41 -0.41,1.08 0,1.49 0.41,0.41 1.08,0.41 1.49,0 z m 0,-6 c 0,-2.49 2.0099996,-4.5 4.4999996,-4.5 2.49,0 4.5,2.01 4.5,4.5 0,2.49 -2.01,4.5 -4.5,4.5 -2.49,0 -4.4999996,-2.01 -4.4999996,-4.5 z"
+        />
+      </svg>
+    </div>
+    <div id="srr">
+    </div>
+  </div>
+</div>
+<span
+  style="
+    position: absolute;
+    left: 2vw;
+    width: 12vw;
+    top: 4vh;
+    height: 12vw;
+    background: #ff7518;
+    border-radius: 100vmax;
+  "
+></span>
+<div class="news bgw show-on-scroll"></div>
+<div id="newscontent"></div>
+</Home>

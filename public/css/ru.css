@@ -1,0 +1,24 @@
+@font-face {
+    font-family: bvn;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fon/NotoSans-Regular.ttf) format('ttf');
+}
+
+@font-face {
+    font-family: bvnpro;
+    font-style: normal;
+    font-weight: 800;
+    src: url(/fon/NotoSans-Bold.ttf) format('ttf');
+}
+
+@font-face {
+    font-family: oswald;
+    src: url(/fon/oswald.ttf)
+}
+@font-face {
+    font-family: minecraftmedium;
+    src: url(/fon/4197-font.ttf);
+    font-weight: 300;
+    font-style: normal;
+}

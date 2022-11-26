@@ -1,0 +1,371 @@
+#bruh {
+  padding: 0 calc((100vw - (100vh / 9) * 16) / 2);
+  margin-top: 10vh;
+  display: grid;
+}
+
+#bruh > div:nth-child(2) > * {
+  font-size: 2.4vh;
+  font-family: bvn, lato, sans-serif;
+  text-align: left;
+  color: #002049;
+}
+
+#bruh > div:nth-child(2) > a {
+  display: flex;
+  align-items: center;
+}
+
+#bruh > div:nth-child(2) > h1 {
+  font-size: 4.6vh;
+  font-family: bvnpro, lato-f, sans-serif;
+  margin-bottom: 1vh;
+}
+
+#bruh > div:nth-child(2) > i {
+  font-size: 1.6vh;
+  font-family: bvn, lato, sans-serif;
+}
+
+#bruh > div:nth-child(2) {
+  margin: 0 3vw;
+  overflow: hidden;
+}
+
+#bruh > div:nth-child(2) img {
+  width: 100% !important;
+  height: auto;
+  border-radius: 1vh;
+}
+
+#bruh > div:first-child > div > span {
+  vertical-align: middle;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  border: 1px solid;
+  border-color: #888;
+  border-radius: 100vmax;
+  width: 5vh;
+  height: 5vh;
+  margin: 3vh 0.5vw;
+  transition: all 0.2s ease-out;
+}
+
+#bruh > div:first-child > div > span > svg * {
+  fill: #888;
+}
+
+#bruh > div:first-child > div > span:hover {
+  border-color: #ddd;
+}
+
+#bruh > div:first-child > div > span:hover > svg * {
+  fill: #fff;
+}
+
+#bruh > div:first-child > div > span:first-child:hover {
+  background: #1977f3;
+}
+
+#bruh > div:first-child > div > span:nth-child(2):hover {
+  background: #2aa9e0;
+}
+
+#bruh > div:first-child > div > span:nth-child(3):hover {
+  background: #ff4500;
+}
+
+#bruh > div:first-child > div > span > svg {
+  margin: 0.8vh;
+  transition: all 0.2s ease-out;
+}
+
+#bruh > div:nth-child(3) > div {
+  padding: 3vmin 0;
+  background: none;
+  position: sticky;
+  top: 4vh;
+}
+
+#bruh > div:nth-child(3) > div > a {
+  position: relative;
+  cursor: pointer;
+  border-radius: 3vmin;
+  transition: all 0.1s linear;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin: 3vh 0;
+}
+#bruh > div:nth-child(3) > div > a:nth-child(2) {
+  margin-top: 1vh !important;
+}
+#bruh > div:nth-child(3) > div > h3 {
+  color: #002049;
+  font-size: 3.2vh;
+  font-family: bvnpro;
+  margin-bottom: 0;
+}
+#bruh > div:nth-child(3) > div > a > span {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 1)
+  );
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+}
+
+#bruh > div:nth-child(3) > div > a:hover {
+  opacity: 0.8;
+}
+
+#bruh > div:nth-child(3) > div h2 {
+  display: inline;
+  margin: 0 1vw;
+  font-size: 2.6vh;
+  color: #fff;
+  bottom: 1.8vh;
+  z-index: 2;
+}
+
+#bruh > div:nth-child(3) > div > a > div {
+  bottom: 0;
+  margin-left: 2vw;
+  margin-bottom: 3vmin;
+  z-index: 3;
+  color: #fff;
+}
+
+#bruh > div:nth-child(3) > div > a > * {
+  position: absolute;
+}
+
+#bruh > div:nth-child(3) > div > a > img,
+#bruh > div:nth-child(3) > div > a > span {
+  left: 0;
+  top: 0;
+}
+
+#bruh > div:nth-child(3) > div > a > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 3vmin;
+}
+#bruh > div:nth-child(4) {
+  height: 50vh;
+  overflow: auto;
+}
+
+#bruh > div:nth-child(4) > span {
+  transform: scale(var(--ratio));
+  transform-origin: left top;
+}
+
+:root {
+  --ratio: 1;
+  --orgw: 720;
+}
+
+/* WP PARAGRAPH STYLING */
+#wpcontent > p,
+#wpcontent > blockquote > p {
+  text-align: left;
+}
+
+#wpcontent > blockquote {
+  font-size: revert;
+  border-left: 3px solid #000;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+
+#wpcontent > blockquote > * {
+  margin: 0;
+  margin-left: 5px;
+}
+
+#wpcontent > blockquote > p {
+  font-size: 1.2em;
+}
+
+#wpcontent > .wp-block-image > figcaption {
+  text-align: center;
+  /* font-size: 1.2em; */
+}
+
+#wpcontent > .wp-block-embed {
+  margin: 0 0 1em;
+}
+#wpcontent > .wp-block-embed iframe {
+  width: 100%;
+}
+
+.sec > a {
+  /* font-size: 2.4vmin; */
+  display: block;
+  margin: 4vmin 0;
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+.sec img {
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  border-radius: 2vh;
+}
+
+.sec > a div {
+  vertical-align: top;
+  padding: var(--txp) 3vw;
+}
+
+.sec > a h1 {
+  margin: 0;
+  text-align: left;
+  margin-right: 6vw;
+  margin-left: 3vmin;
+  font-size: 4.8vh;
+}
+
+@media (min-aspect-ratio: 133/100) {
+  #bruh {
+    grid-template-columns: 1fr 6fr 3fr;
+  }
+
+  #bruh > div:first-child > div {
+    display: block;
+    float: right;
+    position: sticky;
+    top: 20vh;
+    margin: 20vh 0;
+  }
+
+  #bruh > div:nth-child(3) > div {
+    margin: 10vh 2vw 0;
+  }
+  #bruh > div:nth-child(4) {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin: 3vh 3vw 0;
+  }
+  .sec {
+    display: grid;
+    height: fit-content;
+    padding: 0 calc((100vw - (100vh / 9) * 16) / 2 + 12vh);
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0 4vh;
+  }
+  .sec a > * {
+    width: 100%;
+  }
+
+  .sec > a h2 {
+    margin: 0 1vw;
+    font-size: 3vh;
+    color: #002049;
+    width: unset;
+  }
+}
+
+@media (max-aspect-ratio: 133/100) {
+  #bruh > div:first-child {
+    grid-row: 2/3;
+  }
+
+  #bruh > div:first-child > div {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #bruh > div:nth-child(3) {
+    display: none;
+  }
+  .sec {
+    margin: 0 2vw 0;
+  }
+  .sec > a {
+    position: relative;
+    cursor: pointer;
+    border-radius: 3vmin;
+    transition: all 0.1s linear;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin: 3vh 0;
+  }
+
+  .sec > a > span {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 1)
+    );
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 2;
+  }
+
+  .sec > a:hover {
+    opacity: 0.8;
+  }
+
+  .sec h2 {
+    display: inline;
+    margin: 0 1vw;
+    font-size: 4vh;
+    color: #fff;
+    bottom: 1.8vh;
+    z-index: 2;
+  }
+
+  .sec > a > div {
+    bottom: 0;
+    margin-left: 2vw;
+    margin-bottom: 3vmin;
+    z-index: 3;
+    color: #fff;
+  }
+
+  .sec > a > * {
+    position: absolute;
+  }
+
+  .sec > a > img,
+  .sec > a > span {
+    left: 0;
+    top: 0;
+  }
+
+  .sec > a > img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 3vmin;
+  }
+
+  .sec > a h1 {
+    color: #fff;
+  }
+}
+/* externals (eg: from wp) */
+
+figure {
+  margin: auto 0;
+}
+.has-text-align-center {
+  text-align: center !important;
+}
+figcaption {
+  font-size: 1.8vh;
+  font-style: italic;
+}

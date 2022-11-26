@@ -1,0 +1,89 @@
+.dl {
+    display: grid;
+    grid-template-columns: var(--gtc);
+    padding: 6vmin calc(var(--nsw) - 10vmin) 0;
+    overflow: hidden;
+    margin-top: 4vmin;
+}
+
+.dl>div {
+    display: flex;
+    border-radius: 2vmin;
+}
+
+.dl>div>div {
+    margin: 0 6vmin 6vmin;
+}
+
+.dl>div>div>* {
+    text-align: left;
+}
+
+.dl>div>div>p {
+    margin: 0 0 1vmin;
+}
+
+.dl>div>div>a {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    margin: 0.5vmin;
+    padding: 0 1vmin 1vmin;
+}
+
+.dl>div>div>a:nth-child(4) {
+    background: #fff;
+    border-radius: 1vmin;
+    transition: all 0.1s linear;
+}
+
+.dl>div>div>a:nth-child(4):hover {
+    background: #aaa;
+}
+
+.dl>div>img {
+    width: 24vmin;
+    height: 24vmin;
+    margin: 6vmin 0 6vmin 6vmin;
+    display: var(--iddl);
+}
+
+@media (min-aspect-ratio: 133/100) {
+    .dl>div {
+        margin: 0 5vmin 4vmin;
+    }
+
+    .dl>div>div>p {
+        font-size: 2vh;
+    }
+
+    .dl>div>div>a {
+        height: 4vh;
+        font-size: 3vh;
+    }
+}
+
+@media (max-aspect-ratio: 133/100) {
+    .dl>div {
+        margin: 0 6vw 3vh;
+    }
+    .dl>div>div>p {
+        font-size: 1.5vh;
+    }
+    .dl>div>div>a {
+        height: 3vh;
+        font-size: 2vh;
+    }
+}
+
+@media (min-aspect-ratio: 133/100) and (max-aspect-ratio: 16/10) {
+    :root {
+        --iddl: none;
+    }
+}
+
+@media (min-aspect-ratio: 16/10) {
+    :root {
+        --iddl: block;
+    }
+}

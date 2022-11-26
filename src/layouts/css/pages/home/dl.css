@@ -1,0 +1,51 @@
+@import "../../vendor/dl.css";
+@import "../../vendor/timeline.css";
+
+.timeline > li > div {
+  border-color: #ff7815;
+  /* border: none; */
+  border-radius: 2vh;
+  display: flex;
+  justify-content: space-between;
+}
+.timeline > li > div > span {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 5vh;
+  flex-direction: column;
+}
+.timeline > li > div > span:nth-child(2) {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+.timeline > li > div:hover > span:nth-child(2) {
+  opacity: 1;
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  color: #002049;
+}
+a.lnk {
+  padding: 0.5vh 1vh;
+  border-radius: 0.5vh;
+  width: 100%;
+}
+a.lnk:hover {
+  background-color: rgba(43, 43, 43, 0.1);
+}
+@media (min-aspect-ratio: 133/100) {
+  .timeline {
+    margin: 5% 10% 0;
+    width: 85%;
+    font-size: 1.7vh;
+  }
+}
+@media (max-aspect-ratio: 133/100) {
+  .timeline > li > div {
+    flex-direction: column;
+  }
+  .timeline > li > div > span:nth-child(2) {
+    display: none;
+  }
+}

@@ -1,0 +1,28 @@
+@font-face {
+    font-family: bvn;
+    src: url(/fon/BeVietnamPro-Regular.ttf);
+}
+
+@font-face {
+    font-family: bvnpro;
+    src: url(/fon/BeVietnamPro-Bold.ttf);
+}
+
+@font-face {
+    font-family: lato;
+    src: url(/fon/Han-Nom-Gothic.ttf);
+}
+@font-face {
+    font-family: lato-f;
+    src: url(/fon/Han-Nom-Gothic.ttf);
+}
+@font-face {
+    font-family: oswald;
+    src: url(/fon/Han-Nom-Gothic.ttf)
+}
+@font-face {
+    font-family: minecraftmedium;
+    src: url(/fon/Han-Nom-Gothic.ttf);
+    font-weight: 300;
+    font-style: normal;
+}

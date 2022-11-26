@@ -1,0 +1,20 @@
+@media (min-aspect-ratio: 133/100) {
+  #lll {
+    height: 60vh;
+  }
+  #lll > h1 {
+    font-size: 20vh;
+  }
+}
+@media (max-aspect-ratio: 133/100) {
+  #lll {
+    height: 90vh;
+  }
+  #lll > h1 {
+    font-size: 16vh;
+  }
+}
+
+p {
+  margin-bottom: 0;
+}
