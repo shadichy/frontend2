@@ -1,20 +1,26 @@
 ---
 import Home from "../../paths/home.astro";
 
-import { Required } from "../../../defaults";
-const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang } = Astro.props,
+  filename = "article",
+  langfile = `../../lang/${lang}/home/${filename}.json`
+
+import(`../../css/pages/home/article.css`)
 
 export interface PageRequired {
+  meta_title?: string,
+  meta_description: string,
+  meta_img?: string,
         back: string
         by: string
         share_fb: string
         share_rd: string
         share_tw: string
 }
-const { back, by, share_fb, share_rd, share_tw } = Astro.props as PageRequired
+const { back, by, share_fb, share_rd, share_tw, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
 ---
-<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 <script define:vars={{ by }}>
   const transBy = by
 </script>

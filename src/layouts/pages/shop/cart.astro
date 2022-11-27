@@ -1,11 +1,10 @@
 ---
 import Shop from "../../paths/shop.astro";
 
-import { Required } from "../../../defaults";
-const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang } = Astro.props
 
 ---
-<Shop lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<Shop lang={lang} >
 <h1>Your cart</h1>
 <div id="cart">
     <table>

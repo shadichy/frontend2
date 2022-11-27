@@ -1,10 +1,16 @@
 ---
 import Home from "../../paths/home.astro";
 
-import { Required } from "../../../defaults";
-const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang } = Astro.props,
+  filename = "dl",
+  langfile = `../../lang/${lang}/home/${filename}.json`
+
+import(`../../css/pages/home/dl.css`)
 
 export interface PageRequired {
+  meta_title?: string,
+  meta_description: string,
+  meta_img?: string,
         dl: string
         dlc: string
         dlc_gme: string
@@ -15,10 +21,10 @@ export interface PageRequired {
         tl_rd: string
         tl_ver: string
 }
-const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver } = Astro.props as PageRequired
+const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
 ---
-<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 <div id="head">
   <h1 class="txtd">{dl}</h1>
 </div>

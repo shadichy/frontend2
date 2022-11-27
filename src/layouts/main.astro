@@ -1,10 +1,13 @@
 ---
 import "./css/main.css"
 
-import { Required } from "../defaults";
-const { lang = "vi", filename, meta_title = "Vietnam", meta_desc, meta_img = "/placeholder", nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang = "vi", filename = "index", meta_title = "Vietnam", meta_description, meta_img = "/placeholder" } = Astro.props
+const langfile = `./lang/${lang}/glob.json`
+
+const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = await import(langfile)
+
 const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
-    exlang = lang=="vi"?"":lang
+    exlang = (lang=="vi") ? "" : ("/" + lang)
 ---
 
 <!DOCTYPE html>
@@ -15,8 +18,8 @@ const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
   <meta name="keywords" content="teamfuho, fuho, tfh, tfhvn, vietnam, minecraft, phi hoang dat, Phí Hoàng Đạt, happy vietnam">
 	<meta property="og:title" content={title}>
 	<meta property="og:type" content="website" />
-	<meta property="description" content={meta_desc}>
-	<meta property="og:description" content={meta_desc}>
+	<meta property="description" content={meta_description}>
+	<meta property="og:description" content={meta_description}>
 	<meta property="og:image" content={meta_img}>
 	<meta name="twitter:card" content="summary_large_image">
 	<title>{title}</title>
@@ -34,14 +37,13 @@ var tbh = true
       function (callback) {
         window.setTimeout(callback, 1000 / 60)
       },
-      nav = document.querySelector(".nav"),
-      root = document.documentElement
+      nav = document.querySelector(".nav")
   
   let reqheight = 0,
       reqmin = 0,
       reqmax = 0
-const 
-  customfunc = [],
+window.customfunc = []
+const
   isElementInViewport = (e) => {
     let rect = e.getBoundingClientRect(),
       clientHeight = window.innerHeight || document.documentElement.clientHeight
@@ -66,41 +68,35 @@ function fscr() {
 
 function tscr() {
   let b = window.scrollY
-  let spn = document.querySelector("footer>div:first-child>span");
-  spn.style.opacity =
+  document.querySelector("footer>div:first-child>span").style.opacity =
     b == reqheight || (b >= reqmin && b <= reqmax) ? "0" : "1"
   scroll(tscr)
 }
     
 window.addEventListener("DOMContentLoaded", e => {
-  let currentpage=document.querySelector(`a.txtd.d${filename}`)
-  currentpage.style.color = "color: #ff7518!important;"
+  const root = document.documentElement
+
+  document.querySelector(`a.txtd.d${filename}`).style.color = "#ff7518"
   document.getElementById("butt").onclick = ()=>{
-    let xtab = document.getElementById("tab"),
-      swipe = document.getElementById("swipe"),
-      rat = window.innerWidth / window.innerHeight,
-      buttonSvg = document.querySelector("#butt>svg"),
-      button = document.getElementById("butt"),
-      d=[]
+    let 
+      // xtab = document.getElementById("tab"),
+      rat = window.innerWidth / window.innerHeight
+      d = []
     if (rat <= 133 / 100) {
-      (tbh) ? d=[100,180,"rgba(255, 255, 255, 0.8)"] : d=[0,0,"none"]
-      swipe.style.width = `${d[0]}vw`
-      buttonSvg.style.transform = `rotate(${d[1]}deg)`
-      button.style.background = d[2]
+      d = ((tbh) ? [100,180,"rgba(255, 255, 255, 0.8)"] : [0,0,"none"])
+      document.querySelector("#butt>svg").style.transform = `rotate(${d[1]}deg)`
+      document.getElementById("butt").style.background = d[2]
       tbh = !tbh
     } else {
-      swipe.style.width = "40vw"
+      d[0]=40
     }
+    document.getElementById("swipe").style.width = `${d[0]}vw`
   }
 
   function loop() {
-    document.querySelectorAll(".show-on-scroll").forEach(function (element) {
-      if (isElementInViewport(element)) {
-        element.classList.add("is-visible")
-      } else {
-        element.classList.remove("is-visible")
-      }
-    })
+    document.querySelectorAll(".show-on-scroll").forEach((element) => 
+      element.classList[isElementInViewport(element) ? "add" : "remove"]("is-visible")
+    )
     // scroll(loop)
   }
 
@@ -160,38 +156,38 @@ window.addEventListener("DOMContentLoaded", e => {
 
 <body id="root" style="display: none">
   <div class="nav bgw">
-    <a href={`/${exlang}`}>
+    <a href={`${exlang}`}>
       <img class="icns" loading="lazy" src="/res/img/long-dark.svg" alt="Team Fuho Vietnam" />
     </a>
     <div id="swipe">
       <div id="btn">
         <label>
-          <a class="txtd dindex" href={`/${exlang}`}>
+          <a class="txtd dindex" href={`${exlang}/`}>
             {nav_home}
           </a>
         </label>
         <label>
-          <a class="txtd dinfo" href={`/${exlang}/info`}>
+          <a class="txtd dinfo" href={`${exlang}/info`}>
             {nav_info}
           </a>
         </label>
         <label>
-          <a class="txtd dgallery" href={`/${exlang}/gallery`}>
+          <a class="txtd dgallery" href={`${exlang}/gallery`}>
             {nav_gall}
           </a>
         </label>
         <label>
-          <a class="txtd dnews" href={`/${exlang}/news`}>
+          <a class="txtd dnews" href={`${exlang}/news`}>
             {nav_news}
           </a>
         </label>
         <label>
-          <a class="txtd dcomm" href={`/${exlang}/comm`}>
+          <a class="txtd dcomm" href={`${exlang}/comm`}>
             {nav_comm}
           </a>
         </label>
         <label>
-          <a class="txtd ddl" href={`/${exlang}/dl`}>
+          <a class="txtd ddl" href={`${exlang}/dl`}>
             {nav_dl}
           </a>
         </label>
@@ -348,22 +344,22 @@ window.addEventListener("DOMContentLoaded", e => {
           {links}
         </h3>
         <div>
-          <a href={`/${exlang}/en`}>
+          <a href={`${exlang}/en`}>
             {nav_home}
           </a>
-          <a href={`/${exlang}/info`}>
+          <a href={`${exlang}/info`}>
             {nav_info}
           </a>
-          <a href={`/${exlang}/download#dl`}>
+          <a href={`${exlang}/download#dl`}>
             {nav_down}
           </a>
-          <a href={`/${exlang}/gallery`}>
+          <a href={`${exlang}/gallery`}>
             {nav_gall}
           </a>
-          <a href={`/${exlang}/comm#form`}>
+          <a href={`${exlang}/comm#form`}>
             {nav_join}
           </a>
-          <a href={`/${exlang}/news`}>
+          <a href={`${exlang}/news`}>
             {nav_news}
           </a>
           <!-- <a href="#"></a> -->

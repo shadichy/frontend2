@@ -1,5 +1,5 @@
-@import "../../vendor/news.css";
-@import "../../vendor/dl.css";
+@import "../../news.css";
+@import "../../dl.css";
 
 .typo {
   align-content: center;

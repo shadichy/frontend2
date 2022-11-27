@@ -170,34 +170,29 @@ footer > div:first-child > span {
   /* border-radius: 50% */
   /* border:.4vh solid #fff; */
   border-radius: 50%;
-  width: 6vh;
-  height: 6vh;
+  width: 5vh;
+  height: 5vh;
   background: #fff;
   opacity: 0;
   transition: opacity .3s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   z-index: 8;
+  padding: .5vh;
+  overflow: hidden;
 }
 
 footer > div:first-child > span svg {
   /* margin: .3vh .4vh */
-  margin: .5vh .5vh;
+  /* margin: .5vh .5vh; */
   fill: #002049;
   box-sizing: border-box;
   border: .3vh solid #002049;
   border-radius: 50%;
-  padding: .5vh;
+  /* padding: .5vh; */
+  width: 5vh;
+  height: 5vh;
 }
 
-footer>div:first-child>span svg {
-  /* margin: .3vh .4vh */
-  margin: .5vh .5vh;
-  fill: #002049;
-  box-sizing: border-box;
-  border: .3vh solid #002049;
-  border-radius: 50%;
-  padding: .5vh;
-}
 footer > div:first-child p {
   text-align: left;
   font-size: 2vh;

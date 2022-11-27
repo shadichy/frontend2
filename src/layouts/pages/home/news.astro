@@ -1,17 +1,23 @@
 ---
 import Home from "../../paths/home.astro";
 
-import { Required } from "../../../defaults";
-const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang } = Astro.props,
+  filename = "news",
+  langfile = `../../lang/${lang}/home/${filename}.json`
+
+import(`../../css/pages/home/news.css`)
 
 export interface PageRequired {
+  meta_title?: string,
+  meta_description: string,
+  meta_img?: string,
   news: string,
   search: string
 }
-const { news, search } = Astro.props as PageRequired
+const { news, search, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
 ---
-<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 <script type="text/javascript"></script>
 <div id="head">
   <h1 class="txtd">{news}</h1>

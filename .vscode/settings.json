@@ -12,5 +12,6 @@
     "astro.typescript.allowArbitraryAttributes": true,
     "javascript.format.insertSpaceAfterConstructor": true,
     "js/ts.implicitProjectConfig.checkJs": true,
-    "js/ts.implicitProjectConfig.experimentalDecorators": true
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "editor.tabSize": 2
 }

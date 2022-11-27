@@ -1,10 +1,16 @@
 ---
 import Home from "../../paths/home.astro";
 
-import { Required } from "../../../defaults";
-const { lang, filename, meta_title, meta_desc, meta_img, nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = Astro.props as Required
+const { lang } = Astro.props,
+  filename = "comm",
+  langfile = `../../lang/${lang}/home/${filename}.json`
+
+import(`../../css/pages/home/comm.css`)
 
 export interface PageRequired {
+  meta_title?: string,
+  meta_description: string,
+  meta_img?: string,
         feedback_cnt: string
         feedback_label: string
         form: string
@@ -57,10 +63,10 @@ export interface PageRequired {
         join_ins_cpd: string
         tks4feedback: string
 }
-const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback } = Astro.props as PageRequired
+const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
 ---
-<Home lang={lang} filename={filename} meta_title={meta_title} meta_desc={meta_desc} meta_img={meta_img} nav_home={nav_home} nav_info={nav_info} nav_gall={nav_gall} nav_news={nav_news} nav_comm={nav_comm} nav_down={nav_down} nav_join={nav_join} nav_dl={nav_dl} credit={credit} links={links}>
+<Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 
 <script define:vars={{ join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_cpd, join_ins_copy, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_8, tks4feedback}}>
 	const
