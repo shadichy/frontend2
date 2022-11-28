@@ -3,7 +3,7 @@ import "../css/pages/shop/main.css"
 
 import Main from "../main.astro";
 
-const { lang = "vi", meta_title = "Vietnam", meta_description, meta_img } = Astro.props
+const { lang, meta_title, meta_description, meta_img } = Astro.props
 
 ---
 <Main lang={lang} filename="shop" meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>

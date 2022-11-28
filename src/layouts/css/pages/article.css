@@ -174,36 +174,36 @@
 }
 
 /* WP PARAGRAPH STYLING */
-#wpcontent > p,
-#wpcontent > blockquote > p {
+#mdtext > p,
+#mdtext > blockquote > p {
   text-align: left;
 }
 
-#wpcontent > blockquote {
+#mdtext > blockquote {
   font-size: revert;
   border-left: 3px solid #000;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
 }
 
-#wpcontent > blockquote > * {
+#mdtext > blockquote > * {
   margin: 0;
   margin-left: 5px;
 }
 
-#wpcontent > blockquote > p {
+#mdtext > blockquote > p {
   font-size: 1.2em;
 }
 
-#wpcontent > .wp-block-image > figcaption {
+#mdtext figcaption {
   text-align: center;
   /* font-size: 1.2em; */
 }
 
-#wpcontent > .wp-block-embed {
+/* #mdtext > .wp-block-embed {
   margin: 0 0 1em;
-}
-#wpcontent > .wp-block-embed iframe {
+} */
+#mdtext iframe {
   width: 100%;
 }
 

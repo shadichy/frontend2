@@ -1,5 +1,5 @@
 // import("../main")
-let limit = 3,
+let newslimit = 3,
   lck = true,
   waitlist = 1
 const srr = (()=>document.getElementById("srr"))()
@@ -99,7 +99,7 @@ function load(limit) {
 // @ts-ignore
 window.addEventListener("DOMContentLoaded", (e)=>{
 
-load(limit)
+load(newslimit)
 })
 window.onscroll = () => {
   // if scroll near the last element, load limit
@@ -114,7 +114,7 @@ window.onscroll = () => {
           document.getElementsByClassName("newsbg").length - 1
         ].getBoundingClientRect().top < window.innerHeight
     ) {
-      load(limit)
+      load(newslimit)
     }
   }
 }

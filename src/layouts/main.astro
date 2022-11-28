@@ -4,7 +4,13 @@ import "./css/main.css"
 import Defaults from "../defaults"
 const { dburl, img_placeholder, alt_placeholder } = Defaults
 
-const { lang = "vi", filename = "index", meta_title = "Vietnam", meta_description, meta_img = img_placeholder } = Astro.props,
+const {
+    lang = "vi",
+    filename = "index",
+    meta_title = "Vietnam",
+    meta_description = "Team Fuho Vietnam",
+    meta_img = img_placeholder
+  } = Astro.props,
   langfile = `./lang/${lang}/glob.json`
 
 const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = await import(langfile)
