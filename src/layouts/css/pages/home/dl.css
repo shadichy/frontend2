@@ -1,6 +1,22 @@
 @import "../../dl.css";
 @import "../../timeline.css";
+#head {
+  display: flex;
+  justify-content: space-between;
+  padding: calc(10vh + 6vmin) var(--nsw) 0;
+  align-items: center;
+}
 
+#head>h1 {
+  margin: 0;
+  text-align: left;
+  font-family: bvnpro, lato-f, sans-serif;
+  font-size: 8vmin;
+  z-index: 2;
+  position: relative;
+  font-weight: 900;
+  /* font-variation-settings: 'wght'900; */
+}
 .timeline > li > div {
   border-color: #ff7815;
   /* border: none; */

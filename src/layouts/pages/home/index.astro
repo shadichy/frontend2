@@ -1,5 +1,7 @@
 ---
 import Home from "../../paths/home.astro";
+import NewsBox from "../../components/news-box.astro";
+import DlBox from "../../components/dl-box.astro";
 
 const { lang } = Astro.props,
   filename = "index",
@@ -32,11 +34,14 @@ export interface PageRequired {
 }
 const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, build_more, builds, dlc, dlc_gme, dlc_lts, dlc_ver, dwl, more, news_prev, typo, typo_desc, typo_join, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
+
+const exlang = (lang=="vi") ? "" : ("/" + lang)
+
 ---
+
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img} >
-  <script type="text/javascript">
-    
-  </script>
+  <!-- <script type="text/javascript" src="/js/modules/news.js"></script> -->
+  <script type="text/javascript" src="/js/pages/home/index.js"></script>
   <div class="typo bgw">
     <span>
       <span
@@ -54,14 +59,14 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
       <br /><br />
       <div set:html={typo_desc}>
       </div>
-      <a href={lang + "/comm#form"}>
+      <a href={exlang + "/comm#form"}>
         <p>
           {typo_join}
         </p>
       </a>
     </div>
   </div>
-  <a class="sepa show-on-scroll" href={lang + "/gallery"}>
+  <a class="sepa show-on-scroll" href={exlang + "/gallery"}>
     <div class="fromlft" style="margin-left: 4vw">
       <span
       class="circ"
@@ -215,13 +220,13 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
       ></span>
     </div>
     <p class="txtd">
-      <a href={lang + "/gallery"} class="lnk">
+      <a href={exlang + "/gallery"} class="lnk">
         {build_more}
         <br /><br
         /></a>
       </p>
     </div>
-    <a class="sepa show-on-scroll" href={lang + "/news"}>
+    <a class="sepa show-on-scroll" href={exlang + "/news"}>
       <div class="fromrgt" style="float: right">
         <span
         class="triag"
@@ -284,11 +289,12 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
         <span></span>
       </div>
     </a>
-    <div class="news bgw show-on-scroll"></div>
+    <!-- <div class="news bgw show-on-scroll"></div> -->
+    <NewsBox/>
     <p class="bgw" style="padding: 0 0 2vh 0; margin: 0; font-size: 3vh">
-      <a class="lnk" href={lang + "/news"}> {more}... </a>
+      <a class="lnk" href={exlang + "/news"}> {more}... </a>
     </p>
-    <a class="sepa show-on-scroll" href={lang + "/dl"}>
+    <a class="sepa show-on-scroll" href={exlang + "/dl"}>
       <div class="fromrgt" style="right: 2vw; float: right">
         <span
         class="circ"
@@ -362,7 +368,13 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
       <span></span>
     </div>
   </a>
-  <div class="dl bgw show-on-scroll" id="dl">
+  <DlBox lang={lang}>
+    <a slot="changelog" href={lang + "/dl"} class="lnk">Changelog</a>
+    <a slot="gotodl" href={exlang + "/dl"} class="lnk">
+      {more}
+    </a>
+  </DlBox>
+  <!-- <div class="dl bgw show-on-scroll" id="dl">
     <div class="bgsw">
       <img loading="lazy" src="/res/img/logo.png" alt="Team Fuho Vietnam" />
       <div>
@@ -384,7 +396,7 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
         >
         {dwl}</a
         >
-        <a href={lang + "/dl"} class="lnk">Changelog</a>
+        <a href={exlang + "/dl"} class="lnk">Changelog</a>
       </div>
     </div>
     <div class="bgsw">
@@ -406,10 +418,11 @@ const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, bui
         >
         {dwl}</a
         >
-        <a href={lang + "/dl"} class="lnk">
+        
+        <a href={exlang + "/dl"} class="lnk">
           {more}
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
 </Home>

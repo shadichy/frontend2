@@ -68,11 +68,10 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 
-<script define:vars={{ join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_cpd, join_ins_copy, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_8, tks4feedback}}>
-	const
-		nxt = form_next,
-		sen = form_send,
-		avail = `
+<script define:vars={{ form_next, form_send, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_cpd, join_ins_copy, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_8, tks4feedback}}>
+		window.nxt = form_next
+		window.sen = form_send
+		window.avail = `
 			<p>${join_ins}</p>
 			<ol>
 				<li>${join_ins_1}</li>
@@ -85,23 +84,23 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 			</div>
 			<div class="join-buttons" onclick="new Audio('/res/Click.wav').play()">
 				<div class="mc-button join-button" onclick="navigator.clipboard.writeText('teamfuho.net');this.innerHTML='${join_ins_cpd}'">${join_ins_copy}</div>
-			</div>`,
-		noavail = `<div style="padding: 1vh;border: 2px solid #fff;">
+			</div>`.trim()
+		window.noavail = `<div style="padding: 1vh;border: 2px solid #fff;">
 				<h3><span>${join_ins_4}</span></h3>
 				<p>${join_ins_5}</p>
 				<p>${join_ins_6}</p>
-			</div>`,
-		willavail = `<div style="padding: 1vh;border: 2px solid #fff;">
+			</div>`.trim()
+		window.willavail = `<div style="padding: 1vh;border: 2px solid #fff;">
 				<h3><span>${join_ins_7}</span></h3>
 				<p>${join_ins_8}</p>
-			</div>`,
-		soonavail = `<div style="padding: 1vh;border: 2px solid #fff;">
+			</div>`.trim()
+		window.soonavail = `<div style="padding: 1vh;border: 2px solid #fff;">
 				<h3><span>${join_ins_9}</span></h3>
 				<p>${join_ins_8}</p>
-			</div>`
-	var submitpoint = 0,
-		phoneInput
+			</div>`.trim()
 </script>
+<script type="text/javascript" src="/js/modules/intl.js"></script>
+<script type="text/javascript" src="/js/pages/home/comm.js"></script>
 
 <div class="container" style="width:100%;float:center;height: 80vh;overflow: hidden;margin-top: 12vh;display: block;">
 	<div class="joinInstructions" data-xf-init="joinInstructions" data-ip="teamfuho.net">
@@ -145,7 +144,7 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 							<p>{form_r4}<span>*</span></p>
 							<div>
 								<span></span>
-								<input type="tel" required onchange="document.querySelector('input#real_no').setAttribute('value',phoneInput.getNumber())" placeholder={form_r4_desc}>
+								<input type="tel" required placeholder={form_r4_desc}>
 								<input type="hidden" name="entry.1166974658" id="real_no">
 								<span></span>
 							</div>
@@ -257,9 +256,8 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 			</div>
 			<section>
 				<p><span>*</span>: {form_rqr}</p><br>
-				<input type="button" style="border:1px solid #002049;visibility: hidden;padding: 1.8vh 4.8vh;" id="fback" value={form_back} onclick="goback(submitpoint)">
-				<input type="button" style="background: #002049;float: right;right: 0;padding: 2vh 4.8vh;" id="submit" value={form_next} onclick="check(submitpoint)">
-				<input type="submit" style="visibility: hidden;">
+				<input type="button" style="border:1px solid #002049;visibility: hidden;padding: 1.8vh 4.8vh;" id="fback" value={form_back}>
+				<input type="button" style="background: #002049;float: right;right: 0;padding: 2vh 4.8vh;" id="submit" value={form_next}>
 			</section>
 		</div>
 	</form>

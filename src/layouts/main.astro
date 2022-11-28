@@ -1,8 +1,11 @@
 ---
 import "./css/main.css"
 
-const { lang = "vi", filename = "index", meta_title = "Vietnam", meta_description, meta_img = "/placeholder" } = Astro.props
-const langfile = `./lang/${lang}/glob.json`
+import Defaults from "../defaults"
+const { dburl, img_placeholder, alt_placeholder } = Defaults
+
+const { lang = "vi", filename = "index", meta_title = "Vietnam", meta_description, meta_img = img_placeholder } = Astro.props,
+  langfile = `./lang/${lang}/glob.json`
 
 const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = await import(langfile)
 
@@ -30,127 +33,17 @@ const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
   </style> -->
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href={"/css/" + lang + ".css"}>
-  <script define:vars={{ filename }}>
-var tbh = true
-  const scroll =
-      window.requestAnimationFrame ||
-      function (callback) {
-        window.setTimeout(callback, 1000 / 60)
-      },
-      nav = document.querySelector(".nav")
-  
-  let reqheight = 0,
-      reqmin = 0,
-      reqmax = 0
-window.customfunc = []
-const
-  isElementInViewport = (e) => {
-    let rect = e.getBoundingClientRect(),
-      clientHeight = window.innerHeight || document.documentElement.clientHeight
-    return (
-      (rect.top <= 0 && rect.bottom >= 0) ||
-      (rect.bottom >=
-        clientHeight &&
-        rect.top <=
-          clientHeight) ||
-      (rect.top >= 0 &&
-        rect.bottom <=
-          clientHeight)
-    )
-  }
-
-function fscr() {
-  let b = window.scrollY
-  nav.style.top =
-    b == reqheight || (b >= reqmin && b <= reqmax) ? "-10vh" : "0"
-  scroll(fscr)
-}
-
-function tscr() {
-  let b = window.scrollY
-  document.querySelector("footer>div:first-child>span").style.opacity =
-    b == reqheight || (b >= reqmin && b <= reqmax) ? "0" : "1"
-  scroll(tscr)
-}
-    
-window.addEventListener("DOMContentLoaded", e => {
-  const root = document.documentElement
-
-  document.querySelector(`a.txtd.d${filename}`).style.color = "#ff7518"
-  document.getElementById("butt").onclick = ()=>{
-    let 
-      // xtab = document.getElementById("tab"),
-      rat = window.innerWidth / window.innerHeight
-      d = []
-    if (rat <= 133 / 100) {
-      d = ((tbh) ? [100,180,"rgba(255, 255, 255, 0.8)"] : [0,0,"none"])
-      document.querySelector("#butt>svg").style.transform = `rotate(${d[1]}deg)`
-      document.getElementById("butt").style.background = d[2]
-      tbh = !tbh
-    } else {
-      d[0]=40
-    }
-    document.getElementById("swipe").style.width = `${d[0]}vw`
-  }
-
-  function loop() {
-    document.querySelectorAll(".show-on-scroll").forEach((element) => 
-      element.classList[isElementInViewport(element) ? "add" : "remove"]("is-visible")
-    )
-    // scroll(loop)
-  }
-
-  document.onscroll = loop
-  // function languageSelector(slang) {
-  //   let content = document.getElementsByClassName("lang-popup"),
-  //     selang = document.getElementsByClassName("sl_" + slang)
-  //   for (let i = 0; i < content.length; i++) content[i].style.display = "none"
-  //   for (let i = 0; i < selang.length; i++) selang[i].style.display = "unset"
-  //   tarlang = slang
-  // }
-  // function relang() {
-  //   location.href = location.href.replace(`/${lang}`, `/${tarlang}`)
-  // }
-  // function strdom(s) {
-  // 	return new DOMParser().parseFromString(s, "text/html").body.firstChild
-  // }
-  // function chklod(target, where, callback) {
-  // 	fetch(where)
-  // 		.then(r=>r.text())
-  // 		.then(res => {
-  // 			document.getElementById(target).innerHTML = res
-  // 			if (callback) callback()
-  // 		})
-  // }
-
-  // function strdom(s) {
-  // 	return new DOMParser().parseFromString(s, 'text/html').body.firstChild
-  // }
-  // function chklod(target, where, callback) {
-  // 	fetch(where)
-  // 		.then(res => res.text())
-  // 		.then(res => {
-  // 			document.getElementById(target).innerHTML = res
-  // 			if (callback) callback()
-  // 		})
-  // }
-
-  // document.addEventListener("DOMContentLoaded", () => {
-  let srl = window.scrollY
-  window.scrollTo(0, srl)
-  // const elementsToShow = document.querySelectorAll(".show-on-scroll")
-  loop()
-  root.style.setProperty("--vh", Math.sqrt(innerHeight) + "px")
-  window.onresize = () => {
-    tbh = !tbh
-    root.style.setProperty("--vh", Math.sqrt(innerHeight) + "px")
-    customfunc.forEach((f) => f())
-  }
-
-  customfunc.forEach((f) => f())
-  tscr()
-})
+  <script define:vars={{ lang, exlang, filename, dburl, img_placeholder, alt_placeholder }}>
+    window.addEventListener("DOMContentLoaded", e => document.querySelector(`a.txtd.d${filename}`).style.color = "#ff7518")
+    window.lang = lang
+    window.exlang = exlang
+    window.dburl = dburl
+    window.img_placeholder = img_placeholder
+    window.alt_placeholder = alt_placeholder
+    window.customfunc = new Array
+    const lmao=true
   </script>
+  <script type="text/javascript" src="/js/main.js"></script>
   <!-- <script src="/bundle/main.bundle.js"></script> -->
 </head>
 

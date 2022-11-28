@@ -137,6 +137,8 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   padding: 0 2vh;
+  font-family: bvnpro, lato-f, sans-serif;
+  color: #fff
 }
 .cts > div > div > button:hover {
   background: #777;

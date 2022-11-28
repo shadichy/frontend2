@@ -1,5 +1,6 @@
 ---
 import Home from "../../paths/home.astro";
+import NewsBox from "../../components/news-box.astro";
 
 const { lang } = Astro.props,
   filename = "news",
@@ -18,7 +19,7 @@ const { news, search, meta_title, meta_description, meta_img } = await import(la
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
-<script type="text/javascript"></script>
+<script type="text/javascript" src="/js/pages/home/news.js"></script>
 <div id="head">
   <h1 class="txtd">{news}</h1>
   <div>
@@ -52,6 +53,6 @@ const { news, search, meta_title, meta_description, meta_img } = await import(la
     border-radius: 100vmax;
   "
 ></span>
-<div class="news bgw show-on-scroll"></div>
+<NewsBox/>
 <div id="newscontent"></div>
 </Home>

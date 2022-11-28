@@ -1,5 +1,5 @@
-export interface MetaRequired {
-  meta_title?: string,
-  meta_desc: string,
-  meta_img?: string
+export default {
+  dburl: "http://localhost:8080/api/arli",
+  img_placeholder: "/res/img/placeholder.svg",
+  alt_placeholder: "/res/img/alt-placeholder.svg",
 }

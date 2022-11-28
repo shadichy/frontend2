@@ -19,11 +19,12 @@ const { gall_typo, share, copied, meta_title, meta_description, meta_img } = awa
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 
-<script>
-	var inview=false,
-		share={share},
-		copied={copied}
+<script define:vars={{ share, copied }}>
+	window.inview=false
+	window.share=share
+	window.copied=copied
 </script>
+<script type="text/javascript" src="/js/pages/home/gallery.js"></script>
 
 <div class="xbu">
 	<span onclick="window.fgal.brm()">

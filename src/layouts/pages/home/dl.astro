@@ -1,5 +1,6 @@
 ---
 import Home from "../../paths/home.astro";
+import DlBox from "../../components/dl-box.astro";
 
 const { lang } = Astro.props,
   filename = "dl",
@@ -21,7 +22,7 @@ export interface PageRequired {
         tl_rd: string
         tl_ver: string
 }
-const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { dl, dl_title, timeline, tl_rd, tl_ver, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
@@ -38,7 +39,8 @@ const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver, m
     background: #ff7518;
   "
 ></span>
-<div class="dl bgw show-on-scroll" id="dl">
+<DlBox lang={lang}></DlBox>
+<!-- <div class="dl bgw show-on-scroll" id="dl">
   <div class="bgsw">
     <img loading="lazy" src="/res/img/logo.png" alt="Team Fuho Vietnam" />
     <div>
@@ -83,7 +85,7 @@ const { dl, dlc, dlc_gme, dlc_lts, dlc_ver, dl_title, timeline, tl_rd, tl_ver, m
       >
     </div>
   </div>
-</div>
+</div> -->
 <span class="hsp show-on-scroll"></span>
 <div class="show-on-scroll">
   <h1
