@@ -15,7 +15,8 @@ export interface PageRequired {
   err_desc: string,
   err_navi: string
 }
-const { err_desc, err_navi, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { err_desc, err_navi, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
 const err_title=Astro.props["404_title"]
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>

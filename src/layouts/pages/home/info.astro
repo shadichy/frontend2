@@ -38,7 +38,8 @@ export interface PageRequired {
         tl_6: string
         tl_6_desc: string
 }
-const { card_no, cnd, holder, info_cst, info_cst_desc, info_desc, info_pic, info_pic_desc, info_yrs, info_yrs_desc, mbbank, story, story_label, timeline, tl_1, tl_1_desc, tl_2, tl_2_desc, tl_3, tl_3_desc, tl_4, tl_4_desc, tl_5, tl_5_desc, tl_6, tl_6_desc, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { card_no, cnd, holder, info_cst, info_cst_desc, info_desc, info_pic, info_pic_desc, info_yrs, info_yrs_desc, mbbank, story, story_label, timeline, tl_1, tl_1_desc, tl_2, tl_2_desc, tl_3, tl_3_desc, tl_4, tl_4_desc, tl_5, tl_5_desc, tl_6, tl_6_desc, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>

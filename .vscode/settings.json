@@ -13,5 +13,12 @@
     "javascript.format.insertSpaceAfterConstructor": true,
     "js/ts.implicitProjectConfig.checkJs": true,
     "js/ts.implicitProjectConfig.experimentalDecorators": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "javascript.inlayHints.parameterTypes.enabled": false,
+    "javascript.inlayHints.parameterNames.enabled": "none",
+    "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+    "javascript.inlayHints.variableTypes.enabled": false,
+    "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+    "javascript.inlayHints.propertyDeclarationTypes.enabled": false,
+    "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false
 }

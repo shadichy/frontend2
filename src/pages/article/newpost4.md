@@ -1,9 +1,9 @@
 ---
 layout: '../../layouts/paths/article.astro'
 lang: 'vi'
-title: 'First post'
+title: 'Second post'
 desc: 'Lorem ipsum dolor sit amet'
-date: 'Mon Nov 28 2022 15:39:11 GMT+0700 (Indochina Time)'
+date: 'Mon Nov 24 2022 15:39:11 GMT+0700 (Indochina Time)'
 tags: ['new', 'news', 'lorem']
 ---
 

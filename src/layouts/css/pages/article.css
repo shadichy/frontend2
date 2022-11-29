@@ -109,12 +109,7 @@
   margin-bottom: 0;
 }
 #bruh > div:nth-child(3) > div > a > span {
-  background: linear-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 1)
-  );
+  background: linear-gradient(200deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, .75));
   width: 100%;
   height: 100%;
   display: block;

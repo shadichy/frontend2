@@ -97,23 +97,23 @@ function load(limit) {
       }
     })
 }
-window.onscroll = () => {
-  // if scroll near the last element, load limit
-  if (
-    document.getElementsByClassName("loading").length == 0 &&
-    document.getElementsByClassName("newsbg").length >= 0
-  ) {
-    if (
-      document
-        .getElementsByClassName("newsbg")
-        [
-          document.getElementsByClassName("newsbg").length - 1
-        ].getBoundingClientRect().top < window.innerHeight
-    ) {
-      load(limit)
-    }
-  }
-}
+// window.onscroll = () => {
+//   // if scroll near the last element, load limit
+//   if (
+//     document.getElementsByClassName("loading").length == 0 &&
+//     document.getElementsByClassName("newsbg").length >= 0
+//   ) {
+//     if (
+//       document
+//         .getElementsByClassName("newsbg")
+//         [
+//           document.getElementsByClassName("newsbg").length - 1
+//         ].getBoundingClientRect().top < window.innerHeight
+//     ) {
+//       load(limit)
+//     }
+//   }
+// }
 
 window.addEventListener("DOMContentLoaded", () => {
   const eUC = encodeURIComponent,
@@ -132,7 +132,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // @ts-ignore
     .forEach((sharebtn, i) => (sharebtn.onclick = () => share(shareLinks[i])))
 
-  load(limit)
+  // load(limit)
   if (innerWidth > orgwidth) {
     // @ts-ignore
     window.customfunc.push(xscale)

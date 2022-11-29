@@ -15,7 +15,8 @@ export interface PageRequired {
 	share: string,
 	copied: string
 }
-const { gall_typo, share, copied, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { gall_typo, share, copied, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 

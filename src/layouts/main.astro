@@ -13,7 +13,8 @@ const {
   } = Astro.props,
   langfile = `./lang/${lang}/glob.json`
 
-const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = await import(langfile)
+const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = 
+  await import( /* @vite-ignore */ langfile)
 
 const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
     exlang = (lang=="vi") ? "" : ("/" + lang)

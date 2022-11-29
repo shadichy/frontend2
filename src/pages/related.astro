@@ -1,0 +1,16 @@
+---
+const posts = (await Astro.glob('./article/*.{md,mdx}'))
+// console.log(posts)
+  // .map((value) => {
+	  // const post = value[1];
+	  // const url = value[0].replace("./article/", "/").replace(".md", "/");
+	  // return post().then((p) => {
+	    // return { ...p.frontmatter, url };
+	  // });
+	// });
+---
+{
+  posts.map(post => (
+    <a href={post.url}> {post.file} </a>
+  ))
+}

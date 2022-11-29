@@ -32,7 +32,8 @@ export interface PageRequired {
   typo_desc: string
   typo_join: string
 }
-const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, build_more, builds, dlc, dlc_gme, dlc_lts, dlc_ver, dwl, more, news_prev, typo, typo_desc, typo_join, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { build_1, build_1_desc, build_2, build_2_desc, build_3, build_3_desc, build_more, builds, dlc, dlc_gme, dlc_lts, dlc_ver, dwl, more, news_prev, typo, typo_desc, typo_join, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
 
 
 const exlang = (lang=="vi") ? "" : ("/" + lang)
@@ -370,7 +371,7 @@ const exlang = (lang=="vi") ? "" : ("/" + lang)
     </div>
   </a>
   <DlBox lang={lang}>
-    <a slot="changelog" href={lang + "/dl"} class="lnk">Changelog</a>
+    <a slot="changelog" href={exlang + "/dl"} class="lnk">Changelog</a>
     <a slot="gotodl" href={exlang + "/dl"} class="lnk">
       {more}
     </a>

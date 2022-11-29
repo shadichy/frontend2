@@ -1,13 +1,36 @@
 ---
 import Main from "../main.astro"
 
-const { author = "Anonymous", date = Date().toString(), desc, image, lang, tags = [], title } = Astro.props.frontmatter,
+import Defaults from "../../defaults"
+
+export interface PostRequired {
+  author?: string,
+  date?,
+  desc?: string, 
+  image?: string, 
+  lang?: string, 
+  tags?: Array<string>,
+  title: string
+}
+
+const { alt_placeholder: imghld, title_holder: tthld } = Defaults
+
+const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = "vi", tags = [], title } = Astro.props.frontmatter as PostRequired,
   filename = "article",
   langfile = `../lang/${lang}/${filename}.json`
 
 import(`../css/pages/article.css`)
 
-const { back, by, share_fb, share_rd, share_tw } = await import(langfile)
+export interface ArticleRequired {
+  back: string,
+  by: string,
+  share_fb: string,
+  share_rd: string,
+  share_tw: string
+}
+
+const { back, by, share_fb, share_rd, share_tw } = 
+  await import( /* @vite-ignore */ langfile) as ArticleRequired
 
 const postDate = ((str) => {
   return new Date(str).toLocaleString(lang, {
@@ -17,7 +40,28 @@ const postDate = ((str) => {
   })
 })(date)
 
+const getDate = (post) => ~~(new Date(post.date).valueOf()/86400000),
+  sortFn = (r) => 
+    (getDate(r) + r.size) // adition method
+    // ((r.size + 1) / (~~(+new Date/86400000) - getDate(r))) // division method
+
+const Related = (await Astro.glob('../../pages/article/*.{md,mdx}'))
+  .filter(({ url }) => url !== Astro.props.url)
+  .map(post => ({
+    url: post.url as string,
+    title: post.frontmatter.title as string,
+    desc: post.frontmatter.desc as string || tthld,
+    image: post.frontmatter.image as string || imghld,
+		date: post.frontmatter.date as Date,
+    size: (tags.filter(f => 
+      (post.frontmatter.tags as Array<String> || new Array<String>)
+        .includes(f))
+        .length * 3) as number 
+  }))
+  .sort((a, b) => sortFn(b) - sortFn(a))
+
 ---
+
 <Main lang={lang} filename="news" meta_title={title} meta_description={desc} meta_img={image}>
   <script define:vars={{ by, tags }}>
     window.articleTags = tags
@@ -97,6 +141,15 @@ const postDate = ((str) => {
     <div>
       <div class="rel">
         <h3>Có thể bạn muốn đọc</h3>
+        {
+          Related.slice(0,3).map((post,i) => (
+            <a href={post.url} class={`show-on-scroll relitem${i}`}>
+        			<img loading="lazy" src={post.image} alt={post.desc}/>
+        			<span></span>
+        			<h2>{post.title}</h2>
+        		</a>
+          ))
+        }
       </div>
     </div>
     <div
@@ -118,6 +171,15 @@ const postDate = ((str) => {
   <h1 style="color: #002049; font-size: 4vh">Bài viết liên quan</h1>
   <div class="rel sec">
     <!-- <p>Related</p> -->
+      {
+        Related.map((post,i) => (
+          <a href={post.url} class={`show-on-scroll newsbg relitem${i}`}>
+      			<img loading="lazy" src={post.image || imghld} alt={post.desc || tthld}/>
+      			<span></span>
+      			<h2>{post.title}</h2>
+      		</a>
+        ))
+      }
   </div>
 </Main>
   

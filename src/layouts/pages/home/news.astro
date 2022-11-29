@@ -2,9 +2,13 @@
 import Home from "../../paths/home.astro";
 import NewsBox from "../../components/news-box.astro";
 
+import Defaults from "../../../defaults"
+
 const { lang } = Astro.props,
   filename = "news",
   langfile = `../../lang/${lang}/home/${filename}.json`
+
+const { alt_placeholder: imghld, title_holder: tthld } = Defaults
 
 import(`../../css/pages/home/news.css`)
 
@@ -15,11 +19,26 @@ export interface PageRequired {
   news: string,
   search: string
 }
-const { news, search, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+const { news, search, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
+
+const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
+  Posts = (await Astro.glob('../../../pages/article/*.{md,mdx}'))
+    .sort((a, b) => getDate(b) - getDate(a))
+    .map(post => ({
+      url: post.url as string,
+      title: post.frontmatter.title as string,
+      desc: post.frontmatter.desc as string || tthld,
+      image: post.frontmatter.image as string || imghld,
+      reldate: ~~(new Date(post.frontmatter.date).valueOf()/86400000) as number
+    }))
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 <script type="text/javascript" src="/js/pages/home/news.js"></script>
+<script define:vars={{ Posts }}>
+  window.postList = Posts
+</script>
 <div id="head">
   <h1 class="txtd">{news}</h1>
   <div>
@@ -27,9 +46,10 @@ const { news, search, meta_title, meta_description, meta_img } = await import(la
       <input
         type="text"
         placeholder={search}
+        id="searchbar"
         onfocus="document.getElementById('srr').style.display='block'"
         onblur="setTimeout(()=>document.getElementById('srr').style.display='none',500)"
-        oninput="srfv(this)"
+        oninput="srfv(this.value)"
       />
       <svg viewBox="0 0 24 24">
         <path
@@ -54,5 +74,17 @@ const { news, search, meta_title, meta_description, meta_img } = await import(la
   "
 ></span>
 <NewsBox/>
-<div id="newscontent"></div>
+<div id="newscontent">
+  {
+    Posts.map((post,i) => (
+      <a href={post.url} class={`newsbg newsitem${i}`}>
+        <img loading="lazy" alt={post.desc} src={post.image}/>
+        <div>
+					<h1 class="txtd">{post.title}</h1>
+					<p class="kad txtd">{post.desc}</p>
+        </div>
+      </a>
+    ))
+  }
+</div>
 </Home>

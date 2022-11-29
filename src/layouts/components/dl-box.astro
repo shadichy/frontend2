@@ -11,7 +11,8 @@ export interface ComponentRequired {
 	dlc_ver: string
 	dl_title: string
 }
-const { dlc, dlc_gme, dlc_lts, dlc_ver, dl_title } = await import(langfile) as ComponentRequired
+const { dlc, dlc_gme, dlc_lts, dlc_ver, dl_title } = 
+  await import( /* @vite-ignore */ langfile) as ComponentRequired
 
 ---
 

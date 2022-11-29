@@ -11,59 +11,61 @@ export interface PageRequired {
   meta_title?: string,
   meta_description: string,
   meta_img?: string,
-        feedback_cnt: string
-        feedback_label: string
-        form: string
-        form_back: string
-        form_next: string
-        form_q1: string
-        form_q2: string
-        form_q3: string
-        form_q4: string
-        form_q4_pc: string
-        form_q5: string
-        form_q5_a1: string
-        form_q5_a2: string
-        form_q5_a3: string
-        form_q6: string
-        form_q7: string
-        form_r0: string
-        form_r1: string
-        form_r1_desc: string
-        form_r2: string
-        form_r2_desc: string
-        form_r3: string
-        form_r4: string
-        form_r4_desc: string
-        form_r5_desc: string
-        form_r6: string
-        form_r6_desc: string
-        form_r7: string
-        form_r7_desc: string
-        form_r8: string
-        form_r8_lnk: string
-        form_r9: string
-        form_r9_lnk: string
-        form_rqr: string
-        form_send: string
-        form_tks: string
-        form_tks_resp: string
-        form_urans: string
-        join_ins: string
-        join_ins_1: string
-        join_ins_2: string
-        join_ins_3: string
-        join_ins_4: string
-        join_ins_5: string
-        join_ins_6: string
-        join_ins_7: string
-        join_ins_8: string
-        join_ins_9: string
-        join_ins_copy: string
-        join_ins_cpd: string
-        tks4feedback: string
+  feedback_cnt: string,
+  feedback_label: string,
+  form: string,
+  form_back: string,
+  form_next: string,
+  form_q1: string,
+  form_q2: string,
+  form_q3: string,
+  form_q4: string,
+  form_q4_pc: string,
+  form_q5: string,
+  form_q5_a1: string,
+  form_q5_a2: string,
+  form_q5_a3: string,
+  form_q6: string,
+  form_q7: string,
+  form_r0: string,
+  form_r1: string,
+  form_r1_desc: string,
+  form_r2: string,
+  form_r2_desc: string,
+  form_r3: string,
+  form_r4: string,
+  form_r4_desc: string,
+  form_r5_desc: string,
+  form_r6: string,
+  form_r6_desc: string,
+  form_r7: string,
+  form_r7_desc: string,
+  form_r8: string,
+  form_r8_lnk: string,
+  form_r9: string,
+  form_r9_lnk: string,
+  form_rqr: string,
+  form_send: string,
+  form_tks: string,
+  form_tks_resp: string,
+  form_urans: string,
+  join_ins: string,
+  join_ins_1: string,
+  join_ins_2: string,
+  join_ins_3: string,
+  join_ins_4: string,
+  join_ins_5: string,
+  join_ins_6: string,
+  join_ins_7: string,
+  join_ins_8: string,
+  join_ins_9: string,
+  join_ins_copy: string,
+  join_ins_cpd: string,
+  tks4feedback: string
 }
-const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback, meta_title, meta_description, meta_img } = await import(langfile) as PageRequired
+
+const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback, meta_title, meta_description, meta_img } = 
+  await import( /* @vite-ignore */ langfile) as PageRequired
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
