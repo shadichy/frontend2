@@ -1,7 +1,7 @@
 # Team Fuho website (re-built with astro)
 
 ```sh
-npm run dev
+npm run init
 ```
 
 ## 🚀 Project Structure
@@ -23,6 +23,8 @@ Inside this project, you'll see the following folders and files:
 │   |   |   └── <miscs go here>
 │   |   ├── css/
 │   |   |   └── <stylesheets>
+│   |   ├── js/
+│   |   |   └── <scripts>
 │   |   └── lang/
 │   |       └── <localizaton>
 │   └── pages/

@@ -1,9 +1,10 @@
 {
-  "name": "@Team-Fuho/astrobase",
+  "name": "@team-fuho/astrobase",
   "type": "module",
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "init": "scripts/fetchlang.js",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -11,6 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "*"
+    "@crowdin/ota-client": "*",
+    "astro": "*",
+    "axios": "^1.2.0",
+    "dragula": "*",
+    "hls.js": "*",
+    "intl-tel-input": "*"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "eslint": "*",
+    "prettier": "*"
   }
 }

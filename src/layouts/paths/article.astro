@@ -6,16 +6,16 @@ import Defaults from "../../defaults"
 export interface PostRequired {
   author?: string,
   date?,
-  desc?: string, 
+  desc?: string,
   image?: string, 
   lang?: string, 
   tags?: Array<string>,
   title: string
 }
 
-const { alt_placeholder: imghld, title_holder: tthld } = Defaults
+const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaults
 
-const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = "vi", tags = [], title } = Astro.props.frontmatter as PostRequired,
+const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = defaultLanguage, tags = [], title } = Astro.props.frontmatter as PostRequired,
   filename = "article",
   langfile = `../lang/${lang}/${filename}.json`
 
@@ -67,7 +67,7 @@ const Related = (await Astro.glob('../../pages/article/*.{md,mdx}'))
     window.articleTags = tags
   </script>
   
-  <script type="text/javascript" src="/js/pages/article.js"></script>
+  <script src="../js/pages/article.js"></script>
   
   <div id="bruh" class="show-on-scroll">
     <div>

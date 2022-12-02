@@ -1,5 +1,6 @@
 ---
-import Home from "../../paths/home.astro";
+import Home from "../../paths/home.astro"
+import OpenTime from "../../../avail.json"
 
 const { lang } = Astro.props,
   filename = "comm",
@@ -67,49 +68,71 @@ export interface PageRequired {
 const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback, meta_title, meta_description, meta_img } = 
   await import( /* @vite-ignore */ langfile) as PageRequired
 
+const [starttime, duration] = OpenTime,
+	endtime = starttime + duration * 60,
+	shortTime = (t) => new Date(t)
+		.toLocaleString(lang, { 
+			timeStyle: "short",
+			hour12: false
+		})
+
+let ct = ~~(+new Date/ 1000),
+	sleft = (starttime - ct) / 3600
+
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
 
-<script define:vars={{ form_next, form_send, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_cpd, join_ins_copy, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_8, tks4feedback}}>
+<script define:vars={{ form_next, form_send}}>
 		window.nxt = form_next
 		window.sen = form_send
-		window.avail = `
-			<p>${join_ins}</p>
-			<ol>
-				<li>${join_ins_1}</li>
-				<li>${join_ins_2}</li>
-			</ol>
-			<h1>${join_ins_3}</h1>
-			<div class="join-ip" data-clipboard-text="">
-				<span class="ip-value">teamfuho.net</span>
-				<span class="ip-caret"></span>
-			</div>
-			<div class="join-buttons" onclick="new Audio('/res/Click.wav').play()">
-				<div class="mc-button join-button" onclick="navigator.clipboard.writeText('teamfuho.net');this.innerHTML='${join_ins_cpd}'">${join_ins_copy}</div>
-			</div>`.trim()
-		window.noavail = `<div style="padding: 1vh;border: 2px solid #fff;">
-				<h3><span>${join_ins_4}</span></h3>
-				<p>${join_ins_5}</p>
-				<p>${join_ins_6}</p>
-			</div>`.trim()
-		window.willavail = `<div style="padding: 1vh;border: 2px solid #fff;">
-				<h3><span>${join_ins_7}</span></h3>
-				<p>${join_ins_8}</p>
-			</div>`.trim()
-		window.soonavail = `<div style="padding: 1vh;border: 2px solid #fff;">
-				<h3><span>${join_ins_9}</span></h3>
-				<p>${join_ins_8}</p>
-			</div>`.trim()
 </script>
-<script type="text/javascript" src="/js/modules/intl.js"></script>
-<script type="text/javascript" src="/js/pages/home/comm.js"></script>
+<!-- <script type="text/javascript" src="/js/modules/intl.js"></script> -->
+<script src="../../js/pages/home/comm.js"></script>
 
-<div class="container" style="width:100%;float:center;height: 80vh;overflow: hidden;margin-top: 12vh;display: block;">
-	<div class="joinInstructions" data-xf-init="joinInstructions" data-ip="teamfuho.net">
+<div class="container">
+	<div class="joinInstructions">
 		<div class="instructionsContent">
+			{
+				(ct >= starttime && ct <= endtime) ? (
+					<p>{join_ins}</p>
+						<ol>
+							<li>{join_ins_1}</li>
+							<li>{join_ins_2}</li>
+						</ol>
+						<h1>{join_ins_3}</h1>
+						<div class="join-ip">
+							<span class="ip-value">teamfuho.net</span>
+							<span class="ip-caret"></span>
+						</div>
+						<div class="join-buttons" onclick="new Audio('/res/Click.wav').play()">
+							<div class="mc-button join-button" onclick={`navigator.clipboard.writeText('teamfuho.net');this.innerHTML="${join_ins_cpd}"`}>{join_ins_copy}</div>
+						</div>
+				) : (([txt1, elem2, elem3]) => (
+					<div style="padding: 1vh;border: 2px solid #fff;">
+						<h3><span>{txt1}</span></h3>
+						<p set:html={elem2 ? join_ins_5 : join_ins_8}></p>
+						{elem3 ? ( <p set:html={join_ins_6}></p> ) : ""}
+					</div>
+				))((ct > endtime) ? 
+					[join_ins_4, 1, 1] : 
+					(sleft > 12) ? [
+						+
+						join_ins_7
+							.replace(" id=\"starttime\">",">" + shortTime(starttime * 1000))
+							.replace(" id=\"endtime\">",">" + shortTime(endtime * 1000))
+							.replace(" id=\"date\">",">" + new Date(starttime * 1000)
+    						.toLocaleString('vi', {
+    						  day: "numeric",
+    						  month: "numeric"
+    						}))
+					] : [
+						join_ins_9
+							.replace(" id=\"counttime\">",">" + (([g, t]: [number, string]) => sleft * g + t)((sleft < 3600) ? [60,"m"] : [1,"h"]))
+					])
+			}
 		</div>
 		<div class="jin-video">
-			<iframe src="https://www.youtube.com/embed/346ZEE13OmE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/346ZEE13OmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 	</div>
 </div>
@@ -172,7 +195,7 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 							<span></span>
 						</div>
 						<p>{form_r8}</p>
-						<div>
+						<div class="hasBtn">
 							<span></span>
 							<input type="url" placeholder="https://www.facebook.com/<fb user id>" value="https://www.facebook.com/" name="entry.205733081" />
 							<button onclick="event.preventDefault()" title={form_r8_lnk} style="background: #1977f3">
@@ -184,7 +207,7 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 							<span></span>
 						</div>
 						<p>{form_r9}</p>
-						<div>
+						<div class="hasBtn">
 							<span></span>
 							<input type="url" placeholder="username#tag" value="https://discordapp.com/users/" name="entry.1388365048"><button onclick="event.preventDefault()" title={form_r9_lnk} style="background:#5865F2">
 								<svg viewBox="0 0 71 55">
@@ -225,7 +248,7 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 						<p>{form_q4}<span>*</span></p>
 						<div>
 							<span></span>
-							<input type="range" min="0" max="10" required onchange="document.querySelector('#point>p:first-child').innerHTML = this.value" name="entry.573182178" />
+							<input type="range" min="0" max="10" required oninput="document.querySelector('#point>p:first-child').innerHTML = this.value" name="entry.573182178" />
 							<span></span>
 							<div id="point"><p></p><p>{form_q4_pc}</p></div>
 						</div>
@@ -269,7 +292,7 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 	<span class="hsp show-on-scroll"></span>
 </div>
 <div id="feedback">
-	<form action="https://script.google.com/macros/s/AKfycbxHP2jsnReGYHTJb_W7kvPoDClLBGbJT5ny4TzimOQEd5DqqxKF3RuEYU7KDh8EJKhxJQ/exec" target="plx" class="show-on-scroll" method="post" onsubmit="alert(`${tks4feedback}`);this.querySelector('input[type=submit]').disabled = true;setTimeout(()=>{this.querySelector('input[type=submit]').disabled = false},5000)">
+	<form action="https://script.google.com/macros/s/AKfycbxHP2jsnReGYHTJb_W7kvPoDClLBGbJT5ny4TzimOQEd5DqqxKF3RuEYU7KDh8EJKhxJQ/exec" target="plx" class="show-on-scroll" method="post" onsubmit={`alert(${tks4feedback});this.querySelector('input[type=submit]').disabled = true;setTimeout(()=>{this.querySelector('input[type=submit]').disabled = false},5000)`}>
 		<div>
 			<textarea name="Nội_dung" id="idea" placeholder={feedback_cnt}></textarea>
 		</div>
@@ -279,7 +302,8 @@ const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_
 	</form>
 </div>
 
-<iframe src="#" frameborder="0" id="plx" name="plx" style="display: none;"></iframe>
+<iframe src="#" id="plx" name="plx" style="display: none;"></iframe>
 
 
 </Home>
+

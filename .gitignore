@@ -17,3 +17,11 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+.vscode*
+
+src/lang
+src/pages/*
+!src/pages/article
+!src/pages/article/*.{md,mdx}
+

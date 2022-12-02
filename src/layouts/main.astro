@@ -2,22 +2,43 @@
 import "./css/main.css"
 
 import Defaults from "../defaults"
-const { dburl, img_placeholder, alt_placeholder } = Defaults
+const { dburl, img_placeholder, alt_placeholder, defaultLanguage } = Defaults
+
+export interface MainRequired {
+  lang?: string,
+  filename?: string,
+  meta_title?: string,
+  meta_description?: string,
+  meta_img?: string,
+}
 
 const {
-    lang = "vi",
+    lang = defaultLanguage,
     filename = "index",
     meta_title = "Vietnam",
     meta_description = "Team Fuho Vietnam",
     meta_img = img_placeholder
-  } = Astro.props,
+  } = Astro.props as MainRequired,
   langfile = `./lang/${lang}/glob.json`
 
-const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = 
-  await import( /* @vite-ignore */ langfile)
+export interface LangRequired {
+  nav_home: string,
+  nav_info: string,
+  nav_gall: string,
+  nav_news: string,
+  nav_comm: string,
+  nav_down: string,
+  nav_join: string,
+  nav_dl: string,
+  credit: string,
+  links: string
+}
 
-const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
-    exlang = (lang=="vi") ? "" : ("/" + lang)
+const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, nav_dl, credit, links } = 
+  await import( /* @vite-ignore */ langfile) as LangRequired
+
+const title=`Team Fuho ${filename != "index" ? "- " : ""}${meta_title}`,
+    exlang = (lang == defaultLanguage) ? "" : ("/" + lang)
 ---
 
 <!DOCTYPE html>
@@ -38,25 +59,24 @@ const title="Team Fuho " + (filename != "index" ? "- " : "") + meta_title,
       color: #ff7518!important;
     }
   </style> -->
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href={"/css/" + lang + ".css"}>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href={`/css/${lang}.css`}>
   <script define:vars={{ lang, exlang, filename, dburl, img_placeholder, alt_placeholder }}>
-    window.addEventListener("DOMContentLoaded", e => document.querySelector(`a.txtd.d${filename}`).style.color = "#ff7518")
+    window.addEventListener("DOMContentLoaded", e => (document.querySelector(`a.txtd.d${filename}`) || { style: {} } ).style.color = "#ff7518")
     window.lang = lang
     window.exlang = exlang
     window.dburl = dburl
     window.img_placeholder = img_placeholder
     window.alt_placeholder = alt_placeholder
     window.customfunc = new Array
-    const lmao=true
   </script>
-  <script type="text/javascript" src="/js/main.js"></script>
+  <script src="./js/main.js"></script>
   <!-- <script src="/bundle/main.bundle.js"></script> -->
 </head>
 
 <body id="root" style="display: none">
   <div class="nav bgw">
-    <a href={`${exlang}`}>
+    <a href={exlang}>
       <img class="icns" loading="lazy" src="/res/img/long-dark.svg" alt="Team Fuho Vietnam" />
     </a>
     <div id="swipe">
