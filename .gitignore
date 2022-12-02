@@ -20,8 +20,8 @@ pnpm-debug.log*
 
 .vscode*
 
-src/lang
+src/layouts/lang
 src/pages/*
 !src/pages/article
-!src/pages/article/*.{md,mdx}
+src/pages/article/*.md*
 

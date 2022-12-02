@@ -42,10 +42,10 @@ function genFiles(obj) {
  */
 function fallback(err) {
   console.log(err);
-  console.log("! Failed, reverting...");
-  if (!fs.existsSync("src/layouts/lang") && !fs.existsSync(lf))
-    genFiles(content);
-  else console.error("E Error no language file found!");
+  console.log("W: Failed, reverting...");
+  if (!fs.existsSync("src/layouts/lang"))
+    if (fs.existsSync(lf)) genFiles(content);
+    else console.error("E: Error no language file found!");
 }
 
 export default {
@@ -59,7 +59,7 @@ export default {
       },
     })
     .then((res) => {
-      console.log("i Fetching translations...");
+      console.log("I: Fetching translations...");
       if (timestamp < res.data.timestamp) {
         // @ts-ignore
         new crowdin.default(ohash, {
