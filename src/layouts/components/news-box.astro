@@ -2,11 +2,13 @@
 
 import Defaults from "../../defaults"
 const { alt_placeholder: imghld, title_holder: tthld } = Defaults
+const { lang } = Astro.props
 
 import(`../css/news.css`)
 
 const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-  threeNewest = (await Astro.glob('../../pages/article/*.{md,mdx}'))
+  threeNewest = (await Astro.glob("../../pages/**/article/*.{md,mdx}"))
+    .filter(post => post.file.includes(`/${lang}/`))
     .sort((a, b) => getDate(b) - getDate(a))
     .slice(0,3)
     .map(post => ({
@@ -15,6 +17,7 @@ const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
       desc: post.frontmatter.desc as string || tthld,
       image: post.frontmatter.image as string || imghld
     }))
+
 ---
 
 <script src="../js/modules/news.js"></script>

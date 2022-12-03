@@ -1,5 +1,5 @@
 {
-  "timestamp": 0,
+  "timestamp": 1662379841,
   "content": {
     "zh-CN": [
       { "content": {}, "file": "/404.json" },
@@ -498,7 +498,13 @@
       }
     ],
     "ko": [
-      { "content": null, "file": "/404.json" },
+      {
+        "content": {
+          "err_desc": "앗! 당신은 금방 접근한 웹사이트가 안 존재하거나 아직 안 완료돼요!",
+          "err_navi": "홈페이지로 돌아가거나 나중에 다시 시도하세요!"
+        },
+        "file": "/404.json"
+      },
       {
         "content": {
           "join_ins_3": "서버 주소",
@@ -547,6 +553,18 @@
         },
         "file": "/glob.json"
       },
+      { "content": {}, "file": "/langsel.json" },
+      { "content": {}, "file": "/article.json" },
+      { "content": {}, "file": "/dl.json" }
+    ],
+    "ru": [
+      { "content": {}, "file": "/404.json" },
+      { "content": {}, "file": "/comm.json" },
+      { "content": {}, "file": "/news.json" },
+      { "content": {}, "file": "/gallery.json" },
+      { "content": {}, "file": "/info.json" },
+      { "content": {}, "file": "/index.json" },
+      { "content": {}, "file": "/glob.json" },
       { "content": {}, "file": "/langsel.json" },
       { "content": {}, "file": "/article.json" },
       { "content": {}, "file": "/dl.json" }
@@ -1014,18 +1032,6 @@
         },
         "file": "/dl.json"
       }
-    ],
-    "ru": [
-      { "content": {}, "file": "/404.json" },
-      { "content": {}, "file": "/comm.json" },
-      { "content": {}, "file": "/news.json" },
-      { "content": {}, "file": "/gallery.json" },
-      { "content": {}, "file": "/info.json" },
-      { "content": {}, "file": "/index.json" },
-      { "content": {}, "file": "/glob.json" },
-      { "content": {}, "file": "/langsel.json" },
-      { "content": {}, "file": "/article.json" },
-      { "content": {}, "file": "/dl.json" }
     ]
   }
 }

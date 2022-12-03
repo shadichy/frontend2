@@ -8,7 +8,7 @@ const { lang } = Astro.props,
   filename = "news",
   langfile = `../../lang/${lang}/home/${filename}.json`
 
-const { alt_placeholder: imghld, title_holder: tthld } = Defaults
+const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaults
 
 import(`../../css/pages/home/news.css`)
 
@@ -22,8 +22,10 @@ export interface PageRequired {
 const { news, search, meta_title, meta_description, meta_img } = 
   await import( /* @vite-ignore */ langfile) as PageRequired
 
+const exlang = (lang == defaultLanguage) ? "" : ("/" + lang)
 const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-  Posts = (await Astro.glob('../../../pages/article/*.{md,mdx}'))
+  Posts = (await Astro.glob("../../../pages/**/article/*.{md,mdx}"))
+    .filter(post => post.file.includes(`${lang}/`))
     .sort((a, b) => getDate(b) - getDate(a))
     .map(post => ({
       url: post.url as string,
@@ -73,7 +75,7 @@ const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
     border-radius: 100vmax;
   "
 ></span>
-<NewsBox/>
+<NewsBox lang={lang}/>
 <div id="newscontent">
   {
     Posts.map((post,i) => (

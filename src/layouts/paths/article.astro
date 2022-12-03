@@ -45,8 +45,8 @@ const getDate = (post) => ~~(new Date(post.date).valueOf()/86400000),
     (getDate(r) + r.size) // adition method
     // ((r.size + 1) / (~~(+new Date/86400000) - getDate(r))) // division method
 
-const Related = (await Astro.glob('../../pages/article/*.{md,mdx}'))
-  .filter(({ url }) => url !== Astro.props.url)
+const Related = (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
+  .filter(({ url }) => url !== Astro.props.url && url.includes(`/${lang}/`))
   .map(post => ({
     url: post.url as string,
     title: post.frontmatter.title as string,

@@ -1,9 +1,9 @@
 ---
-layout: '../../../layouts/paths/article.astro'
+layout: '/src/layouts/paths/article.astro'
 lang: 'vi'
 title: '4th post'
 desc: 'Lorem ipsum dolor sit amet'
-date: 'Mon Nov 27 2022 15:39:11 GMT+0700 (Indochina Time)'
+date: 'Mon Nov 18 2022 15:39:11 GMT+0700 (Indochina Time)'
 tags: [ 'news', 'new', 'lorem' ]
 ---
 

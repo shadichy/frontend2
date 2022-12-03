@@ -1,9 +1,10 @@
 ---
 import Shop from "../../paths/shop.astro";
+import ProductBox from "../../components/product-box.astro";
 
 const { lang } = Astro.props
 
-import ProductBox from "../../components/product-box.astro";
+import(`../../css/pages/shop/index.css`)
 
 ---
 <Shop lang={lang} >
