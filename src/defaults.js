@@ -5,7 +5,7 @@ const
   alt_placeholder = "/res/img/alt-placeholder.svg",
   title_holder = "Team Fuho Vietnam",
 
-  langRoutes = ["ja", "en", "zh", "ko", "ru", "fr", "vi", "nom", undefined],
+  langRoutes = ["ja", "en", "zh", "ko", "ru", "fr", "vi", "nom"],
   allowedLanguages = ["vi"],
   defaultLanguage = "vi",
   langMap = allowedLanguages.map(lang => ({ params: { lang: lang } })),
@@ -13,7 +13,7 @@ const
   pages = {
     home: ["index", "info", "gallery", "news", "comm", "dl"],
     shop: ["account", "cart", "checkout", "index", "product", "search"],
-    404: ["404"],
+    "404": ["404"],
     article: ["article"],
   };
 

@@ -10,9 +10,12 @@ Inside this project, you'll see the following folders and files:
 
 ```text
 /
+├── scripts/
+│   └── <init and other generator scripts>
 ├── public/
 │   └── <resouces>
 ├── src/
+|   ├── defaults.js (default configurations)
 │   ├── layouts/
 │   |   ├── main.astro (header and footer)
 │   |   ├── paths/
@@ -28,11 +31,19 @@ Inside this project, you'll see the following folders and files:
 │   |   └── lang/
 │   |       └── <localizaton>
 │   └── pages/
+│       ├── <lang>/
+│       |   ├── article/
+│       |   |   └── <posts go here>
+│       |   ├── image/
+│       |   |   └── <generated image links go here>
+│       |   └── shop/
+│       |       └── product/
+│       |           └── <shop products go here>
 │       └── <pages are generated here>
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro looks for `.astro` or `.md`/`.mdx` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/layouts/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact/Json components.
 
