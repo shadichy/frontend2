@@ -121,7 +121,7 @@ let ct = ~~(+new Date/ 1000),
 							.replace(" id=\"starttime\">",">" + shortTime(starttime * 1000))
 							.replace(" id=\"endtime\">",">" + shortTime(endtime * 1000))
 							.replace(" id=\"date\">",">" + new Date(starttime * 1000)
-    						.toLocaleString('vi', {
+    						.toLocaleString(lang, {
     						  day: "numeric",
     						  month: "numeric"
     						}))

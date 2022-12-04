@@ -1,5 +1,5 @@
 // import("./main")
-import("./product-list")
+// import("./product-list")
 
 // const { shopitem } = require("./global")
 

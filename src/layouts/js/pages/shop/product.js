@@ -46,7 +46,7 @@ function changebg(url) {
     })
 }
 
-window.customfunc.push(() => {
+window["customfunc"].push(() => {
   document.querySelector("#related>div").style.gridTemplateColumns = `repeat(${
     innerWidth > innerHeight
       ? Math.floor((innerWidth * 4) / innerHeight) - 1
@@ -81,4 +81,4 @@ pcount_btn[1].addEventListener("mouseup", () => {
 })
 // })
 
-window.customfunc.forEach((f) => f())
+window["customfunc"].forEach((f) => f())

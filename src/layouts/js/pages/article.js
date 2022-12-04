@@ -132,6 +132,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // load(limit)
   if (innerWidth > orgwidth) {
     // @ts-ignore
-    window.customfunc.push(xscale)
+    window["customfunc"].push(xscale)
   }
 })

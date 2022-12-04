@@ -1,4 +1,4 @@
 // import("./main")
 
-// const { shopitem, window.customfunc } = require("./main")
+// const { shopitem, window["customfunc"] } = require("./main")
 

@@ -1,8 +1,8 @@
 ---
-import "./css/main.css"
-
 import Defaults from "../defaults"
-const { dburl, img_placeholder, alt_placeholder, defaultLanguage } = Defaults
+const { dburl, img_placeholder, alt_placeholder, allowedLanguages, defaultLanguage } = Defaults
+
+import "./css/main.css"
 
 export interface MainRequired {
   lang?: string,
@@ -38,7 +38,7 @@ const { nav_home, nav_info, nav_gall, nav_news, nav_comm, nav_down, nav_join, na
   await import( /* @vite-ignore */ langfile) as LangRequired
 
 const title=`Team Fuho ${filename != "index" ? "- " : ""}${meta_title}`,
-    exlang = (lang == defaultLanguage) ? "" : ("/" + lang)
+  exlang = (lang == (defaultLanguage || allowedLanguages[0])) ? "" : ("/" + lang)
 ---
 
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ const title=`Team Fuho ${filename != "index" ? "- " : ""}${meta_title}`,
     window.dburl = dburl
     window.img_placeholder = img_placeholder
     window.alt_placeholder = alt_placeholder
-    window.customfunc = new Array
+    window["customfunc"] = new Array
   </script>
   <script src="./js/main.js"></script>
   <!-- <script src="/bundle/main.bundle.js"></script> -->

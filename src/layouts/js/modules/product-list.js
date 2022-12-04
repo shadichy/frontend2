@@ -20,7 +20,7 @@ function sortByPrice(mode) {
   hili(3)
 }
 
-window.customfunc.push(() => {
+window["customfunc"].push(() => {
   document.querySelector(
     "#product_list>div:last-child>section:last-child"
   ).style.gridTemplateColumns = `repeat(${
@@ -51,4 +51,4 @@ window.customfunc.push(() => {
 
 hili(0)
 
-window.customfunc.forEach((f) => f())
+window["customfunc"].forEach((f) => f())

@@ -20,13 +20,17 @@ const toLocale = {
     jp: "JPY",
     zh: "CNY",
   },
+  // @ts-ignore
   langWithLocale = lang == "nom" ? "vi-VN" : `${lang}-${toLocale[lang]}`,
   formatter = new Intl.NumberFormat(`${langWithLocale}`, {
     style: "currency",
+    // @ts-ignore
     currency: `${toCurrency[lang]}`,
   }),
   shopitem = ({ id, title, img, buycount, price, sale }) => `
-<a class="item" href="${exlang}/shop/product?id=${id}">
+<a class="item" href="${
+// @ts-ignore
+exlang}/shop/product?id=${id}">
     <img loading="lazy" src="${img}" alt="${id}">
     <p>${title}</p>
     <section>
@@ -38,13 +42,14 @@ const toLocale = {
     </section>
 </a>`
 
-window.customfunc.push(() => {
+window["customfunc"].push(() => {
   if (
     !(
       location.pathname.endsWith("/shop") ||
       location.pathname.endsWith("/shop/")
     )
   )
+    // @ts-ignore
     document.querySelector("#head>span:first-child").innerHTML = `
         <a href="/shop">
             <svg viewBox="0 0 26.676 26.676">
@@ -55,9 +60,9 @@ window.customfunc.push(() => {
   // subcall()
 })
 
-window.customfunc.forEach((f) => f())
+window["customfunc"].forEach((f) => f())
 
-module.exports = {
+export default {
   formatter,
   shopitem,
 }
