@@ -3,307 +3,307 @@ import Home from "../../paths/home.astro"
 import OpenTime from "../../../avail.json"
 
 const { lang } = Astro.props,
-  filename = "comm",
-  langfile = `../../lang/${lang}/home/${filename}.json`
+filename = "comm",
+langfile = `../../lang/${lang}/home/${filename}.json`
 
 import(`../../css/pages/home/comm.css`)
 
 export interface PageRequired {
-  meta_title?: string,
-  meta_description: string,
-  meta_img?: string,
-  feedback_cnt: string,
-  feedback_label: string,
-  form: string,
-  form_back: string,
-  form_next: string,
-  form_q1: string,
-  form_q2: string,
-  form_q3: string,
-  form_q4: string,
-  form_q4_pc: string,
-  form_q5: string,
-  form_q5_a1: string,
-  form_q5_a2: string,
-  form_q5_a3: string,
-  form_q6: string,
-  form_q7: string,
-  form_r0: string,
-  form_r1: string,
-  form_r1_desc: string,
-  form_r2: string,
-  form_r2_desc: string,
-  form_r3: string,
-  form_r4: string,
-  form_r4_desc: string,
-  form_r5_desc: string,
-  form_r6: string,
-  form_r6_desc: string,
-  form_r7: string,
-  form_r7_desc: string,
-  form_r8: string,
-  form_r8_lnk: string,
-  form_r9: string,
-  form_r9_lnk: string,
-  form_rqr: string,
-  form_send: string,
-  form_tks: string,
-  form_tks_resp: string,
-  form_urans: string,
-  join_ins: string,
-  join_ins_1: string,
-  join_ins_2: string,
-  join_ins_3: string,
-  join_ins_4: string,
-  join_ins_5: string,
-  join_ins_6: string,
-  join_ins_7: string,
-  join_ins_8: string,
-  join_ins_9: string,
-  join_ins_copy: string,
-  join_ins_cpd: string,
-  tks4feedback: string
+	meta_title?: string,
+	meta_description: string,
+	meta_img?: string,
+	feedback_cnt: string,
+	feedback_label: string,
+	form: string,
+	form_back: string,
+	form_next: string,
+	form_q1: string,
+	form_q2: string,
+	form_q3: string,
+	form_q4: string,
+	form_q4_pc: string,
+	form_q5: string,
+	form_q5_a1: string,
+	form_q5_a2: string,
+	form_q5_a3: string,
+	form_q6: string,
+	form_q7: string,
+	form_r0: string,
+	form_r1: string,
+	form_r1_desc: string,
+	form_r2: string,
+	form_r2_desc: string,
+	form_r3: string,
+	form_r4: string,
+	form_r4_desc: string,
+	form_r5_desc: string,
+	form_r6: string,
+	form_r6_desc: string,
+	form_r7: string,
+	form_r7_desc: string,
+	form_r8: string,
+	form_r8_lnk: string,
+	form_r9: string,
+	form_r9_lnk: string,
+	form_rqr: string,
+	form_send: string,
+	form_tks: string,
+	form_tks_resp: string,
+	form_urans: string,
+	join_ins: string,
+	join_ins_1: string,
+	join_ins_2: string,
+	join_ins_3: string,
+	join_ins_4: string,
+	join_ins_5: string,
+	join_ins_6: string,
+	join_ins_7: string,
+	join_ins_8: string,
+	join_ins_9: string,
+	join_ins_copy: string,
+	join_ins_cpd: string,
+	tks4feedback: string
 }
 
 const { feedback_cnt, feedback_label, form, form_back, form_next, form_q1, form_q2, form_q3, form_q4, form_q4_pc, form_q5, form_q5_a1, form_q5_a2, form_q5_a3, form_q6, form_q7, form_r0, form_r1, form_r1_desc, form_r2, form_r2_desc, form_r3, form_r4, form_r4_desc, form_r5_desc, form_r6, form_r6_desc, form_r7, form_r7_desc, form_r8, form_r8_lnk, form_r9, form_r9_lnk, form_rqr, form_send, form_tks, form_tks_resp, form_urans, join_ins, join_ins_1, join_ins_2, join_ins_3, join_ins_4, join_ins_5, join_ins_6, join_ins_7, join_ins_8, join_ins_9, join_ins_copy, join_ins_cpd, tks4feedback, meta_title, meta_description, meta_img } = 
-  await import( /* @vite-ignore */ langfile) as PageRequired
+await import( /* @vite-ignore */ langfile) as PageRequired
 
 const [starttime, duration] = OpenTime,
-	endtime = starttime + duration * 60,
-	shortTime = (t) => new Date(t)
-		.toLocaleString(lang, { 
-			timeStyle: "short",
-			hour12: false
-		})
+endtime = starttime + duration * 60,
+shortTime = (t) => new Date(t)
+.toLocaleString(lang, { 
+	timeStyle: "short",
+	hour12: false
+})
 
 let ct = ~~(+new Date/ 1000),
-	sleft = (starttime - ct) / 3600
+sleft = (starttime - ct) / 3600
 
 ---
 <Home lang={lang} filename={filename} meta_title={meta_title} meta_description={meta_description} meta_img={meta_img}>
-
-<script define:vars={{ form_next, form_send}}>
+	
+	<script define:vars={{ form_next, form_send}}>
 		window.nxt = form_next
 		window.sen = form_send
-</script>
-<!-- <script type="text/javascript" src="/js/modules/intl.js"></script> -->
-<script src="../../js/pages/home/comm.js"></script>
-
-<div class="container">
-	<div class="joinInstructions">
-		<div class="instructionsContent">
-			{
-				(ct >= starttime && ct <= endtime) ? (
+	</script>
+	<!-- <script type="text/javascript" src="/js/modules/intl.js"></script> -->
+	<script src="../../js/pages/home/comm.js"></script>
+	
+	<div class="container">
+		<div class="joinInstructions">
+			<div class="instructionsContent">
+				{
+					(ct >= starttime && ct <= endtime) ? (
 					<p>{join_ins}</p>
-						<ol>
-							<li>{join_ins_1}</li>
-							<li>{join_ins_2}</li>
-						</ol>
-						<h1>{join_ins_3}</h1>
-						<div class="join-ip">
-							<span class="ip-value">teamfuho.net</span>
-							<span class="ip-caret"></span>
-						</div>
-						<div class="join-buttons" onclick="new Audio('/res/Click.wav').play()">
-							<div class="mc-button join-button" onclick={`navigator.clipboard.writeText('teamfuho.net');this.innerHTML="${join_ins_cpd}"`}>{join_ins_copy}</div>
-						</div>
-				) : (([txt1, elem2, elem3]) => (
+					<ol>
+						<li>{join_ins_1}</li>
+						<li>{join_ins_2}</li>
+					</ol>
+					<h1>{join_ins_3}</h1>
+					<div class="join-ip">
+						<span class="ip-value">teamfuho.net</span>
+						<span class="ip-caret"></span>
+					</div>
+					<div class="join-buttons" onclick="new Audio('/res/Click.wav').play()">
+						<div class="mc-button join-button" onclick={`navigator.clipboard.writeText('teamfuho.net');this.innerHTML="${join_ins_cpd}"`}>{join_ins_copy}</div>
+					</div>
+					) : (([txt1, elem2, elem3]) => (
 					<div style="padding: 1vh;border: 2px solid #fff;">
 						<h3><span>{txt1}</span></h3>
 						<p set:html={elem2 ? join_ins_5 : join_ins_8}></p>
 						{elem3 ? ( <p set:html={join_ins_6}></p> ) : ""}
 					</div>
-				))((ct > endtime) ? 
+					))((ct > endtime) ? 
 					[join_ins_4, 1, 1] : 
 					(sleft > 12) ? [
-						+
-						join_ins_7
-							.replace(" id=\"starttime\">",">" + shortTime(starttime * 1000))
-							.replace(" id=\"endtime\">",">" + shortTime(endtime * 1000))
-							.replace(" id=\"date\">",">" + new Date(starttime * 1000)
-    						.toLocaleString(lang, {
-    						  day: "numeric",
-    						  month: "numeric"
-    						}))
+					+
+					join_ins_7
+					.replace(" id=\"starttime\">",">" + shortTime(starttime * 1000))
+					.replace(" id=\"endtime\">",">" + shortTime(endtime * 1000))
+					.replace(" id=\"date\">",">" + new Date(starttime * 1000)
+					.toLocaleString(lang, {
+						day: "numeric",
+						month: "numeric"
+					}))
 					] : [
-						join_ins_9
-							.replace(" id=\"counttime\">",">" + (([g, t]: [number, string]) => sleft * g + t)((sleft < 3600) ? [60,"m"] : [1,"h"]))
+					join_ins_9
+					.replace(" id=\"counttime\">",">" + (([g, t]: [number, string]) => sleft * g + t)((sleft < 3600) ? [60,"m"] : [1,"h"]))
 					])
-			}
-		</div>
-		<div class="jin-video">
-			<iframe src="https://www.youtube.com/embed/346ZEE13OmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				}
+			</div>
+			<div class="jin-video">
+				<iframe src="https://www.youtube.com/embed/346ZEE13OmE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div id="form">
-	<form action="https://docs.google.com/forms/u/1/d/1WzRwEjD5kilGHafsOeO5bTPD34I_Qdg_EBzeDaKOxTA/formResponse" target="_blank" method="POST" class="show-on-scroll">
-		<img src="/res/img/theme-min.jpg" alt="" style="height:100%;width: 100%;vertical-align: middle;">
-		<div>
-			<h1>{form}</h1>
-			<div id="formpage">
-				<div>
+	
+	<div id="form">
+		<form action="https://docs.google.com/forms/u/1/d/1WzRwEjD5kilGHafsOeO5bTPD34I_Qdg_EBzeDaKOxTA/formResponse" target="_blank" method="POST" class="show-on-scroll">
+			<img src="/res/img/theme-min.jpg" alt="" style="height:100%;width: 100%;vertical-align: middle;">
+			<div>
+				<h1>{form}</h1>
+				<div id="formpage">
 					<div>
+						<div>
+							<div class="inpctn">
+								<p>{form_r1}<span>*</span></p>
+								<div>
+									<span></span>
+									<input placeholder={form_r1_desc} required name="entry.1585262217" type="text">
+									<span></span>
+								</div>
+								<p>{form_r2}</p>
+								<div>
+									<span></span>
+									<input placeholder={form_r2_desc} name="entry.1878452536" type="text">
+									<span></span>
+								</div>
+							</div>
+							<div class="inpctn">
+								<p>{form_r3}<span>*</span></p>
+								<div>
+									<span></span>
+									<input type="date" required name="entry.1676887053">
+									<span></span>
+								</div>
+								<p>{form_r4}<span>*</span></p>
+								<div>
+									<span></span>
+									<input type="tel" required placeholder={form_r4_desc}>
+									<input type="hidden" name="entry.1166974658" id="real_no">
+									<span></span>
+								</div>
+							</div>
+						</div>
 						<div class="inpctn">
-							<p>{form_r1}<span>*</span></p>
+							<p>Email<span>*</span></p>
 							<div>
 								<span></span>
-								<input placeholder={form_r1_desc} required name="entry.1585262217" type="text">
+								<input type="email" placeholder={form_r5_desc} required name="entry.1045781291">
 								<span></span>
 							</div>
-							<p>{form_r2}</p>
+							<p>{form_r6}</p>
 							<div>
 								<span></span>
-								<input placeholder={form_r2_desc} name="entry.1878452536" type="text">
+								<input type="email" placeholder={form_r6_desc} name="entry.979831719">
 								<span></span>
 							</div>
-						</div>
-						<div class="inpctn">
-							<p>{form_r3}<span>*</span></p>
+							<p>{form_r7}<span>*</span></p>
 							<div>
 								<span></span>
-								<input type="date" required name="entry.1676887053">
+								<input type="text" placeholder={form_r7_desc} required name="entry.1531852455">
 								<span></span>
 							</div>
-							<p>{form_r4}<span>*</span></p>
+							<p>{form_r8}</p>
+							<div class="hasBtn">
+								<span></span>
+								<input type="url" placeholder="https://www.facebook.com/<fb user id>" value="https://www.facebook.com/" name="entry.205733081" />
+								<button onclick="event.preventDefault()" title={form_r8_lnk} style="background: #1977f3">
+									<svg style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd;" viewBox="0 0 14222 14222">
+										<path fill="#fefefe" d="M9879 9167l315 -2056 -1972 0 0 -1334c0,-562 275,-1111 1159,-1111l897 0 0 -1750c0,0 -814,-139 -1592,-139 -1624,0 -2686,984 -2686,2767l0 1567 -1806 0 0 2056 1806 0 0 4969c362,57 733,86 1111,86 378,0 749,-30 1111,-86l0 -4969 1657 0z"/>
+									</svg>
+									<p>Facebook</p>
+								</button>
+								<span></span>
+							</div>
+							<p>{form_r9}</p>
+							<div class="hasBtn">
+								<span></span>
+								<input type="url" placeholder="username#tag" value="https://discordapp.com/users/" name="entry.1388365048">
+								<button onclick="event.preventDefault()" title={form_r9_lnk} style="background:#5865F2">
+									<svg viewBox="0 0 71 55">
+										<path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z" fill="#ffffff"/>
+									</svg>
+									<p>Discord</p>
+								</button>
+								<span></span>
+							</div>
+							<p>{form_r0}</p>
 							<div>
 								<span></span>
-								<input type="tel" required placeholder={form_r4_desc}>
-								<input type="hidden" name="entry.1166974658" id="real_no">
+								<textarea cols="30" rows="10" placeholder="https://twitter.com/<your username>&#10https://www.reddit.com/user/<your username>&#10..." name="entry.1586717887"></textarea>
 								<span></span>
 							</div>
 						</div>
 					</div>
-					<div class="inpctn">
-						<p>Email<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="email" placeholder={form_r5_desc} required name="entry.1045781291">
+					<div>
+						<div class="inpctn" style="grid-template-columns: 1fr;">
+							<p>{form_q1}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="text" placeholder={form_urans} required name="entry.382169083">
 								<span></span>
 							</div>
-						<p>{form_r6}</p>
-						<div>
-							<span></span>
-							<input type="email" placeholder={form_r6_desc} name="entry.979831719">
-							<span></span>
-						</div>
-						<p>{form_r7}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="text" placeholder={form_r7_desc} required name="entry.1531852455">
-							<span></span>
-						</div>
-						<p>{form_r8}</p>
-						<div class="hasBtn">
-							<span></span>
-							<input type="url" placeholder="https://www.facebook.com/<fb user id>" value="https://www.facebook.com/" name="entry.205733081" />
-							<button onclick="event.preventDefault()" title={form_r8_lnk} style="background: #1977f3">
-								<svg style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd;" viewBox="0 0 14222 14222">
-									<path fill="#fefefe" d="M9879 9167l315 -2056 -1972 0 0 -1334c0,-562 275,-1111 1159,-1111l897 0 0 -1750c0,0 -814,-139 -1592,-139 -1624,0 -2686,984 -2686,2767l0 1567 -1806 0 0 2056 1806 0 0 4969c362,57 733,86 1111,86 378,0 749,-30 1111,-86l0 -4969 1657 0z"/>
-								</svg>
-								<p>Facebook</p>
-							</button>
-							<span></span>
-						</div>
-						<p>{form_r9}</p>
-						<div class="hasBtn">
-							<span></span>
-							<input type="url" placeholder="username#tag" value="https://discordapp.com/users/" name="entry.1388365048"><button onclick="event.preventDefault()" title={form_r9_lnk} style="background:#5865F2">
-								<svg viewBox="0 0 71 55">
-									<path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z" fill="#ffffff"/>
-								</svg>
-								<p>Discord</p>
-							</button>
-							<span></span>
-						</div>
-						<p>{form_r0}</p>
-						<div>
-							<span></span>
-							<textarea cols="30" rows="10" placeholder="https://twitter.com/<your username>&#10https://www.reddit.com/user/<your username>&#10..." name="entry.1586717887"></textarea>
-							<span></span>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div class="inpctn" style="grid-template-columns: 1fr;">
-						<p>{form_q1}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="text" placeholder={form_urans} required name="entry.382169083">
-							<span></span>
-						</div>
-						<p>{form_q2}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="text" placeholder={form_urans} required name="entry.1487996777">
-							<span></span>
-						</div>
-						<p>{form_q3}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="text" placeholder={form_urans} required name="entry.1287698670">
-							<span></span>
-						</div>
-						<p>{form_q4}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="range" min="0" max="10" required oninput="document.querySelector('#point>p:first-child').innerHTML = this.value" name="entry.573182178" />
-							<span></span>
-							<div id="point"><p></p><p>{form_q4_pc}</p></div>
-						</div>
-						<p>{form_q5}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="radio" name="entry.1469713883" id="we1"><label for="we1">{form_q5_a1}</label><br>
-							<input type="radio" name="entry.1469713883" id="we2" required><label for="we2">{form_q5_a2}</label><br>
-							<input type="radio" name="entry.1469713883" id="we3"><label for="we3">{form_q5_a3}</label><br>
-							<span></span>
-						</div>
-						<p>{form_q6}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="text" placeholder={form_urans} required name="entry.1689327396">
-							<span></span>
-						</div>
-						<p>{form_q7}<span>*</span></p>
-						<div>
-							<span></span>
-							<input type="file" multiple accept=".bmp,.gif,.ico,.jpeg,.jpg,.png," title="Không có sẵn, vui lòng bấm Gửi và chọn tệp qua Google Form">
-							<span></span>
+							<p>{form_q2}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="text" placeholder={form_urans} required name="entry.1487996777">
+								<span></span>
+							</div>
+							<p>{form_q3}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="text" placeholder={form_urans} required name="entry.1287698670">
+								<span></span>
+							</div>
+							<p>{form_q4}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="range" min="0" max="10" required oninput="document.querySelector('#point>p:first-child').innerHTML = this.value" name="entry.573182178" />
+								<span></span>
+								<div id="point"><p></p><p>{form_q4_pc}</p></div>
+							</div>
+							<p>{form_q5}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="radio" name="entry.1469713883" id="we1"><label for="we1">{form_q5_a1}</label><br>
+								<input type="radio" name="entry.1469713883" id="we2" required><label for="we2">{form_q5_a2}</label><br>
+								<input type="radio" name="entry.1469713883" id="we3"><label for="we3">{form_q5_a3}</label><br>
+								<span></span>
+							</div>
+							<p>{form_q6}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="text" placeholder={form_urans} required name="entry.1689327396">
+								<span></span>
+							</div>
+							<p>{form_q7}<span>*</span></p>
+							<div>
+								<span></span>
+								<input type="file" multiple accept=".bmp,.gif,.ico,.jpeg,.jpg,.png," title="Không có sẵn, vui lòng bấm Gửi và chọn tệp qua Google Form">
+								<span></span>
+							</div>
 						</div>
 					</div>
+					<div>
+						<h1>{form_tks_resp}</h1>
+						<h1>{form_tks}</h1>
+					</div>
 				</div>
-				<div>
-					<h1>{form_tks_resp}</h1>
-					<h1>{form_tks}</h1>
-				</div>
+				<section>
+					<p><span>*</span>: {form_rqr}</p><br>
+					<input type="button" style="border:1px solid #002049;visibility: hidden;padding: 1.8vh 4.8vh;" id="fback" value={form_back}>
+					<input type="button" style="background: #002049;float: right;right: 0;padding: 2vh 4.8vh;" id="submit" value={form_next}>
+				</section>
 			</div>
-			<section>
-				<p><span>*</span>: {form_rqr}</p><br>
-				<input type="button" style="border:1px solid #002049;visibility: hidden;padding: 1.8vh 4.8vh;" id="fback" value={form_back}>
-				<input type="button" style="background: #002049;float: right;right: 0;padding: 2vh 4.8vh;" id="submit" value={form_next}>
-			</section>
-		</div>
-	</form>
-</div>
-<div class="show-on-scroll">
-	<h1 class="txtd" style="margin: 10vh 0 2vh;font-family: bvnpro,lato-f,sans-serif;font-size: 8vh;z-index: 2;font-weight: 900;font-variation-settings: 'wght' 900;color: #002049;">{feedback_label}</h1>
-	<span class="hsp show-on-scroll"></span>
-</div>
-<div id="feedback">
-	<form action="https://script.google.com/macros/s/AKfycbxHP2jsnReGYHTJb_W7kvPoDClLBGbJT5ny4TzimOQEd5DqqxKF3RuEYU7KDh8EJKhxJQ/exec" target="plx" class="show-on-scroll" method="post" onsubmit={`alert(${tks4feedback});this.querySelector('input[type=submit]').disabled = true;setTimeout(()=>{this.querySelector('input[type=submit]').disabled = false},5000)`}>
-		<div>
-			<textarea name="Nội_dung" id="idea" placeholder={feedback_cnt}></textarea>
-		</div>
-		<div>
-			<input type="submit" value={form_send}>
-		</div>
-	</form>
-</div>
-
-<iframe src="#" id="plx" name="plx" style="display: none;"></iframe>
-
-
+		</form>
+	</div>
+	<div class="show-on-scroll">
+		<h1 class="txtd" style="margin: 10vh 0 2vh;font-family: bvnpro,lato-f,sans-serif;font-size: 8vh;z-index: 2;font-weight: 900;font-variation-settings: 'wght' 900;color: #002049;">{feedback_label}</h1>
+		<span class="hsp show-on-scroll"></span>
+	</div>
+	<div id="feedback">
+		<form action="https://script.google.com/macros/s/AKfycbxHP2jsnReGYHTJb_W7kvPoDClLBGbJT5ny4TzimOQEd5DqqxKF3RuEYU7KDh8EJKhxJQ/exec" target="plx" class="show-on-scroll" method="post" onsubmit={`alert(${tks4feedback});this.querySelector('input[type=submit]').disabled = true;setTimeout(()=>{this.querySelector('input[type=submit]').disabled = false},5000)`}>
+			<div>
+				<textarea name="Nội_dung" id="idea" placeholder={feedback_cnt}></textarea>
+			</div>
+			<div>
+				<input type="submit" value={form_send}>
+			</div>
+		</form>
+	</div>
+			
+	<iframe src="#" id="plx" name="plx" style="display: none;"></iframe>
 </Home>
-
+		
+		

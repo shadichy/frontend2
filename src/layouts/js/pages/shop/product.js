@@ -2,6 +2,7 @@
 
 // const { shopitem, subcall } = require("./global")
 
+// @ts-ignore
 const fac = new FastAverageColor()
 
 let json_product_template = {
@@ -33,12 +34,14 @@ function seltype(no) {
     elem[i].classList.remove("tselected")
   }
 }
-function changebg(url) {
+function changeBackgound(url) {
   let image = document.querySelector("#product>section:first-child>div>section")
+  // @ts-ignore
   image.style.backgroundImage = `url(${url})`
   fac
     .getColorAsync(url)
     .then((color) => {
+      // @ts-ignore
       image.style.backgroundColor = color.rgba
     })
     .catch((e) => {
@@ -47,6 +50,7 @@ function changebg(url) {
 }
 
 window["customfunc"].push(() => {
+  // @ts-ignore
   document.querySelector("#related>div").style.gridTemplateColumns = `repeat(${
     innerWidth > innerHeight
       ? Math.floor((innerWidth * 4) / innerHeight) - 1
@@ -54,30 +58,40 @@ window["customfunc"].push(() => {
   },1fr)`
   document
     .querySelectorAll("#product>section>div#img>div#imglist>div>img")
-    .forEach((e) => (e.onmouseover = () => changebg(e.src)))
+    // @ts-ignore
+    .forEach((e) => (e.onmouseover = () => changeBackgound(e.src)))
   document
     .querySelectorAll("#product>section>div#ras>div#type>section>span")
+    // @ts-ignore
     .forEach((e, k) => (e.onclick = () => seltype(k)))
 })
 
 // window.addEventListener("DOMContentLoaded", () => {
 // subcall()
 seltype(0)
-changebg("/res/img/the2.png")
+changeBackgound("/res/img/the2.png")
 
-const pcount = document.getElementById("pcount"),
-  pcount_btn = document.querySelectorAll("#product div#count>div>span")
+const productCount = document.getElementById("pcount"),
+  productCountBtn = document.querySelectorAll("#product div#count>div>span")
 
-pcount.addEventListener("change", () => {
-  if (pcount.value > json_product_template.maxcount)
-    pcount.value = json_product_template.maxcount
-  if (pcount.value < 1) pcount.value = 1
+// @ts-ignore
+let productCountValue = parseInt(productCount.value);
+
+// @ts-ignore
+productCount.addEventListener("change", () => {
+  if (productCountValue > json_product_template.maxcount)
+    // @ts-ignore
+    productCount.value = json_product_template.maxcount
+  // @ts-ignore
+  if (productCountValue < 1) productCount.value = 1
 })
-pcount_btn[0].addEventListener("mouseup", () => {
-  if (pcount.value > 1) pcount.value--
+productCountBtn[0].addEventListener("mouseup", () => {
+  // @ts-ignore
+  if (productCountValue > 1) productCount.value--
 })
-pcount_btn[1].addEventListener("mouseup", () => {
-  if (pcount.value < json_product_template.maxcount) pcount.value++
+productCountBtn[1].addEventListener("mouseup", () => {
+  // @ts-ignore
+  if (productCountValue < json_product_template.maxcount) productCount.value++
 })
 // })
 

@@ -1,4 +1,4 @@
-var tbh = true
+var isNavOpen = true
 const 
   root = document.documentElement,
   lmao = true
@@ -11,9 +11,9 @@ window.eScroll =
   }
 
 // @ts-ignore
-let reqheight = 0,
-    reqmin = 0,
-    reqmax = 0
+let requiredHeight = 0,
+    minRequiredHeight = 0,
+    maxRequiredHeight = 0
 const
   isElementInViewport = (e) => {
     let rect = e.getBoundingClientRect(),
@@ -34,27 +34,27 @@ function tscr() {
   let b = window.scrollY
   // @ts-ignore
   document.querySelector("footer>div:first-child>span").style.opacity =
-    b == reqheight || (b >= reqmin && b <= reqmax) ? "0" : "1"
+    b == requiredHeight || (b >= minRequiredHeight && b <= maxRequiredHeight) ? "0" : "1"
   // @ts-ignore
   eScroll(tscr)
 }
 
 window.addEventListener("DOMContentLoaded", e => {
-  const butt = document.getElementById("butt")
+  const navButton = document.getElementById("butt")
   // @ts-ignore
-  butt.onclick = ()=>{
+  navButton.onclick = ()=>{
     let rat = window.innerWidth / window.innerHeight
     ;(([d0, d1, d2])=>{
       if (rat <= 133 / 100) {
         // @ts-ignore
-        document.querySelector("#butt>svg").style.transform = `rotate(${d1}deg)`
+        navButton.querySelector("svg").style.transform = `rotate(${d1}deg)`
         // @ts-ignore
-        butt.style.background = d2
-        tbh = !tbh
+        navButton.style.background = d2
+        isNavOpen = !isNavOpen
       }
       // @ts-ignore
       document.getElementById("swipe").style.width = `${d0}vw`
-    })((rat <= 133 / 100) ? (tbh) ? [100, 180, "rgba(255, 255, 255, 0.8)"] : [0, 0, "none"] : [40])
+    })((rat <= 133 / 100) ? (isNavOpen) ? [100, 180, "rgba(255, 255, 255, 0.8)"] : [0, 0, "none"] : [40])
   }
 
   function loop() {
@@ -76,13 +76,12 @@ window.addEventListener("DOMContentLoaded", e => {
   // function relang() {
   //   location.href = location.href.replace(`/${lang}`, `/${tarlang}`)
   // }
-  let srl = window.scrollY
-  window.scrollTo(0, srl)
+  window.scrollTo(0, window.scrollY);
   // const elementsToShow = document.querySelectorAll(".show-on-scroll")
   loop()
   root.style.setProperty("--vh", Math.sqrt(innerHeight) + "px")
   window.onresize = () => {
-    tbh = !tbh
+    isNavOpen = !isNavOpen
     root.style.setProperty("--vh", Math.sqrt(innerHeight) + "px")
     window["customfunc"].forEach((f) => f())
   }

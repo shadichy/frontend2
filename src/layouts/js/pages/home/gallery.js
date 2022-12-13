@@ -1,11 +1,11 @@
 
-let gallimit = 4,
+let imgCountLimit = 4,
   n = 0, // update when resize or load
-  imgal = document.getElementsByClassName("imgal"),
+  galleryContainer = document.getElementsByClassName("imgal"),
   inih = document.querySelector("#view"),
   alin = true,
   // @ts-ignore
-  gurl = dburl.replace("arli", "gallery"),
+  gallDBurl = dburl.replace("arli", "gallery"),
   k = 0,
   f = false,
   l = 1,
@@ -21,13 +21,13 @@ function resize() {
   d = k - 1
   if (k == 0) k = 1
   // @ts-ignore
-  imgal[0].style.gridTemplateColumns = `repeat(${k}, 1fr)`
+  galleryContainer[0].style.gridTemplateColumns = `repeat(${k}, 1fr)`
   // @ts-ignore
   root.style.setProperty("--grid-height", k)
-  gallimit = 2 * k
+  imgCountLimit = 2 * k
 }
 function brm() {
-  let mx = document.querySelectorAll(".imgal>div")
+  let mx = galleryContainer[0].querySelectorAll("div")
   for (let i = 0; i < mx.length; i++) {
     if (mx[i].classList.contains("cts")) {
       mx[i].classList.add("gal")
@@ -48,7 +48,7 @@ function move(e, s) {
 }
 function bsel(i) {
   let my = document.querySelectorAll(".xbu>div>span"),
-    mx = document.querySelectorAll(".imgal>div"),
+    mx = galleryContainer[0].querySelectorAll("div"),
     xbu = document.getElementsByClassName("xbu"),
     ipl = (i + 1 >= mx.length - 2) ? 0 : i + 1,
     imn = (i - 1 < 0) ? mx.length - 2 : i - 1
@@ -88,20 +88,18 @@ var end = false,
 offset = 0
 
 function load(limit) {
-  // add a spinner to imgal
+  // add a spinner to galleryContainer
   if (end || ltask) return
   ltask = true
   for (let i = offset; i < offset + limit; i++) {
     // console.log("new empty " + (i))
-    document.getElementsByClassName(
-      "imgal"
-    )[0].innerHTML += `<div class="gal loading" id="gallitem${i}" onclick="window.fgal.bsel(${i})"><div>
+    galleryContainer[0].innerHTML += `<div class="gal loading" id="gallitem${i}" onclick="window.fgal.bsel(${i})"><div>
 <span><img src="/res/img/spinner.png" alt="img/spinner.svg"/>
 </span></div></div>`
   }
   //ooh
   // @ts-ignore
-  fetch(gurl + `?offset=${offset}&limit=${limit}&lang=${lang}`)
+  fetch(gallDBurl + `?offset=${offset}&limit=${limit}&lang=${lang}`)
     .then((response) => response.json())
     .then((data) => {
       const suboffset = offset
@@ -113,10 +111,10 @@ function load(limit) {
         offset++
         // console.log("finish " + (suboffset + i)) // nah imma afk for a while
         const dtm = new Date(data.items[i].date * 1000),
-          galnode = document.getElementById("gallitem" + (suboffset + i))
-        // galnode.setAttribute("id",data.items[i]["_id"])
+          imgElem = document.getElementById("gallitem" + (suboffset + i))
+        // imgElem.setAttribute("id",data.items[i]["_id"])
         // @ts-ignore
-        galnode.innerHTML =
+        imgElem.innerHTML =
           // Mirgration
           `<div><span>
 <img src="${data.items[i].src}" alt=""/>
@@ -131,7 +129,7 @@ function load(limit) {
           }");this.innerHTML="${copied}"'>${share}</button></div></div>`.trim()
         // delete class loading of parent
         // @ts-ignore
-        galnode.classList.remove("loading")
+        imgElem.classList.remove("loading")
         if (
           x == 0 ||
           ((x - prevx) % (4 * (k == 3 ? d : d + 1)) == 0 && f) ||
@@ -140,11 +138,11 @@ function load(limit) {
           console.log(f, x, prevx, d, l, k)
           f = !f
           // @ts-ignore
-          galnode.style.gridColumn = `${f ? 1 : k - d + 1} / span ${d}`
+          imgElem.style.gridColumn = `${f ? 1 : k - d + 1} / span ${d}`
           // @ts-ignore
-          galnode.style.gridRow = `${l} / span ${d}`
+          imgElem.style.gridRow = `${l} / span ${d}`
           // @ts-ignore
-          galnode.style.height = "100%"
+          imgElem.style.height = "100%"
           l += d + 1
           prevx = x
           if (d == k - 1) down = true
@@ -159,7 +157,7 @@ function load(limit) {
           data.items[i]["_id"] == urlParams.get("id")
         )
           // @ts-ignore
-          galnode.click()
+          imgElem.click()
       }
 
       if (data.items.length != limit) {
@@ -194,7 +192,7 @@ window.onscroll = () => {
           document.getElementsByClassName("gal").length - 1
         ].getBoundingClientRect().top < window.innerHeight
     ) {
-      load(gallimit)
+      load(imgCountLimit)
     }
   }
 }
@@ -225,7 +223,7 @@ window.addEventListener("DOMContentLoaded", (e)=>{
       500
     )
     // @ts-ignore
-    document.getElementsByClassName("imgal")[0].style.opacity = "1"
+    galleryContainer[0].style.opacity = "1"
   }, 3000)
   waitimg()
 })

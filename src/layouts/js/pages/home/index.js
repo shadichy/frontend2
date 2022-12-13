@@ -1,15 +1,15 @@
 import Hls from "hls.js"
 
 // @ts-ignore
-let reqheight = 0,
-	reqmin = 0,
-	reqmax = 0
+let requiredHeight = 0,
+	minRequiredHeight = 0,
+	maxRequiredHeight = 0
 
 function fscr() {
 	let b = window.scrollY
 	// @ts-ignore
 	document.getElementsByClassName("nav")[0].style.top =
-		b == reqheight || (b >= reqmin && b <= reqmax) ? "-10vh" : "0"
+		b == requiredHeight || (b >= minRequiredHeight && b <= maxRequiredHeight) ? "-10vh" : "0"
 	// @ts-ignore
 	eScroll(fscr)
 }

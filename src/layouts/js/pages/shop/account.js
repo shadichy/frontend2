@@ -6,61 +6,61 @@ window.addEventListener("DOMContentLoaded", () => {
   let lsbtn = document.querySelector(
       "#container>div:first-child>div:last-child"
     ),
-    tgg = document.querySelector("#container>div:first-child>div>svg");
+    rotateBtn = document.querySelector("#container>div:first-child>div>svg");
 
-  function roq() {
+  function rotateByDeg() {
     if (rat) return;
-    (([h, r]) => {
+    (([height, deg]) => {
       // @ts-ignore
-      lsbtn.style.height = h;
+      lsbtn.style.height = height;
       // @ts-ignore
-      tgg.style.rotate = r;
+      rotateBtn.style.rotate = deg;
     })(btn_state ? ["0vh", "180deg"] : ["26vh", "0deg"]);
     btn_state = !btn_state;
   }
   // @ts-ignore
-  tgg.onclick = roq;
+  rotateBtn.onclick = rotateByDeg;
 
-  let btn = document.querySelectorAll("#container>div:first-child button"),
+  let tabBtns = document.querySelectorAll("#container>div:first-child button"),
     elem = document.querySelectorAll("#container>div:last-child>div>section");
   [].forEach.call(
-    btn,
-    (pa, ia) =>
-      (pa.onclick = () => {
-        // ;[].forEach.call(btn, (pc) => pa!=pc && pc.classList.contains("sel") ? pc.classList.remove("sel") : null)
-        btn[current_tab].classList.remove("sel");
-        pa.classList.add("sel");
-        // ;[].forEach.call(e, (pb,ib)=> (ia == ib) ? pb.classList.add("act") : pb.classList.contains("act")?pb.classList.remove("act"):null)
+    tabBtns,
+    (pButton, offsetIndex) =>
+      (pButton.onclick = () => {
+        // ;[].forEach.call(tabBtns, (pc) => pButton!=pc && pc.classList.contains("sel") ? pc.classList.remove("sel") : null)
+        tabBtns[current_tab].classList.remove("sel");
+        pButton.classList.add("sel");
+        // ;[].forEach.call(e, (pb,ib)=> (offsetIndex == ib) ? pb.classList.add("act") : pb.classList.contains("act")?pb.classList.remove("act"):null)
         elem[current_tab].classList.remove("act");
-        elem[ia].classList.add("act");
+        elem[offsetIndex].classList.add("act");
         // @ts-ignore
-        elem[0].style.marginLeft = `-${ia * 25}%`;
-        current_tab = ia;
-        localStorage.setItem("current_tab", `${ia}`);
-        roq();
+        elem[0].style.marginLeft = `-${offsetIndex * 25}%`;
+        current_tab = offsetIndex;
+        localStorage.setItem("current_tab", `${offsetIndex}`);
+        rotateByDeg();
       })
   );
   // @ts-ignore
-  btn[current_tab].click();
+  tabBtns[current_tab].click();
 
-  let catelist = document.querySelector("#container>div:last-child ul"),
+  let categoryList = document.querySelector("#container>div:last-child ul"),
     // @ts-ignore
-    cates = catelist.querySelectorAll("li"),
+    categories = categoryList.querySelectorAll("li"),
     current_cate = 0,
     is_open = false;
-  cates.forEach((cate, i) => {
+  categories.forEach((cate, offsetIndex) => {
     cate.onclick = () => {
       if (is_open || rat) {
-        cates[current_cate].classList.remove("in");
+        categories[current_cate].classList.remove("in");
         cate.classList.add("in");
         // @ts-ignore
-        catelist.style.height = rat ? "fit-content" : "5vh";
-        cates[0].style.marginTop = rat ? "0%" : `-${i * 25}%`;
-        current_cate = i;
+        categoryList.style.height = rat ? "fit-content" : "5vh";
+        categories[0].style.marginTop = rat ? "0%" : `-${offsetIndex * 25}%`;
+        current_cate = offsetIndex;
       } else {
         // @ts-ignore
-        catelist.style.height = "20vh";
-        cates[0].style.marginTop = "0%";
+        categoryList.style.height = "20vh";
+        categories[0].style.marginTop = "0%";
       }
       is_open = !is_open;
     };
@@ -69,6 +69,6 @@ window.addEventListener("DOMContentLoaded", () => {
   window["customfunc"].push(() => {
     rat = window.innerWidth / window.innerHeight <= 4 / 3 ? false : true;
     is_open = true;
-    cates[current_cate].click();
+    categories[current_cate].click();
   });
 });

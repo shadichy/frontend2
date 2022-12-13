@@ -2,84 +2,91 @@ import intlTelInput from "intl-tel-input"
 
 window.addEventListener("DOMContentLoaded", (e) => {
 
-var fullfill = false,
-	submitpoint = 0
+var isFullfilled = false,
+	currentPageNo = 0
 const vail = document.getElementsByClassName("instructionsContent")[0],
 	// @ts-ignore
-	scrup = () => document.querySelector("#form>form>div").scrollTo(0, 0),
-	formpage = document.getElementById("formpage"),
-	fback = document.getElementById("fback"),
-	fsub = document.getElementById("submit"),
+	scrollUp = () => document.querySelector("#form>form>div").scrollTo(0, 0),
+	registerForm = document.getElementById("formpage"),
+	registerBackBtn = document.getElementById("fback"),
+	registerSubmitBtn = document.getElementById("submit"),
 	// @ts-ignore
 	getYear = (d = (+new Date))=>new Date(d).getFullYear()
 
-function reqin(e) {
-	fullfill = false
-	const relem = (col = "unset") =>
-		e.parentElement.firstElementChild.style.background = col
-	relem("#f00")
-	e.onchange = relem
+function reqin(inputElem) {
+	isFullfilled = false
+	const reColorElem = (col = "unset") =>
+		inputElem.parentElement.firstElementChild.style.background = col
+	reColorElem("#f00")
+	inputElem.onchange = reColorElem
 }
 
-function goback(p) {
-	scrup()
-	;(([x,y])=>{
+function goback(pageNo) {
+	scrollUp()
+	;(([leftMargin, vision])=>{
 		// @ts-ignore
-		fback.style.visibility = y
+		registerBackBtn.style.visibility = vision
 		// @ts-ignore
-		formpage.style.marginLeft = x
-	})((p == 1) ? ["0", "hidden"] : (p == 2) ? ["-100%", "visible"] : ["", ""])
+		registerForm.style.marginLeft = leftMargin
+	})((pageNo == 1) ? ["0", "hidden"] : (pageNo == 2) ? ["-100%", "visible"] : ["", ""])
 	// @ts-ignore
-	fsub.setAttribute("value", nxt)
-	submitpoint--
+	registerSubmitBtn.setAttribute("value", nxt)
+	currentPageNo--
 }
 
-function check(p) {
-	fullfill = true
-	document
-		.querySelectorAll(`#formpage>div:nth-child(${p + 1}) input[required]`)
-		.forEach((e)=>{
-			let isNo = false
-			if (!((v)=>{
-				switch (e.getAttribute("type")) {
-					case "mail":
-						return v.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/gim)
-					case "tel":
-						isNo = true
-						return v.match(/^[+]?([0-9]{2})?[-. ]?\(?([0-9]{3,4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3,4})$/gim)
-					default:
-						return v
-				}
+function check(pageNo) {
+	isFullfilled = true
+	// @ts-ignore
+	registerForm
+    .querySelectorAll(`div:nth-child(${pageNo + 1}) input[required]`)
+    .forEach((inputBox) => {
+      let isPhoneNo = false;
+      if (
+        !((v) => {
+          switch (inputBox.getAttribute("type")) {
+            case "mail":
+              return v.match(
+                /^\btn+([\.-]?\btn+)*@\btn+([\.-]?\btn+)*(\.\btn{2,3})+$/gim
+              );
+            case "tel":
+              isPhoneNo = true;
+              return v.match(
+                /^[+]?([0-9]{2})?[-. ]?\(?([0-9]{3,4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3,4})$/gim
+              );
+            default:
+              return v;
+          }
+          // @ts-ignore
+        })(inputBox.value)
+      )
+        reqin(isPhoneNo ? inputBox.parentElement : inputBox);
+    });
+	scrollUp()
+	if (isFullfilled) {
+		;(([marginPercent, inputValue, btnVisibility, btn]) => {
+			btn.style.visibility = btnVisibility
 			// @ts-ignore
-			})(e.value))
-				reqin(isNo ? e.parentElement : e)
-		})
-	scrup()
-	if (fullfill) {
-		;(([x, y, z, w]) => {
-			w.style.visibility = z
+			registerForm.style.marginLeft = `-${marginPercent}00%`
 			// @ts-ignore
-			formpage.style.marginLeft = `-${x}00%`
-			// @ts-ignore
-			fsub.setAttribute("value", y)
+			registerSubmitBtn.setAttribute("value", inputValue)
 		// @ts-ignore
-		})(p==0 ? [1, sen, "visible", fback] : [2, nxt, "hidden", fsub])
+		})(pageNo==0 ? [1, sen, "visible", registerBackBtn] : [2, nxt, "hidden", registerSubmitBtn])
 
 		// @ts-ignore
-		if ( p != 0 && getYear() - getYear(document.querySelector("input[type=date]").value) > 13)
+		if ( pageNo != 0 && getYear() - getYear(document.querySelector("input[type=date]").value) > 13)
 			// @ts-ignore
 			document.querySelector("input[type=submit]").click()
-		submitpoint++
+		currentPageNo++
 	}
 }
 
 // @ts-ignore
-fback.onclick = ()=>goback(submitpoint)
+registerBackBtn.onclick = ()=>goback(currentPageNo)
 // @ts-ignore
-fsub.onclick = ()=>check(submitpoint)
+registerSubmitBtn.onclick = ()=>check(currentPageNo)
 
-const telem = document.querySelector("input[type=tel]"),
-	phoneInput = intlTelInput(telem, {
+const phoneNoElem = document.querySelector("input[type=tel]"),
+	phoneInput = intlTelInput(phoneNoElem, {
 		preferredCountries: [
 			"vn",
 			"la",
@@ -95,6 +102,6 @@ const telem = document.querySelector("input[type=tel]"),
 		utilsScript: "utils.js",
 	})
 // @ts-ignore
-telem.onchange = () => document.querySelector('input#real_no').setAttribute('value',phoneInput.getNumber())
+phoneNoElem.onchange = () => document.querySelector('input#real_no').setAttribute('value', phoneInput.getNumber())
 
 })

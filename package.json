@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "@crowdin/ota-client": "*",
+    "@types/dragula": "^3.7.1",
     "astro": "*",
     "axios": "^1.2.0",
-    "dragula": "*",
+    "dragula": "^3.7.3",
     "hls.js": "*",
     "intl-tel-input": "*"
   },

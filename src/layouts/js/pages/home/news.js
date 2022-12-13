@@ -5,17 +5,17 @@ const today = ~~(+new Date/86400000),
     ((r.size + 1) / (today - r.reldate)) // division method
 
 
-function srfv(a) {
-  const srr  = document.getElementById("srr") 
+function searchNews(a) {
+  const searchResults  = document.getElementById("srr") 
   if (!a) {
     // @ts-ignore
-    srr.innerHTML = ""
+    searchResults.innerHTML = ""
     return
   }
   // @ts-ignore
   const processedList = window.postList
     .map(post => ({
-      ...post, 
+      ...post,
       size: a.toLowerCase()
         .split(" ")
         .filter(t => t && post.title.toLowerCase().includes(t))
@@ -24,7 +24,7 @@ function srfv(a) {
     .filter(({size}) => size > 0)
     .sort((a, b) => sortFn(b) - sortFn(a))
   // @ts-ignore
-  srr.innerHTML = processedList
+  searchResults.innerHTML = processedList
     .map(post => `<a href=${post.url}>${post.title}</a>`)
     .join("")
 
@@ -37,12 +37,12 @@ function srfv(a) {
 // var page = 0,
   // end = false,
   // ltask = false
-// function srfv(a) {
+// function searchNews(a) {
 //   // console.log(a.value)
-//   const srr = (()=>document.getElementById("srr"))()
+//   const searchResults = (()=>document.getElementById("searchResults"))()
 //   if (!a.value) {
 //     // @ts-ignore
-//     srr.innerHTML = ""
+//     searchResults.innerHTML = ""
 //     return
 //   }
 //   if (lck) {
@@ -53,15 +53,15 @@ function srfv(a) {
 //       .then((data) => {
 //         // console.log("have result")
 //         // @ts-ignore
-//         srr.innerHTML = ""
+//         searchResults.innerHTML = ""
 //         // for (let i = 0; i < data.length; i++) {
 //         //   // @ts-ignore
-//         //   srr.innerHTML += `<a href="${exlang}/article/${data[i].short}">${data[i].title}</a>`
+//         //   searchResults.innerHTML += `<a href="${exlang}/article/${data[i].short}">${data[i].title}</a>`
 //         // }
 //         // waitlist--
 //         setTimeout(() => {
 //           lck = true
-//           if (waitlist > 0) srfv(a)
+//           if (waitlist > 0) searchNews(a)
 //         }, 500)
 //       })
 //   } else waitlist = 2
@@ -129,7 +129,11 @@ function srfv(a) {
 // }
 
 // // @ts-ignore
-// window.addEventListener("DOMContentLoaded", (e)=>{
+// @ts-ignore
+window.addEventListener("DOMContentLoaded", (e)=>{
+  const searchbox = document.getElementById("searchbar")
+  // @ts-ignore
+  searchbox.oninput = ()=>searchNews(searchbox.value)
 
 // load(newslimit)
 // })
@@ -149,4 +153,4 @@ function srfv(a) {
 //       load(newslimit)
 //     }
 //   }
-// }
+})

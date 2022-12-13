@@ -1,7 +1,7 @@
-import dragula from "dragula";
-// import Main from "./main";
+import dragula from "dragula"
+import Main from "./main"
 
-// const { formatter } = Main
+const { formatter } = Main
 // console.log("load cart")
 
 let json_product_template = {
@@ -120,70 +120,85 @@ let json_product_template = {
 const func_a = (s, t, id, cb) => {
     user_coupon[`${s}_list`].splice(user_coupon[`${s}_list`].indexOf(id), 1);
     user_coupon[`${t}_list`].push(id);
-    selCheck({ check: null });
+    selectionChecking({ check: null });
     cb(s, t);
   },
-  htmlCoupon = (e, d, t) => `
-        <li id="${d}">
-            <span>${
-              e[d].type == "shipment"
-                ? "freeship"
-                : e[d].discount.fixed <= 0
-                ? e[d].discount.percent + "%"
-                : "$" + e[d].discount.fixed
-            }</span>
-            <p>${e[d].name}</p>
-            <button onclick="changeList(this)">${t}</button>
-        </li>`;
+  htmlCoupon = (template, couponID, btnstate) => {
+    const Elem = document.createElement("li")
+    Elem.setAttribute("id", couponID)
+    Elem.innerHTML = `
+      <span>${
+        template[couponID].type == "shipment"
+          ? "freeship"
+          : template[couponID].discount.fixed <= 0
+          ? template[couponID].discount.percent + "%"
+          : "$" + template[couponID].discount.fixed
+      }</span>
+      <p>${template[couponID].name}</p>
+      <button data-state="${btnstate}">${
+      btnstate == 0 ? "Apply" : "Remove"
+    }</button>`;
+    const btn = Elem.querySelector("button")
+    // @ts-ignore
+    btn.onclick = () => changeList(btn, couponID)
+    return Elem
+  }
 
-function changeList(e) {
-  const cpns = ["available_coupon", "applied_coupon"];
+// @ts-ignore
+function changeList(btnElem, couponID) {
+  const cpns = ["available_coupon", "applied_coupon"]
+    // @ts-ignore
+  let state = btnElem.getAttribute("data-state");
 
-  (([a, b, t]) => {
-    func_a(cpns[a], cpns[b], e.parentElement.getAttribute("id"), () => {
-      e.innerText = t;
-      e.parentElement.remove();
+  (([a, b, text]) => {
+    func_a(cpns[a], cpns[b], couponID, () => {
+      btnElem.innerText = text;
+      btnElem.parentElement.remove();
       // @ts-ignore
       document.querySelector(`#${cpns[b]}>ul`).innerHTML +=
-        e.parentElement.outerHTML;
+        btnElem.parentElement.outerHTML;
     });
-  })(e.innerText == "Apply" ? [0, 1, "Remove"] : [1, 0, "Apply"]);
+  })(state == "0" ? [0, 1, "Remove"] : [1, 0, "Apply"]);
+
+  btnElem.setAttribute("data-state", state == "0" ? "1" : "0");
 }
 
-function selCheck(e) {
-  if (e.checked != null) {
-    let el = e.parentElement.parentElement,
+function selectionChecking(elem) {
+  if (elem.checked != null) {
+    let el = elem.parentElement.parentElement,
       // od = json_product_template[el.getAttribute("id")],
       co = el.querySelector("input[type=number]").value;
-    if (e.checked) {
-      selected_product[e.parentElement.parentElement.getAttribute("id")] = co;
-      // selected_product.push({id: e.parentElement.parentElement.getAttribute("id")})
+    if (elem.checked) {
+      selected_product[elem.parentElement.parentElement.getAttribute("id")] = co;
+      // selected_product.push({id: elem.parentElement.parentElement.getAttribute("id")})
     } else {
-      delete selected_product[e.parentElement.parentElement.getAttribute("id")];
-      // selected_product.splice(selected_product.indexOf(e.parentElement.parentElement.getAttribute("id")), 1)
+      delete selected_product[elem.parentElement.parentElement.getAttribute("id")];
+      // selected_product.splice(selected_product.indexOf(elem.parentElement.parentElement.getAttribute("id")), 1)
     }
   }
 
-  // if (e.checked!=null) {
+  // if (elem.checked!=null) {
   // ad = (co > 0) ? od.price.original * ( parseInt(co) - od.price.discount  / 100) : 0
   //     // console.log(od.price.original, co, od.price.discount, ad)
 
-  //     // e.checked?org+=ad:org-=ad
+  //     // elem.checked?org+=ad:org-=ad
   //     org = 0
   // }
   org = 0;
-  Object.keys(selected_product).forEach((d, i) => {
-    const count = parseInt(selected_product[d]);
-    org +=
+  // @ts-ignore
+  // @ts-ignore
+  Object.keys(selected_product).forEach((d, i) => ((count)=>org +=
       json_product_template[d].price.original *
       (count -
         (json_product_template[d].price.discount *
           (count < json_product_template[d].maxsale
             ? count
             : json_product_template[d].maxsale)) /
-          100);
-  });
+          100))(parseInt(selected_product[d]))
+  );
   sum = 0;
+  // @ts-ignore
+  // @ts-ignore
   user_coupon.applied_coupon_list.forEach((d, i) => {
     if (org == 0) return sum;
     console.log(d);
@@ -194,18 +209,21 @@ function selCheck(e) {
       sum += (org * s.discount.percent) / 100 + s.discount.fixed;
   });
   console.log(sum);
+  // @ts-ignore
   document.getElementById("pcou").innerText =
-    Object.keys(selected_product).length;
+    Object.keys(selected_product).length.toString();
+  // @ts-ignore
   document.getElementById("ppric").innerText = formatter.format(org - sum);
+  // @ts-ignore
   document.getElementById("ppcoup").innerText = formatter.format(sum);
 }
 
-// window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
 const table = document.querySelector("#cart table tbody");
 
-Object.entries(json_product_template).forEach((entry) => {
-  const [key, value] = entry;
+Object.entries(json_product_template).forEach(([key, value]) => {
 
+  // @ts-ignore
   table.innerHTML += html_product_template({
     id: key,
     img: value.image,
@@ -217,105 +235,111 @@ Object.entries(json_product_template).forEach((entry) => {
     // maxsale: value.maxsale
   });
 
+  // @ts-ignore
   const ckbox = table.querySelector(`input#checkbox_${key}`);
-  ckbox.onchange = () => selCheck(ckbox);
+  // @ts-ignore
+  ckbox.onchange = () => selectionChecking(ckbox);
 });
 
-const rpcount = document.querySelectorAll(
-    "#cart table tbody tr td:nth-child(3)"
-  ),
+const
   ptotal = document.querySelectorAll("#cart table tbody tr td:nth-child(5)"),
   used_coupon = document.querySelector("#applied_coupon>ul"),
   available_coupon = document.querySelector("#available_coupon>ul");
-for (let i = 0; i < rpcount.length; i++) {
-  let pcount = rpcount[i].querySelector("input"),
-    pcount_btn = rpcount[i].querySelectorAll("span"),
-    el = pcount.parentElement.parentElement.parentElement,
-    id = el.getAttribute("id");
-  ckbox = el.querySelector("input[type=checkbox]");
-  console.log(el);
-  pcount.addEventListener("change", () => {
-    if (pcount.value > json_product_template[id].maxcount)
-      pcount.value = json_product_template[id].maxcount;
 
-    if (pcount.value < 1) pcount.value = 1;
+document
+  .querySelectorAll("#cart table tbody tr td:nth-child(3)")
+  .forEach((elem, index) => {
+    const productCount = elem.querySelector("input"),
+      addMinusBtn = elem.querySelectorAll("span"),
+      // @ts-ignore
+      el = productCount.parentElement.parentElement.parentElement,
+      // @ts-ignore
+      id = el.getAttribute("id"),
+      // @ts-ignore
+      // @ts-ignore
+      ckbox = el.querySelector("input[type=checkbox]");
+    // @ts-ignore
+    let productCountValue = parseInt(productCount.value);
+    // @ts-ignore
+    productCount.addEventListener("change", () => {
+      productCountValue > json_product_template[id].maxcount &&
+        // @ts-ignore
+        (productCount.value = json_product_template[id].maxcount.toString());
 
-    selCheck(el.querySelector("input[type=checkbox]"));
-  });
-  pcount_btn[0].addEventListener("mouseup", () => {
-    if (pcount.value > 1) {
-      pcount.value--;
-      ptotal[i].innerHTML = formatter.format(
-        json_product_template[id].price.original * pcount.value
-      );
-    }
-    selCheck(el.querySelector("input[type=checkbox]"));
-    console.log(i, ckbox);
-  });
-  pcount_btn[1].addEventListener("mouseup", () => {
-    if (pcount.value < json_product_template[id].maxcount) {
-      pcount.value++;
-      ptotal[i].innerHTML = formatter.format(
-        json_product_template[id].price.original * pcount.value
-      );
-    }
-    selCheck(el.querySelector("input[type=checkbox]"));
-    console.log(
-      i,
-      el.querySelector("input[type=checkbox]").parentElement.parentElement
-    );
-  });
-}
+      // @ts-ignore
+      productCountValue < 1 && (productCount.value = "1");
 
+      // @ts-ignore
+      selectionChecking(el.querySelector("input[type=checkbox]"));
+    });
+    addMinusBtn[0].addEventListener("mouseup", () => {
+      if (productCountValue > 1) {
+        productCountValue--;
+        // @ts-ignore
+        productCount.value = productCountValue.toString();
+        ptotal[index].innerHTML = formatter.format(
+          json_product_template[id].price.original * productCountValue
+        );
+      }
+      // @ts-ignore
+      selectionChecking(el.querySelector("input[type=checkbox]"));
+    });
+    addMinusBtn[1].addEventListener("mouseup", () => {
+      if (productCountValue < json_product_template[id].maxcount) {
+        productCountValue++;
+        // @ts-ignore
+        productCount.value = productCountValue.toString();
+        ptotal[index].innerHTML = formatter.format(
+          json_product_template[id].price.original * productCountValue
+        );
+      }
+      // @ts-ignore
+      selectionChecking(el.querySelector("input[type=checkbox]"));
+    });
+  });
+
+// @ts-ignore
 dragula([
   document.querySelector("section#available_coupon>ul"),
   document.querySelector("section#applied_coupon>ul"),
+// @ts-ignore
+// @ts-ignore
 ]).on("drop", (el, target, source, sibling) => {
   console.log(source, target);
   // remove child el from source
+  const idatt = (elem)=>elem.parentElement.getAttribute("id")
   func_a(
-    source.parentElement.getAttribute("id"),
-    target.parentElement.getAttribute("id"),
+    // @ts-ignore
+    idatt(source),
+    // @ts-ignore
+    idatt(target),
     el.getAttribute("id"),
-    () => {
+    () => 
+      // @ts-ignore
       el.querySelector("button").innerText =
-        target.parentElement.getAttribute("id") == "applied_coupon"
+        // @ts-ignore
+        idatt(target) == "applied_coupon"
           ? "Remove"
-          : "Apply";
-    }
+          : "Apply"
   );
-  // used_coupon[`${source.getAttribute("id")}_list`].forEach((d,i)=> {
-  //     if (d == el.getAttribute("id")) {
-  //         used_coupon[`${source.getAttribute("id")}_list`].splice(i, 1)
-  //         used_coupon[`${target.getAttribute("id")}_list`].push(el.getAttribute("id"))
-  //         return
-  //     }
-  // })
 });
 
-user_coupon.applied_coupon_list.forEach((d, i) => {
-  // console.log(d)
-  used_coupon.innerHTML += htmlCoupon(coupons_template, d, "Remove");
-  // used_coupon.innerHTML += `
-  // <li id="${d}">
-  //     <span>${coupons_template[d].type=="shipment"?"freeship":coupons_template[d].discount.fixed<=0?coupons_template[d].discount.percent+"%":"$"+coupons_template[d].discount.fixed}</span>
-  //     <p>${coupons_template[d].name}</p>
-  //     <button onclick="changeList(this)">Remove</button>
-  // </li>`
-});
-user_coupon.available_coupon_list.forEach((d, i) => {
-  // console.log(d)
-  available_coupon.innerHTML += htmlCoupon(coupons_template, d, "Apply");
-  // available_coupon.innerHTML += `
-  // <li id="${d}">
-  //     <span>${coupons_template[d].type=="shipment"?"freeship":coupons_template[d].discount.fixed<=0?coupons_template[d].discount.percent+"%":"$"+coupons_template[d].discount.fixed}</span>
-  //     <p>${coupons_template[d].name}</p>
-  //     <button onclick="changeList(this)">Apply</button>
-  // </li>`
-});
+// @ts-ignore
+// @ts-ignore
+user_coupon.applied_coupon_list.forEach((d, i) => 
+  // @ts-ignore
+  used_coupon.appendChild(htmlCoupon(coupons_template, d, 1)));
+// @ts-ignore
+// @ts-ignore
+user_coupon.available_coupon_list.forEach((d, i) => 
+  // @ts-ignore
+  available_coupon.appendChild(htmlCoupon(coupons_template, d, 0)));
 
+// @ts-ignore
 document.getElementById("pcou").innerText = "0";
+// @ts-ignore
 document.getElementById("ppric").innerText = formatter.format(0);
+// @ts-ignore
 document.getElementById("ppcoup").innerText = formatter.format(0);
 
-// })
+})
