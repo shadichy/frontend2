@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "manager=pnpm" >> $GITHUB_OUTPUT
           echo "command=i" >> $GITHUB_OUTPUT
-          echo "runner=pnpx --no-install" >> $GITHUB_OUTPUT
+          echo "runner=pnpx" >> $GITHUB_OUTPUT
           npm install -g pnpm
           exit 0
       - name: Setup Node
