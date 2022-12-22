@@ -12,20 +12,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "*",
-    "@crowdin/ota-client": "*",
-    "@types/dragula": "*",
-    "astro": "*",
-    "astro-compress": "*",
-    "axios": "*",
-    "dragula": "*",
-    "hls.js": "*",
-    "intl-tel-input": "*",
-    "sharp": "*"
+    "@astrojs/mdx": "^0.13.0",
+    "@crowdin/ota-client": "^0.7.0",
+    "@types/dragula": "^3.7.1",
+    "astro": "^1.6.15",
+    "astro-compress": "^1.1.22",
+    "axios": "^1.2.1",
+    "dragula": "^3.7.3",
+    "hls.js": "^1.2.9",
+    "intl-tel-input": "^17.0.19",
+    "sharp": "^0.31.2"
   },
   "devDependencies": {
-    "@types/node": "*",
-    "eslint": "*",
-    "prettier": "*"
+    "@types/node": "^18.11.15",
+    "eslint": "^8.29.0",
+    "prettier": "^2.8.1"
   }
 }
