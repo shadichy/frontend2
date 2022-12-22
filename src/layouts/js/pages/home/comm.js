@@ -6,7 +6,7 @@ var isFullfilled = false,
 	currentPageNo = 0
 const vail = document.getElementsByClassName("instructionsContent")[0],
 	// @ts-ignore
-	scrollUp = () => document.querySelector("#form>form>div").scrollTo(0, 0),
+	scrollUp = () => document.querySelector("#join>form>div").scrollTo(0, 0),
 	registerForm = document.getElementById("formpage"),
 	registerBackBtn = document.getElementById("fback"),
 	registerSubmitBtn = document.getElementById("submit"),

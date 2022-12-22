@@ -11,7 +11,7 @@ const
   langMap = allowedLanguages.map(lang => ({ params: { lang: lang } })),
 
   pages = {
-    home: ["index", "info", "gallery", "news", "comm", "dl"],
+    home: ["index", "info", "gallery", "news", "community", "download"],
     shop: ["account", "cart", "checkout", "index", "product", "search"],
     "404": ["404"],
     article: ["article"],

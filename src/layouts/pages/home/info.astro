@@ -2,383 +2,383 @@
 import Home from "../../paths/home.astro";
 
 const { lang } = Astro.props,
-  filename = "info",
-  langfile = `../../lang/${lang}/home/${filename}.json`;
+	filename = "info",
+	langfile = `../../lang/${lang}/home/${filename}.json`;
 
 import(`../../css/pages/home/info.css`);
 
 export interface PageRequired {
-  meta_title?: string;
-  meta_description: string;
-  meta_img?: string;
-  card_no: string;
-  cnd: string;
-  holder: string;
-  info_cst: string;
-  info_cst_desc: string;
-  info_desc: string;
-  info_pic: string;
-  info_pic_desc: string;
-  info_yrs: string;
-  info_yrs_desc: string;
-  mbbank: string;
-  story: string;
-  story_label: string;
-  timeline: string;
-  tl_1: string;
-  tl_1_desc: string;
-  tl_2: string;
-  tl_2_desc: string;
-  tl_3: string;
-  tl_3_desc: string;
-  tl_4: string;
-  tl_4_desc: string;
-  tl_5: string;
-  tl_5_desc: string;
-  tl_6: string;
-  tl_6_desc: string;
+	meta_title?: string;
+	meta_description: string;
+	meta_img?: string;
+	card_no: string;
+	cnd: string;
+	holder: string;
+	info_cst: string;
+	info_cst_desc: string;
+	info_desc: string;
+	info_pic: string;
+	info_pic_desc: string;
+	info_yrs: string;
+	info_yrs_desc: string;
+	mbbank: string;
+	story: string;
+	story_label: string;
+	timeline: string;
+	tl_1: string;
+	tl_1_desc: string;
+	tl_2: string;
+	tl_2_desc: string;
+	tl_3: string;
+	tl_3_desc: string;
+	tl_4: string;
+	tl_4_desc: string;
+	tl_5: string;
+	tl_5_desc: string;
+	tl_6: string;
+	tl_6_desc: string;
 }
 const {
-  card_no,
-  cnd,
-  holder,
-  info_cst,
-  info_cst_desc,
-  info_desc,
-  info_pic,
-  info_pic_desc,
-  info_yrs,
-  info_yrs_desc,
-  mbbank,
-  story,
-  story_label,
-  timeline,
-  tl_1,
-  tl_1_desc,
-  tl_2,
-  tl_2_desc,
-  tl_3,
-  tl_3_desc,
-  tl_4,
-  tl_4_desc,
-  tl_5,
-  tl_5_desc,
-  tl_6,
-  tl_6_desc,
-  meta_title,
-  meta_description,
-  meta_img,
+	card_no,
+	cnd,
+	holder,
+	info_cst,
+	info_cst_desc,
+	info_desc,
+	info_pic,
+	info_pic_desc,
+	info_yrs,
+	info_yrs_desc,
+	mbbank,
+	story,
+	story_label,
+	timeline,
+	tl_1,
+	tl_1_desc,
+	tl_2,
+	tl_2_desc,
+	tl_3,
+	tl_3_desc,
+	tl_4,
+	tl_4_desc,
+	tl_5,
+	tl_5_desc,
+	tl_6,
+	tl_6_desc,
+	meta_title,
+	meta_description,
+	meta_img,
 } = (await import(/* @vite-ignore */ langfile)) as PageRequired;
 ---
 
 <Home
-  lang={lang}
-  filename={filename}
-  meta_title={meta_title}
-  meta_description={meta_description}
-  meta_img={meta_img}
+	lang={lang}
+	filename={filename}
+	meta_title={meta_title}
+	meta_description={meta_description}
+	meta_img={meta_img}
 >
-  <script type="text/javascript"></script>
-  <div class="gr">
-    <img src="/res/img/logongang-white-min.png" />
-    <h1>{info_desc}</h1>
-    <span
-      class="show"
-      style="
-      top: 0;
-      left: 0;
-      width: 22vw;
-      height: 12vh;
-      background: #002049;
-      border-radius: 0 0 100vmax 0;
-      z-index: 2;
-      animation: sptop 0.5s ease-out 0.2s;
-      animation-fill-mode: forwards !important;
-      transform: translateY(-16vh);
-    "
-    ></span>
-    <span
-      class="mkhide"
-      style="
-      width: 12vw;
-      height: 1vh;
-      background: #ff7518;
-      top: 3vh;
-      left: 20vw;
-      animation: anifl 4s ease-out 1s infinite;
-      animation-fill-mode: forwards !important;
-      transform: scaleX(0);
-      transform-origin: left;
-    "
-    ></span>
-    <span
-      class="mkhide"
-      style="
-      top: 0;
-      right: 14vw;
-      width: 28vw;
-      height: 14vh;
-      background: #002049;
-      border-radius: 0 0 7vmax 7vmax;
-      animation: sptop 0.5s ease-out 0.2s;
-      animation-fill-mode: forwards !important;
-      transform: translateY(-16vh);
-    "
-    ></span>
-    <div
-      style="
-      animation: sprgt 0.8s ease-out 0.5s;
-      animation-fill-mode: forwards !important;
-      transform: translateX(32vw);
-      position: absolute;
-      top: 0;
-      right: 0;
-    "
-    >
-      <span
-        class="triag-v"
-        style="
-        background: #ff7518;
-        right: 8vmax;
-        animation: mhab 3.1s ease-in-out 0.5s infinite;
-      "
-      ></span>
-      <span
-        class="triag-v"
-        style="
-        background: #dafbff;
-        right: 4vmax;
-        animation: mhab 3.1s ease-in-out 0.5s infinite;
-      "
-      ></span>
-    </div>
-    <div
-      style="
-      animation: splft 0.8s ease-out 0.5s;
-      animation-fill-mode: forwards !important;
-      transform: translateX(-32vw);
-      position: absolute;
-      top: 0;
-    "
-    >
-      <span
-        class="circ"
-        style="
-        left: 10.8vw;
-        width: 10vw;
-        top: 22vh;
-        height: 10vw;
-        background: #ff7518;
-        animation: mhab 2.9s ease-in-out infinite;
-      "
-      ></span>
-      <span
-        class="circ"
-        style="
-        left: 7vw;
-        width: 4vw;
-        top: 15vh;
-        height: 4vw;
-        background: #ff7518;
-        animation: mhab 2.9s ease-in-out infinite;
-      "
-      ></span>
-    </div>
-    <span
-      class="mkchg"
-      style="
-      bottom: 0;
-      width: 30vw;
-      height: 14vh;
-      background: #002049;
-      animation: spbot 0.5s ease-out 0.2s;
-      animation-fill-mode: forwards !important;
-      transform: translateY(16vh);
-    "
-    ></span>
-    <span
-      class="show"
-      style="
-      bottom: 0;
-      right: 0;
-      width: 30vw;
-      height: 16vh;
-      background: #002049;
-      border-radius: 6vmax 0 0 0;
-      animation: spbot 0.5s ease-out 0.2s;
-      animation-fill-mode: forwards !important;
-      transform: translateY(16vh);
-    "
-    ></span>
-    <span
-      class="mkhide"
-      style="
-      width: 16vw;
-      height: 1vh;
-      background: #ff7518;
-      bottom: 4vh;
-      right: 14vw;
-      z-index: 2;
-      animation: anifl 4s ease-out 1s infinite;
-      animation-fill-mode: forwards !important;
-      transform: scaleX(0);
-      transform-origin: left;
-    "
-    ></span>
-    <div
-      style="
-      animation: fadein 2s ease-out 1s;
-      opacity: 0;
-      animation-fill-mode: forwards !important;
-    "
-    >
-      <span
-        class="sqr"
-        style="
-        bottom: 4vh;
-        right: 4vw;
-        animation: zoom 4s ease-in-out 2.5s infinite;
-      "
-      ></span>
-      <span
-        class="sqr"
-        style="
-        bottom: 8.2vh;
-        right: 4vw;
-        animation: zoom 4s ease-in-out 2s infinite;
-      "
-      ></span>
-      <span
-        class="sqr"
-        style="
-        bottom: 4vh;
-        right: calc(4vw + 4.2vh);
-        animation: zoom 4s ease-in-out 3s infinite;
-      "
-      ></span>
-    </div>
-  </div>
-  <div class="show-on-scroll gri">
-    <div>
-      <div>
-        <h1
-          style="
-          animation: counta 1s linear 1s;
-          counter-reset: numa var(--numa);
-          animation-fill-mode: forwards !important;
-        "
-          id="fla"
-        >
-        </h1>
-        <p>{info_cst}</p>
-      </div>
-      <p>{info_cst_desc}</p>
-    </div>
-    <div>
-      <div>
-        <h1
-          style="
-          animation: countb 1s linear 1s;
-          counter-reset: numb var(--numb);
-          animation-fill-mode: forwards !important;
-        "
-          id="flb"
-        >
-        </h1>
-        <p>{info_yrs}</p>
-      </div>
-      <p>{info_yrs_desc}</p>
-    </div>
-    <div>
-      <div>
-        <h1
-          style="
-          animation: countc 1s linear 1s;
-          counter-reset: numc var(--numc);
-          animation-fill-mode: forwards !important;
-        "
-          id="flc"
-        >
-        </h1>
-        <p>{info_pic}</p>
-      </div>
-      <p>{info_pic_desc}</p>
-    </div>
-  </div>
-  <div class="tfh show-on-scroll">
-    <h1 class="txtd">{story_label}</h1>
-  </div>
-  <div id="hlp">
-    <div class="show-on-scroll">
-      <div set:html={story} />
-    </div>
-    <span class="hsp show-on-scroll"></span>
-    <div class="show-on-scroll">
-      <h1>{cnd}</h1>
-      <a target="_blank" href="https://www.facebook.com/teamfuho/">
-        <svg viewBox="0 0 14222 14222">
-          <path
-            d="M9879 9168l315-2056H8222V5778c0-562 275-1111 1159-1111h897V2917s-814-139-1592-139c-1624 0-2686 984-2686 2767v1567H4194v2056h1806v4969c362 57 733 86 1111 86s749-30 1111-86V9168z"
-            fill="#1977f3"></path>
-        </svg>
-        <p>Fanpage: <strong>Team Fuho</strong></p>
-      </a>
-      <a target="_blank" href="https://www.instagram.com/teamfuho/">
-        <svg viewBox="0 0 512 512" style="enable-background: new 0 0 512 512">
-          <style type="text/css">
-            .st0 {
-              fill: url(#SVGID_1_);
-            }
-            .st1 {
-              fill: url(#SVGID_2_);
-            }
-            .st2 {
-              fill: #654c9f;
-            }
-          </style>
-          <g id="Symbol">
-            <g>
-              <radialGradient
-                cx="56.3501"
-                cy="19.2179"
-                gradientTransform="matrix(0.9986 -5.233596e-02 4.448556e-02 0.8488 -36.9742 443.8014)"
-                gradientUnits="userSpaceOnUse"
-                id="SVGID_1_"
-                r="711.335"
-              >
-                <stop offset="0" style="stop-color: #fed576"></stop>
-                <stop offset="0.2634" style="stop-color: #f47133"></stop>
-                <stop offset="0.6091" style="stop-color: #bc3081"></stop>
-                <stop offset="1" style="stop-color: #4c63d2"></stop>
-              </radialGradient>
-              <path
-                class="st0"
-                d="M96.1,23.2c-16.2,6.3-29.9,14.7-43.6,28.4C38.8,65.2,30.4,79,24.1,95.1c-6.1,15.6-10.2,33.5-11.4,59.7    c-1.2,26.2-1.5,34.6-1.5,101.4s0.3,75.2,1.5,101.4c1.2,26.2,5.4,44.1,11.4,59.7c6.3,16.2,14.7,29.9,28.4,43.6    c13.7,13.7,27.4,22.1,43.6,28.4c15.6,6.1,33.5,10.2,59.7,11.4c26.2,1.2,34.6,1.5,101.4,1.5c66.8,0,75.2-0.3,101.4-1.5    c26.2-1.2,44.1-5.4,59.7-11.4c16.2-6.3,29.9-14.7,43.6-28.4c13.7-13.7,22.1-27.4,28.4-43.6c6.1-15.6,10.2-33.5,11.4-59.7    c1.2-26.2,1.5-34.6,1.5-101.4s-0.3-75.2-1.5-101.4c-1.2-26.2-5.4-44.1-11.4-59.7C484,79,475.6,65.2,462,51.6    c-13.7-13.7-27.4-22.1-43.6-28.4c-15.6-6.1-33.5-10.2-59.7-11.4c-26.2-1.2-34.6-1.5-101.4-1.5s-75.2,0.3-101.4,1.5    C129.6,12.9,111.7,17.1,96.1,23.2z M356.6,56c24,1.1,37,5.1,45.7,8.5c11.5,4.5,19.7,9.8,28.3,18.4c8.6,8.6,13.9,16.8,18.4,28.3    c3.4,8.7,7.4,21.7,8.5,45.7c1.2,25.9,1.4,33.7,1.4,99.4s-0.3,73.5-1.4,99.4c-1.1,24-5.1,37-8.5,45.7c-4.5,11.5-9.8,19.7-18.4,28.3    c-8.6,8.6-16.8,13.9-28.3,18.4c-8.7,3.4-21.7,7.4-45.7,8.5c-25.9,1.2-33.7,1.4-99.4,1.4s-73.5-0.3-99.4-1.4    c-24-1.1-37-5.1-45.7-8.5c-11.5-4.5-19.7-9.8-28.3-18.4c-8.6-8.6-13.9-16.8-18.4-28.3c-3.4-8.7-7.4-21.7-8.5-45.7    c-1.2-25.9-1.4-33.7-1.4-99.4s0.3-73.5,1.4-99.4c1.1-24,5.1-37,8.5-45.7c4.5-11.5,9.8-19.7,18.4-28.3c8.6-8.6,16.8-13.9,28.3-18.4    c8.7-3.4,21.7-7.4,45.7-8.5c25.9-1.2,33.7-1.4,99.4-1.4S330.7,54.8,356.6,56z"
-              ></path>
-              <radialGradient
-                cx="154.0732"
-                cy="134.5501"
-                gradientTransform="matrix(0.9986 -5.233596e-02 4.448556e-02 0.8488 -24.3617 253.2946)"
-                gradientUnits="userSpaceOnUse"
-                id="SVGID_2_"
-                r="365.2801"
-              >
-                <stop offset="0" style="stop-color: #fed576"></stop>
-                <stop offset="0.2634" style="stop-color: #f47133"></stop>
-                <stop offset="0.6091" style="stop-color: #bc3081"></stop>
-                <stop offset="1" style="stop-color: #4c63d2"></stop>
-              </radialGradient>
-              <path
-                class="st1"
-                d="M130.9,256.3c0,69.8,56.6,126.3,126.3,126.3s126.3-56.6,126.3-126.3S327,130,257.2,130    S130.9,186.5,130.9,256.3z M339.2,256.3c0,45.3-36.7,82-82,82s-82-36.7-82-82c0-45.3,36.7-82,82-82S339.2,211,339.2,256.3z"
-              ></path>
-              <circle class="st2" cx="388.6" cy="125" r="29.5"></circle>
-            </g>
-          </g>
-        </svg>
-        <p>Instagram: <strong style="white-space: nowrap">Team Fuho</strong></p>
-      </a>
-      <!-- <a target="_blank" href="#">
+	<script type="text/javascript"></script>
+	<div class="gr">
+		<img src="/res/img/logongang-white-min.png" />
+		<h1>{info_desc}</h1>
+		<span
+			class="show"
+			style="
+			top: 0;
+			left: 0;
+			width: 22vw;
+			height: 12vh;
+			background: #002049;
+			border-radius: 0 0 100vmax 0;
+			z-index: 2;
+			animation: sptop 0.5s ease-out 0.2s;
+			animation-fill-mode: forwards !important;
+			transform: translateY(-16vh);
+		"
+		></span>
+		<span
+			class="mkhide"
+			style="
+			width: 12vw;
+			height: 1vh;
+			background: #ff7518;
+			top: 3vh;
+			left: 20vw;
+			animation: anifl 4s ease-out 1s infinite;
+			animation-fill-mode: forwards !important;
+			transform: scaleX(0);
+			transform-origin: left;
+		"
+		></span>
+		<span
+			class="mkhide"
+			style="
+			top: 0;
+			right: 14vw;
+			width: 28vw;
+			height: 14vh;
+			background: #002049;
+			border-radius: 0 0 7vmax 7vmax;
+			animation: sptop 0.5s ease-out 0.2s;
+			animation-fill-mode: forwards !important;
+			transform: translateY(-16vh);
+		"
+		></span>
+		<div
+			style="
+			animation: sprgt 0.8s ease-out 0.5s;
+			animation-fill-mode: forwards !important;
+			transform: translateX(32vw);
+			position: absolute;
+			top: 0;
+			right: 0;
+		"
+		>
+			<span
+				class="triag-v"
+				style="
+				background: #ff7518;
+				right: 8vmax;
+				animation: mhab 3.1s ease-in-out 0.5s infinite;
+			"
+			></span>
+			<span
+				class="triag-v"
+				style="
+				background: #dafbff;
+				right: 4vmax;
+				animation: mhab 3.1s ease-in-out 0.5s infinite;
+			"
+			></span>
+		</div>
+		<div
+			style="
+			animation: splft 0.8s ease-out 0.5s;
+			animation-fill-mode: forwards !important;
+			transform: translateX(-32vw);
+			position: absolute;
+			top: 0;
+		"
+		>
+			<span
+				class="circ"
+				style="
+				left: 10.8vw;
+				width: 10vw;
+				top: 22vh;
+				height: 10vw;
+				background: #ff7518;
+				animation: mhab 2.9s ease-in-out infinite;
+			"
+			></span>
+			<span
+				class="circ"
+				style="
+				left: 7vw;
+				width: 4vw;
+				top: 15vh;
+				height: 4vw;
+				background: #ff7518;
+				animation: mhab 2.9s ease-in-out infinite;
+			"
+			></span>
+		</div>
+		<span
+			class="mkchg"
+			style="
+			bottom: 0;
+			width: 30vw;
+			height: 14vh;
+			background: #002049;
+			animation: spbot 0.5s ease-out 0.2s;
+			animation-fill-mode: forwards !important;
+			transform: translateY(16vh);
+		"
+		></span>
+		<span
+			class="show"
+			style="
+			bottom: 0;
+			right: 0;
+			width: 30vw;
+			height: 16vh;
+			background: #002049;
+			border-radius: 6vmax 0 0 0;
+			animation: spbot 0.5s ease-out 0.2s;
+			animation-fill-mode: forwards !important;
+			transform: translateY(16vh);
+		"
+		></span>
+		<span
+			class="mkhide"
+			style="
+			width: 16vw;
+			height: 1vh;
+			background: #ff7518;
+			bottom: 4vh;
+			right: 14vw;
+			z-index: 2;
+			animation: anifl 4s ease-out 1s infinite;
+			animation-fill-mode: forwards !important;
+			transform: scaleX(0);
+			transform-origin: left;
+		"
+		></span>
+		<div
+			style="
+			animation: fadein 2s ease-out 1s;
+			opacity: 0;
+			animation-fill-mode: forwards !important;
+		"
+		>
+			<span
+				class="sqr"
+				style="
+				bottom: 4vh;
+				right: 4vw;
+				animation: zoom 4s ease-in-out 2.5s infinite;
+			"
+			></span>
+			<span
+				class="sqr"
+				style="
+				bottom: 8.2vh;
+				right: 4vw;
+				animation: zoom 4s ease-in-out 2s infinite;
+			"
+			></span>
+			<span
+				class="sqr"
+				style="
+				bottom: 4vh;
+				right: calc(4vw + 4.2vh);
+				animation: zoom 4s ease-in-out 3s infinite;
+			"
+			></span>
+		</div>
+	</div>
+	<div class="show-on-scroll gri">
+		<div>
+			<div>
+				<h1
+					style="
+					animation: counta 1s linear 1s;
+					counter-reset: numa var(--numa);
+					animation-fill-mode: forwards !important;
+				"
+					id="fla"
+				>
+				</h1>
+				<p>{info_cst}</p>
+			</div>
+			<p>{info_cst_desc}</p>
+		</div>
+		<div>
+			<div>
+				<h1
+					style="
+					animation: countb 1s linear 1s;
+					counter-reset: numb var(--numb);
+					animation-fill-mode: forwards !important;
+				"
+					id="flb"
+				>
+				</h1>
+				<p>{info_yrs}</p>
+			</div>
+			<p>{info_yrs_desc}</p>
+		</div>
+		<div>
+			<div>
+				<h1
+					style="
+					animation: countc 1s linear 1s;
+					counter-reset: numc var(--numc);
+					animation-fill-mode: forwards !important;
+				"
+					id="flc"
+				>
+				</h1>
+				<p>{info_pic}</p>
+			</div>
+			<p>{info_pic_desc}</p>
+		</div>
+	</div>
+	<div class="tfh show-on-scroll">
+		<h1 class="txtd">{story_label}</h1>
+	</div>
+	<div id="hlp">
+		<div class="show-on-scroll">
+			<div set:html={story} />
+		</div>
+		<span class="hsp show-on-scroll"></span>
+		<div class="show-on-scroll">
+			<h1>{cnd}</h1>
+			<a target="_blank" href="https://www.facebook.com/teamfuho/">
+				<svg viewBox="0 0 14222 14222">
+					<path
+						d="M9879 9168l315-2056H8222V5778c0-562 275-1111 1159-1111h897V2917s-814-139-1592-139c-1624 0-2686 984-2686 2767v1567H4194v2056h1806v4969c362 57 733 86 1111 86s749-30 1111-86V9168z"
+						fill="#1977f3"></path>
+				</svg>
+				<p>Fanpage: <strong>Team Fuho</strong></p>
+			</a>
+			<a target="_blank" href="https://www.instagram.com/teamfuho/">
+				<svg viewBox="0 0 512 512" style="enable-background: new 0 0 512 512">
+					<style type="text/css">
+						.st0 {
+							fill: url(#SVGID_1_);
+						}
+						.st1 {
+							fill: url(#SVGID_2_);
+						}
+						.st2 {
+							fill: #654c9f;
+						}
+					</style>
+					<g id="Symbol">
+						<g>
+							<radialGradient
+								cx="56.3501"
+								cy="19.2179"
+								gradientTransform="matrix(0.9986 -5.233596e-02 4.448556e-02 0.8488 -36.9742 443.8014)"
+								gradientUnits="userSpaceOnUse"
+								id="SVGID_1_"
+								r="711.335"
+							>
+								<stop offset="0" style="stop-color: #fed576"></stop>
+								<stop offset="0.2634" style="stop-color: #f47133"></stop>
+								<stop offset="0.6091" style="stop-color: #bc3081"></stop>
+								<stop offset="1" style="stop-color: #4c63d2"></stop>
+							</radialGradient>
+							<path
+								class="st0"
+								d="M96.1,23.2c-16.2,6.3-29.9,14.7-43.6,28.4C38.8,65.2,30.4,79,24.1,95.1c-6.1,15.6-10.2,33.5-11.4,59.7    c-1.2,26.2-1.5,34.6-1.5,101.4s0.3,75.2,1.5,101.4c1.2,26.2,5.4,44.1,11.4,59.7c6.3,16.2,14.7,29.9,28.4,43.6    c13.7,13.7,27.4,22.1,43.6,28.4c15.6,6.1,33.5,10.2,59.7,11.4c26.2,1.2,34.6,1.5,101.4,1.5c66.8,0,75.2-0.3,101.4-1.5    c26.2-1.2,44.1-5.4,59.7-11.4c16.2-6.3,29.9-14.7,43.6-28.4c13.7-13.7,22.1-27.4,28.4-43.6c6.1-15.6,10.2-33.5,11.4-59.7    c1.2-26.2,1.5-34.6,1.5-101.4s-0.3-75.2-1.5-101.4c-1.2-26.2-5.4-44.1-11.4-59.7C484,79,475.6,65.2,462,51.6    c-13.7-13.7-27.4-22.1-43.6-28.4c-15.6-6.1-33.5-10.2-59.7-11.4c-26.2-1.2-34.6-1.5-101.4-1.5s-75.2,0.3-101.4,1.5    C129.6,12.9,111.7,17.1,96.1,23.2z M356.6,56c24,1.1,37,5.1,45.7,8.5c11.5,4.5,19.7,9.8,28.3,18.4c8.6,8.6,13.9,16.8,18.4,28.3    c3.4,8.7,7.4,21.7,8.5,45.7c1.2,25.9,1.4,33.7,1.4,99.4s-0.3,73.5-1.4,99.4c-1.1,24-5.1,37-8.5,45.7c-4.5,11.5-9.8,19.7-18.4,28.3    c-8.6,8.6-16.8,13.9-28.3,18.4c-8.7,3.4-21.7,7.4-45.7,8.5c-25.9,1.2-33.7,1.4-99.4,1.4s-73.5-0.3-99.4-1.4    c-24-1.1-37-5.1-45.7-8.5c-11.5-4.5-19.7-9.8-28.3-18.4c-8.6-8.6-13.9-16.8-18.4-28.3c-3.4-8.7-7.4-21.7-8.5-45.7    c-1.2-25.9-1.4-33.7-1.4-99.4s0.3-73.5,1.4-99.4c1.1-24,5.1-37,8.5-45.7c4.5-11.5,9.8-19.7,18.4-28.3c8.6-8.6,16.8-13.9,28.3-18.4    c8.7-3.4,21.7-7.4,45.7-8.5c25.9-1.2,33.7-1.4,99.4-1.4S330.7,54.8,356.6,56z"
+							></path>
+							<radialGradient
+								cx="154.0732"
+								cy="134.5501"
+								gradientTransform="matrix(0.9986 -5.233596e-02 4.448556e-02 0.8488 -24.3617 253.2946)"
+								gradientUnits="userSpaceOnUse"
+								id="SVGID_2_"
+								r="365.2801"
+							>
+								<stop offset="0" style="stop-color: #fed576"></stop>
+								<stop offset="0.2634" style="stop-color: #f47133"></stop>
+								<stop offset="0.6091" style="stop-color: #bc3081"></stop>
+								<stop offset="1" style="stop-color: #4c63d2"></stop>
+							</radialGradient>
+							<path
+								class="st1"
+								d="M130.9,256.3c0,69.8,56.6,126.3,126.3,126.3s126.3-56.6,126.3-126.3S327,130,257.2,130    S130.9,186.5,130.9,256.3z M339.2,256.3c0,45.3-36.7,82-82,82s-82-36.7-82-82c0-45.3,36.7-82,82-82S339.2,211,339.2,256.3z"
+							></path>
+							<circle class="st2" cx="388.6" cy="125" r="29.5"></circle>
+						</g>
+					</g>
+				</svg>
+				<p>Instagram: <strong style="white-space: nowrap">Team Fuho</strong></p>
+			</a>
+			<!-- <a target="_blank" href="#">
 			<svg viewBox="0 0 429.709 429.709">
 				<g>
 					<path style="fill:#181A1C;" d="M429.709,196.618c0-29.803-24.16-53.962-53.963-53.962c-14.926,0-28.41,6.085-38.176,15.881
@@ -405,24 +405,24 @@ const {
 			</svg>
 			<p>SubReddit: <strong style="white-space: nowrap;">Chưa cập nhật</strong></p>
 		</a> -->
-      <a
-        target="_blank"
-        href="https://www.youtube.com/channel/UC5j0m8ecM66tqpURMhHFP6w"
-      >
-        <svg enable-background="new 0 0 400 400" viewBox="0 0 300 300">
-          <g transform="matrix(5.9026 0 0 5.9026 521.4 -711.32)">
-            <path
-              d="m -62.934413,129.13551 c 0,0 -14.994788,2e-5 -18.75825,0.97793 -2.015102,0.56303 -3.67428,2.22233 -4.237364,4.26701 -0.977926,3.76346 -0.977926,11.55746 -0.977926,11.55746 0,0 2.2e-5,7.82341 0.977926,11.52781 0.563037,2.0447 2.192685,3.67428 4.237364,4.23736 3.79311,1.00755 18.75825,1.00758 18.75825,1.00758 0,0 15.024437,-1e-5 18.787899,-0.97793 2.04475,-0.56303 3.674279,-2.16308 4.207715,-4.23736 1.007551,-3.73381 1.007574,-11.52781 1.007574,-11.52781 0,0 0.02961,-7.82341 -1.007574,-11.58711 -0.533412,-2.04473 -2.163013,-3.67428 -4.207715,-4.20772 -3.763462,-1.03717 -18.787899,-1.03722 -18.787899,-1.03722 z m -4.771037,9.60137 12.476089,7.20079 -12.476089,7.17114 v -14.37217 z"
-              fill="#ff0000"></path>
-          </g>
-        </svg>
-        <p>
-          Youtube Channel: <br class="mbl" /><strong style="white-space: nowrap"
-            >Team Fuho VN</strong
-          >
-        </p>
-      </a>
-      <!-- <a target="_blank" href="#">
+			<a
+				target="_blank"
+				href="https://www.youtube.com/channel/UC5j0m8ecM66tqpURMhHFP6w"
+			>
+				<svg enable-background="new 0 0 400 400" viewBox="0 0 300 300">
+					<g transform="matrix(5.9026 0 0 5.9026 521.4 -711.32)">
+						<path
+							d="m -62.934413,129.13551 c 0,0 -14.994788,2e-5 -18.75825,0.97793 -2.015102,0.56303 -3.67428,2.22233 -4.237364,4.26701 -0.977926,3.76346 -0.977926,11.55746 -0.977926,11.55746 0,0 2.2e-5,7.82341 0.977926,11.52781 0.563037,2.0447 2.192685,3.67428 4.237364,4.23736 3.79311,1.00755 18.75825,1.00758 18.75825,1.00758 0,0 15.024437,-1e-5 18.787899,-0.97793 2.04475,-0.56303 3.674279,-2.16308 4.207715,-4.23736 1.007551,-3.73381 1.007574,-11.52781 1.007574,-11.52781 0,0 0.02961,-7.82341 -1.007574,-11.58711 -0.533412,-2.04473 -2.163013,-3.67428 -4.207715,-4.20772 -3.763462,-1.03717 -18.787899,-1.03722 -18.787899,-1.03722 z m -4.771037,9.60137 12.476089,7.20079 -12.476089,7.17114 v -14.37217 z"
+							fill="#ff0000"></path>
+					</g>
+				</svg>
+				<p>
+					Youtube Channel: <br class="mbl" /><strong style="white-space: nowrap"
+						>Team Fuho VN</strong
+					>
+				</p>
+			</a>
+			<!-- <a target="_blank" href="#">
 			<svg viewBox="0 0 170 170">
 				<g transform="translate(-282.32053,-396.30734)">
 					<path style="fill:#2aa9e0" id="path5" d="m 453.82593,412.80619 c -6.3097,2.79897 -13.09189,4.68982 -20.20852,5.54049 7.26413,-4.35454 12.84406,-11.24992 15.47067,-19.46675 -6.79934,4.03295 -14.3293,6.96055 -22.34461,8.53841 -6.41775,-6.83879 -15.56243,-11.111 -25.68298,-11.111 -19.43159,0 -35.18696,15.75365 -35.18696,35.18525 0,2.75781 0.31128,5.44359 0.91155,8.01875 -29.24344,-1.46723 -55.16995,-15.47582 -72.52461,-36.76396 -3.02879,5.19662 -4.76443,11.24048 -4.76443,17.6891 0,12.20777 6.21194,22.97747 15.65332,29.28716 -5.76773,-0.18265 -11.19331,-1.76565 -15.93716,-4.40083 -0.004,0.14663 -0.004,0.29412 -0.004,0.44248 0,17.04767 12.12889,31.26806 28.22555,34.50266 -2.95247,0.80436 -6.06101,1.23398 -9.26989,1.23398 -2.2673,0 -4.47114,-0.22124 -6.62011,-0.63114 4.47801,13.97857 17.47214,24.15143 32.86992,24.43441 -12.04227,9.43796 -27.21366,15.06335 -43.69965,15.06335 -2.84014,0 -5.64082,-0.16722 -8.39349,-0.49223 15.57186,9.98421 34.06703,15.8094 53.93768,15.8094 64.72024,0 100.11301,-53.61524 100.11301,-100.11387 0,-1.52554 -0.0343,-3.04251 -0.10204,-4.55261 6.87394,-4.95995 12.83891,-11.15646 17.55618,-18.21305 z" />
@@ -430,21 +430,21 @@ const {
 			</svg>
 			<p>Twitter: <strong style="white-space: nowrap;">Chưa cập nhật</strong></p>
 		</a> -->
-      <a target="_blank" href="https://discord.gg/aKUU4gGyDq">
-        <svg viewBox="0 0 71 55">
-          <g clip-path="url(#clip0)">
-            <path
-              d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"
-              fill="#5865F2"></path>
-          </g>
-        </svg>
-        <p>
-          Discord Server: <br class="mbl" /><strong style="white-space: nowrap"
-            >Team Fuho</strong
-          >
-        </p>
-      </a>
-      <!-- <a target="_blank" href="#">
+			<a target="_blank" href="https://discord.gg/aKUU4gGyDq">
+				<svg viewBox="0 0 71 55">
+					<g clip-path="url(#clip0)">
+						<path
+							d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"
+							fill="#5865F2"></path>
+					</g>
+				</svg>
+				<p>
+					Discord Server: <br class="mbl" /><strong style="white-space: nowrap"
+						>Team Fuho</strong
+					>
+				</p>
+			</a>
+			<!-- <a target="_blank" href="#">
 			<svg viewBox="0 0 2400 2800">
 				<g>
 					<polygon fill="#ffffff" points="2200,1300 1800,1700 1400,1700 1050,2050 1050,1700 600,1700 600,200 2200,200 	"/>
@@ -460,118 +460,118 @@ const {
 			</svg>
 			<p>Twitch TV: <br class="mbl"><strong style="white-space: nowrap;">Chưa cập nhật</strong></p>
 		</a> -->
-      <a target="_blank" href="mailto:lienhe@teamfuho.net">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xml:space="preserve"
-          viewBox="0 0 512 512"
-        >
-          <path
-            fill="#64b5f6"
-            d="m0 192 246.528 156.896c2.816 2.08 6.144 3.104 9.472 3.104s6.656-1.024 9.472-3.104L512 192 265.6 3.2c-5.696-4.256-13.504-4.256-19.2 0L0 192z"
-          ></path>
-          <path
-            fill="#eceff1"
-            d="M416 0H96C78.368 0 64 14.368 64 32v352c0 8.832 7.168 16 16 16h352c8.832 0 16-7.168 16-16V32c0-17.632-14.336-32-32-32z"
-          ></path>
-          <path
-            fill="#90a4ae"
-            d="M144 96h224c8.832 0 16-7.168 16-16s-7.168-16-16-16H144c-8.832 0-16 7.168-16 16s7.168 16 16 16zm224 32H144c-8.832 0-16 7.168-16 16s7.168 16 16 16h224c8.832 0 16-7.168 16-16s-7.168-16-16-16zm-96 64H144c-8.832 0-16 7.168-16 16s7.168 16 16 16h128c8.832 0 16-7.168 16-16s-7.168-16-16-16z"
-          ></path>
-          <path
-            fill="#1e88e5"
-            d="M265.472 348.896c-2.816 2.08-6.144 3.104-9.472 3.104s-6.656-1.024-9.472-3.104L0 192v288c0 17.664 14.336 32 32 32h448c17.664 0 32-14.336 32-32V192L265.472 348.896z"
-          ></path>
-          <path
-            fill="#2196f3"
-            d="M480 512H32c-17.952 0-32-14.048-32-32 0-5.088 2.432-9.888 6.528-12.896l240-160c2.816-2.08 6.144-3.104 9.472-3.104s6.656 1.024 9.472 3.104l240 160C509.568 470.112 512 474.912 512 480c0 17.952-14.048 32-32 32z"
-          ></path>
-        </svg>
-        <p>
-          Email: <br class="mbl" /><strong style="white-space: nowrap"
-            >lienhe@teamfuho.net</strong
-          >
-        </p>
-      </a>
-      <a target="_blank" href="https://www.mbbank.com.vn/">
-        <svg viewBox="0 0 256 256">
-          <defs>
-            <style>
-              .sf {
-                fill: #ee3147;
-              }
-            </style>
-          </defs>
-          <g>
-            <path
-              d="M189 135c-14 4-29 7-44 10-19 5-12 32 8 27 14-7 28-12 42-19 13-5 8-20-6-18zM150 63c-4 14-8 29-13 43-6 19 22 27 26 6l6-45c2-14-14-18-19-4zM64 77c13 8 26 16 38 25 18 10 32-14 13-24-14-6-28-12-42-17-13-6-21 9-9 16zM56 163l33-30c15-14-5-34-20-19-9 13-17 24-27 37-8 11 3 22 14 12zM134 199c-7-13-14-26-21-40-10-17-34-3-23 15 10 12 19 23 28 35s22 3 16-10z"
-              class="sf"></path>
-            <path
-              d="M115 53c-7 12 9 22 18 13 8-10 17-21 26-31 13-16-11-34-23-17-6 10-15 26-21 35z"
-              class="sf"></path>
-            <path
-              d="M191 102c-13-4-19 14-8 20s24 12 36 17c19 9 31-19 11-26-11-3-29-8-39-11z"
-              class="sf"></path>
-            <path
-              d="M46 109c9 10 24-2 17-13S48 73 40 63C28 46 4 64 18 80c8 8 21 22 28 29z"
-              class="sf"></path>
-            <path
-              d="M77 191c12-7 4-23-8-20-12 4-26 9-38 14-19 7-8 35 11 26 10-6 26-15 35-20z"
-              class="sf"></path>
-            <path
-              d="M169 190c0-14-19-15-22-3-2 12-5 26-7 39-3 21 26 25 28 4 0-12 1-30 1-40z"
-              class="sf"></path>
-          </g>
-        </svg>
-        <div>
-          {mbbank}<br />
-          <strong>{card_no}</strong><br />
-          <p>{holder}</p>
-        </div>
-      </a>
-    </div>
-    <span class="hsp show-on-scroll"></span>
-    <div class="show-on-scroll">
-      <h1>{timeline}</h1>
-      <ul class="timeline">
-        <li>
-          <div>
-            <h1>{tl_6},</h1>
-            <p>{tl_6_desc}</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h1>{tl_5},</h1>
-            <p>{tl_5_desc}</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h1>{tl_4},</h1>
-            <p>{tl_4_desc}</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h1>{tl_3},</h1>
-            <p>{tl_3_desc}</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h1>{tl_2},</h1>
-            <p>{tl_2_desc}</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h1>{tl_1},</h1>
-            <p>{tl_1_desc}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div></div>
+			<a target="_blank" href="mailto:lienhe@teamfuho.net">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					xml:space="preserve"
+					viewBox="0 0 512 512"
+				>
+					<path
+						fill="#64b5f6"
+						d="m0 192 246.528 156.896c2.816 2.08 6.144 3.104 9.472 3.104s6.656-1.024 9.472-3.104L512 192 265.6 3.2c-5.696-4.256-13.504-4.256-19.2 0L0 192z"
+					></path>
+					<path
+						fill="#eceff1"
+						d="M416 0H96C78.368 0 64 14.368 64 32v352c0 8.832 7.168 16 16 16h352c8.832 0 16-7.168 16-16V32c0-17.632-14.336-32-32-32z"
+					></path>
+					<path
+						fill="#90a4ae"
+						d="M144 96h224c8.832 0 16-7.168 16-16s-7.168-16-16-16H144c-8.832 0-16 7.168-16 16s7.168 16 16 16zm224 32H144c-8.832 0-16 7.168-16 16s7.168 16 16 16h224c8.832 0 16-7.168 16-16s-7.168-16-16-16zm-96 64H144c-8.832 0-16 7.168-16 16s7.168 16 16 16h128c8.832 0 16-7.168 16-16s-7.168-16-16-16z"
+					></path>
+					<path
+						fill="#1e88e5"
+						d="M265.472 348.896c-2.816 2.08-6.144 3.104-9.472 3.104s-6.656-1.024-9.472-3.104L0 192v288c0 17.664 14.336 32 32 32h448c17.664 0 32-14.336 32-32V192L265.472 348.896z"
+					></path>
+					<path
+						fill="#2196f3"
+						d="M480 512H32c-17.952 0-32-14.048-32-32 0-5.088 2.432-9.888 6.528-12.896l240-160c2.816-2.08 6.144-3.104 9.472-3.104s6.656 1.024 9.472 3.104l240 160C509.568 470.112 512 474.912 512 480c0 17.952-14.048 32-32 32z"
+					></path>
+				</svg>
+				<p>
+					Email: <br class="mbl" /><strong style="white-space: nowrap"
+						>lienhe@teamfuho.net</strong
+					>
+				</p>
+			</a>
+			<a target="_blank" href="https://www.mbbank.com.vn/">
+				<svg viewBox="0 0 256 256">
+					<defs>
+						<style>
+							.sf {
+								fill: #ee3147;
+							}
+						</style>
+					</defs>
+					<g>
+						<path
+							d="M189 135c-14 4-29 7-44 10-19 5-12 32 8 27 14-7 28-12 42-19 13-5 8-20-6-18zM150 63c-4 14-8 29-13 43-6 19 22 27 26 6l6-45c2-14-14-18-19-4zM64 77c13 8 26 16 38 25 18 10 32-14 13-24-14-6-28-12-42-17-13-6-21 9-9 16zM56 163l33-30c15-14-5-34-20-19-9 13-17 24-27 37-8 11 3 22 14 12zM134 199c-7-13-14-26-21-40-10-17-34-3-23 15 10 12 19 23 28 35s22 3 16-10z"
+							class="sf"></path>
+						<path
+							d="M115 53c-7 12 9 22 18 13 8-10 17-21 26-31 13-16-11-34-23-17-6 10-15 26-21 35z"
+							class="sf"></path>
+						<path
+							d="M191 102c-13-4-19 14-8 20s24 12 36 17c19 9 31-19 11-26-11-3-29-8-39-11z"
+							class="sf"></path>
+						<path
+							d="M46 109c9 10 24-2 17-13S48 73 40 63C28 46 4 64 18 80c8 8 21 22 28 29z"
+							class="sf"></path>
+						<path
+							d="M77 191c12-7 4-23-8-20-12 4-26 9-38 14-19 7-8 35 11 26 10-6 26-15 35-20z"
+							class="sf"></path>
+						<path
+							d="M169 190c0-14-19-15-22-3-2 12-5 26-7 39-3 21 26 25 28 4 0-12 1-30 1-40z"
+							class="sf"></path>
+					</g>
+				</svg>
+				<div>
+					{mbbank}<br />
+					<strong>{card_no}</strong><br />
+					<p>{holder}</p>
+				</div>
+			</a>
+		</div>
+		<span class="hsp show-on-scroll"></span>
+		<div class="show-on-scroll">
+			<h1>{timeline}</h1>
+			<ul class="timeline">
+				<li>
+					<div>
+						<h1>{tl_6},</h1>
+						<p>{tl_6_desc}</p>
+					</div>
+				</li>
+				<li>
+					<div>
+						<h1>{tl_5},</h1>
+						<p>{tl_5_desc}</p>
+					</div>
+				</li>
+				<li>
+					<div>
+						<h1>{tl_4},</h1>
+						<p>{tl_4_desc}</p>
+					</div>
+				</li>
+				<li>
+					<div>
+						<h1>{tl_3},</h1>
+						<p>{tl_3_desc}</p>
+					</div>
+				</li>
+				<li>
+					<div>
+						<h1>{tl_2},</h1>
+						<p>{tl_2_desc}</p>
+					</div>
+				</li>
+				<li>
+					<div>
+						<h1>{tl_1},</h1>
+						<p>{tl_1_desc}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div></div>
 </Home>
