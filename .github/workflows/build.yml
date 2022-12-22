@@ -37,16 +37,17 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          echo "manager=npm" >> $GITHUB_OUTPUT
+          echo "manager=pnpm" >> $GITHUB_OUTPUT
           echo "command=ci" >> $GITHUB_OUTPUT
-          echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+          echo "runner=pnpx --no-install" >> $GITHUB_OUTPUT
+          curl -fsSL https://get.pnpm.io/install.sh | sh -
           exit 0
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
+          cache-dependency-path: ${{ env.BUILD_PATH }}/pnpm-lock.yaml
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v2
