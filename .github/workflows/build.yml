@@ -40,7 +40,7 @@ jobs:
           echo "manager=pnpm" >> $GITHUB_OUTPUT
           echo "command=ci" >> $GITHUB_OUTPUT
           echo "runner=pnpx --no-install" >> $GITHUB_OUTPUT
-          curl -fsSL https://get.pnpm.io/install.sh | SHELL="/bin/bash" sh -
+          npm install -g pnpm
           exit 0
       - name: Setup Node
         uses: actions/setup-node@v3
