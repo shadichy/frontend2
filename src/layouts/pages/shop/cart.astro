@@ -3,7 +3,7 @@ import Shop from "../../paths/shop.astro";
 
 const { lang } = Astro.props
 
-import(`../../css/pages/shop/cart.css`)
+import "../../css/pages/shop/cart.css";
 ---
 <Shop lang={lang} >
 	<script src="../../js/pages/shop/cart.js"></script>

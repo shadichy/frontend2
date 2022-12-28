@@ -19,7 +19,9 @@ const { pages } = Defaults,
  */
 function genFiles(obj) {
 	Object.entries(obj).forEach(([key, value]) =>
-		((langdir) => {
+		["src/layouts", "public"]
+			.map((t) => `${t}/lang/${key.split("-")[0]}`)
+			.forEach((langdir) => {
 			fs.mkdirSync(langdir, { recursive: true });
 			Object.entries(pages).forEach(([k, v]) =>
 				v.length == 1 ? undefined : fs.mkdirSync(`${langdir}/${k}`)
@@ -33,7 +35,7 @@ function genFiles(obj) {
 						JSON.stringify(content)
 					))(file.substring(1, file.indexOf(".")))
 			);
-		})(`src/layouts/lang/${key.split("-")[0]}`)
+		})
 	);
 }
 

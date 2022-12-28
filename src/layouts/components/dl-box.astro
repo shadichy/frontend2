@@ -1,8 +1,9 @@
 ---
+import Defaults from "../../defaults";
 const { lang } = Astro.props,
-langfile = `../lang/${lang}/home/dl.json`
+langfile = `${Defaults.langHeadingPath?"":"."}./lang/${lang}/home/dl.json`
 
-import(`../css/dl.css`)
+import "../css/dl.css";
 
 export interface ComponentRequired {
 	dlc: string
@@ -12,7 +13,7 @@ export interface ComponentRequired {
 	dl_title: string
 }
 const { dlc, dlc_gme, dlc_lts, dlc_ver, dl_title } = 
-  await import( /* @vite-ignore */ langfile) as ComponentRequired
+  await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } }) as ComponentRequired
 
 ---
 

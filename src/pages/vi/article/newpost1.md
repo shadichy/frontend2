@@ -3,8 +3,7 @@ layout: '/src/layouts/paths/article.astro'
 lang: 'vi'
 title: '4th post'
 desc: 'Lorem ipsum dolor sit amet'
-date: 'Mon Nov 18 2022 15:39:11 GMT+0700 (Indochina Time)'
-tags: [ 'news', 'new', 'lorem' ]
+date: 'Mon Nov 28 2022 15:39:11 GMT+0700 (Indochina Time)'
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.

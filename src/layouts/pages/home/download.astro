@@ -1,12 +1,13 @@
 ---
 import Home from "../../paths/home.astro";
+import Defaults from "../../../defaults";
 import DlBox from "../../components/dl-box.astro";
 
 const { lang } = Astro.props,
   filename = "dl",
-  langfile = `../../lang/${lang}/home/${filename}.json`;
+  langfile = `${Defaults.langHeadingPath?"":"../."}./lang/${lang}/home/${filename}.json`;
 
-import(`../../css/pages/home/dl.css`);
+import "../../css/pages/home/dl.css";
 
 export interface PageRequired {
   meta_title?: string;
@@ -31,7 +32,7 @@ const {
   meta_title,
   meta_description,
   meta_img,
-} = (await import(/* @vite-ignore */ langfile)) as PageRequired;
+} = (await import(/* @vite-ignore */ langfile, { assert: { type: 'json' } })) as PageRequired;
 ---
 
 <Home

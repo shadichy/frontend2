@@ -1,9 +1,10 @@
 ---
 import Main from "../main.astro";
+import Defaults from "../../defaults";
 
 const { lang } = Astro.props,
 	filename = "404",
-	langfile = `../lang/${lang}/404.json`;
+	langfile = `${Defaults.langHeadingPath?"":"."}./lang/${lang}/404.json`;
 
 export interface EnfRequired {
 	meta_title?: string;
@@ -23,7 +24,7 @@ const {
 	meta_title,
 	meta_description,
 	meta_img,
-} = (await import(/* @vite-ignore */ langfile)) as EnfRequired;
+} = (await import(/* @vite-ignore */ langfile, { assert: { type: 'json' } })) as EnfRequired;
 ---
 
 <Main

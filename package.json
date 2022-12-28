@@ -13,19 +13,22 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^0.13.0",
+    "@astropub/assert": "^0.1.2",
+    "@astropub/imports": "^0.5.0",
     "@crowdin/ota-client": "^0.7.0",
     "@types/dragula": "^3.7.1",
-    "astro": "^1.6.15",
-    "astro-compress": "^1.1.22",
+    "astro": "^1.8.0",
+    "astro-compress": "^1.1.24",
     "axios": "^1.2.1",
     "dragula": "^3.7.3",
     "hls.js": "^1.2.9",
     "intl-tel-input": "^17.0.19",
-    "sharp": "^0.31.2"
+    "rollup": "^3.9.0",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
-    "@types/node": "^18.11.15",
-    "eslint": "^8.29.0",
+    "@types/node": "^18.11.18",
+    "eslint": "^8.30.0",
     "prettier": "^2.8.1"
   }
 }

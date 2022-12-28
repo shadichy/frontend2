@@ -1,11 +1,12 @@
 ---
 import Home from "../../paths/home.astro";
+import Defaults from "../../../defaults";
 
 const { lang } = Astro.props,
   filename = "gallery",
-  langfile = `../../lang/${lang}/home/${filename}.json`;
+  langfile = `${Defaults.langHeadingPath?"":"../."}./lang/${lang}/home/${filename}.json`;
 
-import(`../../css/pages/home/gallery.css`);
+import "../../css/pages/home/gallery.css";
 
 export interface PageRequired {
   meta_title?: string;
@@ -16,7 +17,7 @@ export interface PageRequired {
   copied: string;
 }
 const { gall_typo, share, copied, meta_title, meta_description, meta_img } =
-  (await import(/* @vite-ignore */ langfile)) as PageRequired;
+  (await import(/* @vite-ignore */ langfile, { assert: { type: 'json' } })) as PageRequired;
 ---
 
 <Home

@@ -1,8 +1,10 @@
 ---
 import Main from "../main.astro"
-
 import Defaults from "../../defaults"
 
+import "../css/pages/article.css";
+
+console.log("k 0")
 export interface PostRequired {
 	author?: string,
 	date?,
@@ -17,9 +19,9 @@ const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaul
 
 const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = defaultLanguage, tags = [], title } = Astro.props.frontmatter as PostRequired,
 	filename = "article",
-	langfile = `../lang/${lang}/${filename}.json`
+	langfile = `${Defaults.langHeadingPath?"":"."}./lang/${lang}/${filename}.json`
 
-import(`../css/pages/article.css`)
+console.log("k 1")
 
 export interface ArticleRequired {
 	back: string,
@@ -29,8 +31,15 @@ export interface ArticleRequired {
 	share_tw: string
 }
 
-const { back, by, share_fb, share_rd, share_tw } = 
-	await import( /* @vite-ignore */ langfile) as ArticleRequired
+const { 
+	back,
+	by,
+	share_fb,
+	share_rd,
+	share_tw
+} = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as ArticleRequired
+
+console.log("k 2")
 
 const postDate = ((str) => {
 	return new Date(str).toLocaleString(lang, {
@@ -60,6 +69,7 @@ const Related = (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
 	}))
 	.sort((a, b) => sortFn(b) - sortFn(a))
 
+console.log("k 3")
 ---
 
 <Main lang={lang} filename="news" meta_title={title} meta_description={desc} meta_img={image}>

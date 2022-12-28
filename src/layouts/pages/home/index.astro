@@ -1,13 +1,13 @@
 ---
 import Home from "../../paths/home.astro";
+import Defaults from "../../../defaults";
 import NewsBox from "../../components/news-box.astro";
 import DlBox from "../../components/dl-box.astro";
-import Defaults from "../../../defaults";
 const { lang } = Astro.props,
 	filename = "index",
-	langfile = `../../lang/${lang}/home/${filename}.json`;
+	langfile = `${Defaults.langHeadingPath?"":"../."}./lang/${lang}/home/${filename}.json`;
 
-import(`../../css/pages/home/index.css`);
+import "../../css/pages/home/index.css";
 
 export interface PageRequired {
 	meta_title?: string;
@@ -50,7 +50,7 @@ const {
 	meta_title,
 	meta_description,
 	meta_img,
-} = (await import(/* @vite-ignore */ langfile)) as PageRequired;
+} = (await import(/* @vite-ignore */ langfile, { assert: { type: 'json' } })) as PageRequired;
 
 const { allowedLanguages, defaultLanguage } = Defaults,
 	exlang = lang == (defaultLanguage || allowedLanguages[0]) ? "" : "/" + lang;
@@ -297,7 +297,7 @@ const { allowedLanguages, defaultLanguage } = Defaults,
 		</div>
 	</a>
 	<!-- <div class="news bgw show-on-scroll"></div> -->
-	<NewsBox lang={lang} />
+	<!-- <NewsBox lang={lang} /> -->
 	<p class="bgw" style="padding: 0 0 2vh 0; margin: 0; font-size: 3vh">
 		<a class="lnk" href={exlang + "/news"}> {more}...</a>
 	</p>

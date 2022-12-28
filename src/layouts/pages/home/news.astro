@@ -1,12 +1,11 @@
 ---
 import Home from "../../paths/home.astro";
-import NewsBox from "../../components/news-box.astro";
-
 import Defaults from "../../../defaults";
+import NewsBox from "../../components/news-box.astro";
 
 const { lang } = Astro.props,
 	filename = "news",
-	langfile = `../../lang/${lang}/home/${filename}.json`;
+	langfile = `${Defaults.langHeadingPath?"":"../."}./lang/${lang}/home/${filename}.json`;
 
 const {
 	alt_placeholder: imghld,
@@ -14,7 +13,7 @@ const {
 	defaultLanguage,
 } = Defaults;
 
-import(`../../css/pages/home/news.css`);
+import "../../css/pages/home/news.css";
 
 export interface PageRequired {
 	meta_title?: string;
@@ -23,9 +22,7 @@ export interface PageRequired {
 	news: string;
 	search: string;
 }
-const { news, search, meta_title, meta_description, meta_img } = (await import(
-	/* @vite-ignore */ langfile
-)) as PageRequired;
+const { news, search, meta_title, meta_description, meta_img } = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as PageRequired;
 
 const exlang = lang == defaultLanguage ? "" : "/" + lang;
 const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
