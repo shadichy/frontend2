@@ -7,16 +7,17 @@ const { lang } = Astro.props
 import "../css/news.css";
 
 const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-  threeNewest = (await Astro.glob("../../pages/**/article/*.{md,mdx}"))
-    .filter(post => post.file.includes(`/${lang}/`))
-    .sort((a, b) => getDate(b) - getDate(a))
-    .slice(0,3)
-    .map(post => ({
-      url: post.url as string,
-      title: post.frontmatter.title as string,
-      desc: post.frontmatter.desc as string || tthld,
-      image: post.frontmatter.image as string || imghld
-    }))
+  threeNewest = [];
+  // (await Astro.glob("../../pages/**/article/*.{md,mdx}"))
+  //   .filter(post => post.file.includes(`/${lang}/`))
+  //   .sort((a, b) => getDate(b) - getDate(a))
+  //   .slice(0,3)
+  //   .map(post => ({
+  //     url: post.url as string,
+  //     title: post.frontmatter.title as string,
+  //     desc: post.frontmatter.desc as string || tthld,
+  //     image: post.frontmatter.image as string || imghld
+  //   }))
 
 ---
 

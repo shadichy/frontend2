@@ -3,8 +3,6 @@ import Main from "../main.astro"
 import Defaults from "../../defaults"
 
 import "../css/pages/article.css";
-
-console.log("k 0")
 export interface PostRequired {
 	author?: string,
 	date?,
@@ -20,9 +18,6 @@ const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaul
 const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = defaultLanguage, tags = [], title } = Astro.props.frontmatter as PostRequired,
 	filename = "article",
 	langfile = `${Defaults.langHeadingPath?"":"."}./lang/${lang}/${filename}.json`
-
-console.log("k 1")
-
 export interface ArticleRequired {
 	back: string,
 	by: string,
@@ -39,8 +34,6 @@ const {
 	share_tw
 } = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as ArticleRequired
 
-console.log("k 2")
-
 const postDate = ((str) => {
 	return new Date(str).toLocaleString(lang, {
 		dateStyle: "full",
@@ -54,22 +47,21 @@ const getDate = (post) => ~~(new Date(post.date).valueOf()/86400000),
 		(getDate(r) + r.size) // adition method
 		// ((r.size + 1) / (~~(+new Date/86400000) - getDate(r))) // division method
 
-const Related = (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
-	.filter(({ url }) => url !== Astro.props.url && url.includes(`/${lang}/`))
-	.map(post => ({
-		url: post.url as string,
-		title: post.frontmatter.title as string,
-		desc: post.frontmatter.desc as string || tthld,
-		image: post.frontmatter.image as string || imghld,
-		date: post.frontmatter.date as Date,
-		size: (tags.filter(f => 
-			(post.frontmatter.tags as Array<String> || new Array<String>)
-				.includes(f))
-				.length * 3) as number 
-	}))
-	.sort((a, b) => sortFn(b) - sortFn(a))
-
-console.log("k 3")
+const Related = [];
+// (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
+// 	.filter(({ url }) => url !== Astro.props.url && url.includes(`/${lang}/`))
+// 	.map(post => ({
+// 		url: post.url as string,
+// 		title: post.frontmatter.title as string,
+// 		desc: post.frontmatter.desc as string || tthld,
+// 		image: post.frontmatter.image as string || imghld,
+// 		date: post.frontmatter.date as Date,
+// 		size: (tags.filter(f => 
+// 			(post.frontmatter.tags as Array<String> || new Array<String>)
+// 				.includes(f))
+// 				.length * 3) as number 
+// 	}))
+// 	.sort((a, b) => sortFn(b) - sortFn(a))
 ---
 
 <Main lang={lang} filename="news" meta_title={title} meta_description={desc} meta_img={image}>

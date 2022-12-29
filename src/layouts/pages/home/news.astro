@@ -3,6 +3,10 @@ import Home from "../../paths/home.astro";
 import Defaults from "../../../defaults";
 import NewsBox from "../../components/news-box.astro";
 
+import "../../css/pages/home/news.css";
+
+const PostGlobs = []; // (await Astro.glob("../../../pages/**/article/*.{md,mdx}"))
+
 const { lang } = Astro.props,
 	filename = "news",
 	langfile = `${Defaults.langHeadingPath?"":"../."}./lang/${lang}/home/${filename}.json`;
@@ -12,8 +16,6 @@ const {
 	title_holder: tthld,
 	defaultLanguage,
 } = Defaults;
-
-import "../../css/pages/home/news.css";
 
 export interface PageRequired {
 	meta_title?: string;
@@ -26,7 +28,7 @@ const { news, search, meta_title, meta_description, meta_img } = (await import( 
 
 const exlang = lang == defaultLanguage ? "" : "/" + lang;
 const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-	Posts = (await Astro.glob("../../../pages/**/article/*.{md,mdx}"))
+	Posts = PostGlobs
 		.filter((post) => post.file.includes(`${lang}/`))
 		.sort((a, b) => getDate(b) - getDate(a))
 		.map((post) => ({
@@ -85,7 +87,7 @@ const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
 	></span>
 	<NewsBox lang={lang} />
 	<div id="newscontent">
-		{
+		<!-- {
 			Posts.map((post, i) => (
 				<a href={post.url} class={`newsbg newsitem${i}`}>
 					<img loading="lazy" alt={post.desc} src={post.image} />
@@ -95,6 +97,6 @@ const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
 					</div>
 				</a>
 			))
-		}
+		} -->
 	</div>
 </Home>
