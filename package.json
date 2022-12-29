@@ -8,6 +8,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "prod": "export NODE_ENV=production && scripts/generate.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

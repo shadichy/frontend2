@@ -4,50 +4,52 @@ import Defaults from "../src/defaults.js";
 import axios from "axios";
 
 const { pages } = Defaults,
-	ohash = "0ec83da22715d54901879a8yk35",
-	lf = "src/lang.json",
-	{ timestamp, content } = (() => {
-		try {
-			return JSON.parse(fs.readFileSync(lf).toString());
-		} catch (err) {
-			return { timestamp: 0, content: {} };
-		}
-	})();
+  ohash = "0ec83da22715d54901879a8yk35",
+  lf = "src/lang.json",
+  { timestamp, content } = (() => {
+    try {
+      return JSON.parse(fs.readFileSync(lf).toString());
+    } catch (err) {
+      return { timestamp: 0, content: {} };
+    }
+  })(),
+  langOutput = Defaults.langHeadingPath ? "public" : "src/layouts";
 
 /**
  * @param {{ [s: string]: Object; } } obj
  */
 function genFiles(obj) {
 	Object.entries(obj).forEach(([key, value]) =>
-		["src/layouts", "public"]
-			.map((t) => `${t}/lang/${key.split("-")[0]}`)
-			.forEach((langdir) => {
-			fs.mkdirSync(langdir, { recursive: true });
-			Object.entries(pages).forEach(([k, v]) =>
-				v.length == 1 ? undefined : fs.mkdirSync(`${langdir}/${k}`)
-			);
-			value.forEach(({ content, file }) =>
-				((filebase) =>
-					fs.writeFileSync(
-						`${langdir}${
-							pages[filebase] || filebase == "glob" ? "" : "/home"
-						}${file}`,
-						JSON.stringify(content)
-					))(file.substring(1, file.indexOf(".")))
-			);
-		})
-	);
+    ((langdir) => {
+      fs.mkdirSync(langdir, { recursive: true });
+      Object.entries(pages).forEach(([k, v]) =>
+        v.length == 1 ? undefined : fs.mkdirSync(`${langdir}/${k}`)
+      );
+      value.forEach(({ content, file }) =>
+        ((filebase) =>
+          fs.writeFileSync(
+            `${langdir}${
+              pages[filebase] || filebase == "glob" ? "" : "/home"
+            }${file}`,
+            JSON.stringify(content)
+          ))(file.substring(1, file.indexOf(".")))
+      );
+    })(`${langOutput}/lang/${key.split("-")[0]}`)
+  );
 }
 
 /**
  * @param {any} err
  */
-function fallback(err) {
+function fallback(err = undefined) {
 	console.log(err);
-	console.log("W: Failed, reverting...");
-	if (!fs.existsSync("src/layouts/lang"))
-		if (fs.existsSync(lf)) genFiles(content);
-		else console.error("E: Error no language file found!");
+	err ? console.log("W: Failed, reverting...") : undefined
+	if (
+    !fs.existsSync(`${langOutput}/lang`) ||
+    fs.readdirSync(`${langOutput}/lang`).length == 0
+  )
+    if (fs.existsSync(lf)) genFiles(content);
+    else console.error("E: Error no language file found!");
 }
 
 export default {
@@ -78,7 +80,7 @@ export default {
 						genFiles(trans);
 					})
 					.catch(fallback);
-			}
+			} else fallback()
 		})
 		.catch(fallback),
 };
