@@ -1,21 +1,22 @@
 ---
-import Main from "../main.astro"
-import Defaults from "../../defaults"
+import Main from "../main.astro";
+import Defaults from "../../defaults";
+import Blog from "../../apis/blog";
 
 import "../css/pages/article.css";
 export interface PostRequired {
 	author?: string,
-	date?,
-	desc?: string,
-	image?: string, 
-	lang?: string, 
+	date?: any,
+	excerpt?: string,
+	content?: string,
+	thumb?: string,
 	tags?: Array<string>,
 	title: string
 }
 
 const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaults
 
-const { author = "Anonymous", date = Date().toString(), desc = tthld, image = imghld, lang = defaultLanguage, tags = [], title } = Astro.props.frontmatter as PostRequired,
+const { lang, articleID } = Astro.props,
 	filename = "article",
 	langfile = `${Defaults.langHeadingPath?"":"."}./lang/${lang}/${filename}.json`
 export interface ArticleRequired {
@@ -34,20 +35,29 @@ const {
 	share_tw
 } = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as ArticleRequired
 
-const postDate = ((str) => {
-	return new Date(str).toLocaleString(lang, {
+const { getSinglePost, getPostList } = Blog,
+	{ 
+		author = "Anonymous",
+		content = "",
+		date = Date().toString(),
+		excerpt = tthld,
+		thumb = imghld,
+		tags = [],
+		title
+	} = await getSinglePost(lang, articleID) as PostRequired
+
+const postDate = new Date(date).toLocaleString(lang, {
 		dateStyle: "full",
 		timeStyle: "short",
 		hour12: false,
 	})
-})(date)
 
-const getDate = (post) => ~~(new Date(post.date).valueOf()/86400000),
-	sortFn = (r) => 
-		(getDate(r) + r.size) // adition method
+// const getDate = (post) => ~~(new Date(post.date).valueOf()/86400000),
+	// sortFn = (r) => 
+		// (getDate(r) + r.size) // adition method
 		// ((r.size + 1) / (~~(+new Date/86400000) - getDate(r))) // division method
 
-const Related = [];
+const Related = await getPostList(lang, "", tags);
 // (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
 // 	.filter(({ url }) => url !== Astro.props.url && url.includes(`/${lang}/`))
 // 	.map(post => ({
@@ -64,7 +74,7 @@ const Related = [];
 // 	.sort((a, b) => sortFn(b) - sortFn(a))
 ---
 
-<Main lang={lang} filename="news" meta_title={title} meta_description={desc} meta_img={image}>
+<Main lang={lang} filename="news" meta_title={title} meta_description={excerpt} meta_img={thumb}>
 	<script define:vars={{ by, tags }}>
 		window.articleTags = tags
 	</script>
@@ -136,8 +146,7 @@ const Related = [];
 				<i>{by} <span id="auname">{author}</span></i>
 				<p style='margin:0'>{postDate}</p>
 			</div>
-			<div id="mdtext">
-				<slot />
+			<div id="mdtext" set:html={content}>
 			</div>
 		</div>
 		<div>

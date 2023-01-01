@@ -1,12 +1,15 @@
-const 
-	langHeadingPath = (()=>{
-		try {
-			return import.meta.env.PROD;
-		} catch (err) {
-			return process.env.NODE_ENV === "production";
-		}
-	})(),
-	dburl = "http=//localhost=8080/api/arli",
+const langHeadingPath = (() => {
+    try {
+      return import.meta.env.PROD;
+    } catch (err) {
+      return process.env.NODE_ENV === "production";
+    }
+  })(),
+  dburl = "http://localhost:8080/api/arli",
+  wpurl = "https://service.teamfuho.net/graphql",
+  mgurl =
+    "mongodb://127.0.0.1:27017/teamfuho?directConnection=true&serverSelectionTimeoutMS=2000&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true",
+  mgdb = "FuhoDB",
 
 	img_placeholder = "/res/img/placeholder.svg",
 	alt_placeholder = "/res/img/alt-placeholder.svg",
@@ -22,11 +25,16 @@ const
 		shop: ["account", "cart", "checkout", "index", "product", "search"],
 		"404": ["404"],
 		article: ["article"],
-	};
+		image: ["image"]
+	},
+	specialPages = ["article", "image"];
 
 export default {
 	langHeadingPath,
 	dburl,
+	wpurl,
+	mgurl,
+	mgdb,
 	img_placeholder,
 	alt_placeholder,
 	title_holder,
@@ -35,4 +43,5 @@ export default {
 	defaultLanguage,
 	langMap,
 	pages,
+	specialPages,
 };

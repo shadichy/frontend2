@@ -2,10 +2,9 @@
 import Home from "../../paths/home.astro";
 import Defaults from "../../../defaults";
 import NewsBox from "../../components/news-box.astro";
+import Blog from "../../../apis/blog"
 
 import "../../css/pages/home/news.css";
-
-const PostGlobs = []; // (await Astro.glob("../../../pages/**/article/*.{md,mdx}"))
 
 const { lang } = Astro.props,
 	filename = "news",
@@ -26,20 +25,22 @@ export interface PageRequired {
 }
 const { news, search, meta_title, meta_description, meta_img } = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as PageRequired;
 
-const exlang = lang == defaultLanguage ? "" : "/" + lang;
-const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-	Posts = PostGlobs
-		.filter((post) => post.file.includes(`${lang}/`))
-		.sort((a, b) => getDate(b) - getDate(a))
-		.map((post) => ({
-			url: post.url as string,
-			title: post.frontmatter.title as string,
-			desc: (post.frontmatter.desc as string) || tthld,
-			image: (post.frontmatter.image as string) || imghld,
-			reldate: ~~(
-				new Date(post.frontmatter.date).valueOf() / 86400000
-			) as number,
-		}));
+
+const { getPostList } = Blog,
+	exlang = lang == defaultLanguage ? "" : "/" + lang,
+	getDate = (post) => new Date(post.frontmatter.date).valueOf(),
+	Posts = await getPostList(lang);
+	// 	.filter((post) => post.file.includes(`${lang}/`))
+	// 	.sort((a, b) => getDate(b) - getDate(a))
+	// 	.map((post) => ({
+	// 		url: post.url as string,
+	// 		title: post.frontmatter.title as string,
+	// 		desc: (post.frontmatter.desc as string) || tthld,
+	// 		image: (post.frontmatter.image as string) || imghld,
+	// 		reldate: ~~(
+	// 			new Date(post.frontmatter.date).valueOf() / 86400000
+	// 		) as number,
+	// 	}));
 ---
 
 <Home

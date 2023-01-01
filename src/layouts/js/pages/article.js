@@ -7,7 +7,7 @@ var page = 0,
   end = false,
   ltask = false
 
-function share(url) {
+function sharePost(url) {
   window.open(
     `https://${url}`,
     "_blank",
@@ -124,10 +124,10 @@ window.addEventListener("DOMContentLoaded", () => {
     // @ts-ignore
     xscale = ()=>root.style.setProperty("--ratio", document.querySelector("#bruh>div:nth-child(4)").getBoundingClientRect().width / 720)
 
-  document
-    .querySelectorAll("#bruh>div>div>span")
+  document.querySelectorAll("#bruh>div>div>span").forEach(
     // @ts-ignore
-    .forEach((sharebtn, i) => (sharebtn.onclick = () => share(shareLinks[i])))
+    (sharebtn, i) => (sharebtn.onclick = () => sharePost(shareLinks[i]))
+  );
 
   // load(limit)
   if (innerWidth > orgwidth) {

@@ -2,9 +2,9 @@ import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import mdx from "@astrojs/mdx";
 import importPlus from '@astropub/imports'
-import { assertPlugin } from '@astropub/assert'
+import node from "@astrojs/node";
 
-const isPr = process.env.NODE_ENV === "production";
+const isPr = import.meta.env.PROD || process.env.NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,4 +12,8 @@ export default defineConfig({
   vite: {
     plugins: [importPlus()],
   },
+  output: "server",
+  adapter: node({
+    mode: "standalone",
+  }),
 });

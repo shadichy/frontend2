@@ -1,0 +1,76 @@
+---
+import Main from "../main.astro";
+import Gallery from "../../apis/gallery";
+import Defaults from "../../defaults";
+
+import "../css/pages/home/gallery.css";
+
+const { lang, imageID } = Astro.props,
+  filename = "gallery",
+  langfile = `${
+    Defaults.langHeadingPath ? "" : "../."
+  }./lang/${lang}/home/${filename}.json`;
+
+export interface PageRequired {
+  share: string;
+  copied: string;
+}
+const { share, copied } = (await import(/* @vite-ignore */ langfile, {
+  assert: { type: "json" },
+})) as PageRequired;
+const { getSingleImage } = Gallery;
+
+export interface ImageRequired {
+  title: string;
+  date?: any;
+  src: string;
+  content?: string;
+}
+
+const {
+  title,
+  date = Date().toString(),
+  src,
+  content = "",
+} = (await getSingleImage(lang, imageID)) as ImageRequired;
+---
+
+<Main
+  lang={lang}
+  filename={filename}
+  meta_title={title}
+  meta_description={content}
+  meta_img={src}
+>
+  <script define:vars={{ share, copied }}>
+    window.inview = false;
+    window.share = share;
+    window.copied = copied;
+  </script>
+  <script src="../js/pages/image.js"></script>
+  <style>
+    .nav {
+      top: -10vh;
+    }
+  </style>
+  <div class="imgal">
+    <div class="cts">
+      <div>
+        <span><img src={src} alt={title} /></span>
+        <div>
+          <h1>{title}</h1>
+          <p>
+            {
+              new Date(date).toLocaleString(lang, {
+                dateStyle: "full",
+              })
+            }
+          </p>
+          <p set:html={content}></p>
+          <button id="gotogal">&lt; {"Xem thêm"}</button>
+          <button id="share">{share}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Main>
