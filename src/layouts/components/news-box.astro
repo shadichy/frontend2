@@ -1,13 +1,16 @@
 ---
 
 import Defaults from "../../defaults"
-const { alt_placeholder: imghld, title_holder: tthld } = Defaults
-const { lang } = Astro.props
+import Blog from "../../apis/blog"
 
 import "../css/news.css";
 
-const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
-  threeNewest = [];
+const { alt_placeholder: imghld, title_holder: tthld } = Defaults
+const { lang } = Astro.props
+
+const { getPostList } = Blog,
+  getDate = (post) => new Date(post.frontmatter.date).valueOf(),
+  threeNewest = await getPostList(lang);
   // (await Astro.glob("../../pages/**/article/*.{md,mdx}"))
   //   .filter(post => post.file.includes(`/${lang}/`))
   //   .sort((a, b) => getDate(b) - getDate(a))
@@ -24,7 +27,7 @@ const getDate = (post) => new Date(post.frontmatter.date).valueOf(),
 <script src="../js/modules/news.js"></script>
 <div class="news bgw show-on-scroll">
   {
-    threeNewest.map((post,i) => (
+    threeNewest.posts.map((post,i) => (
       <a href={post.url} id={`topnews${i}`}>
         <img loading="lazy" alt={post.desc} src={post.image} />
         <span></span>

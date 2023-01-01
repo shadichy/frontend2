@@ -88,8 +88,8 @@ const { getPostList } = Blog,
 	></span>
 	<NewsBox lang={lang} />
 	<div id="newscontent">
-		<!-- {
-			Posts.map((post, i) => (
+		{
+			Posts.posts.map((post, i) => (
 				<a href={post.url} class={`newsbg newsitem${i}`}>
 					<img loading="lazy" alt={post.desc} src={post.image} />
 					<div>
@@ -98,6 +98,6 @@ const { getPostList } = Blog,
 					</div>
 				</a>
 			))
-		} -->
+		}
 	</div>
 </Home>

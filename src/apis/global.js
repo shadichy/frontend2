@@ -2,12 +2,12 @@ import Defaults from "../defaults";
 
 const { wpurl } = Defaults
 
-async function fetchAPI(query, { variables = undefined }) {
+async function fetchAPI(query) {
   const headers = { "Content-Type": "application/json" };
   const res = await fetch(wpurl, {
     method: "POST",
     headers,
-    body: JSON.stringify({ query, variables }),
+    body: JSON.stringify({ query }),
   });
 
   const json = await res.json();

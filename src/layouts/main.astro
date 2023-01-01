@@ -71,7 +71,11 @@ const title=`Team Fuho ${filename != "index" ? "- " : ""}${meta_title}`,
 		window["customfunc"] = new Array
 		window.global = window
 	</script>
-	<script src="./js/main.js"></script>
+	<script type="module" src="./js/main.js"></script>
+	<!-- <script type="module" src={(await import("./js/main.js?url")).default}></script> -->
+	<!-- <script>
+        // import Main from "./js/main.js";
+	</script> -->
 	<!-- <script src="/bundle/main.bundle.js"></script> -->
 </head>
 

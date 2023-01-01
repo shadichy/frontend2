@@ -1,6 +1,8 @@
 import Global from "./global";
+import Defaults from "../defaults";
 
-const { fetchAPI } = Global
+const { fetchAPI } = Global,
+  { alt_placeholder, title_holder } = Defaults;
 
 /**
  * @param {string} lang
@@ -8,10 +10,11 @@ const { fetchAPI } = Global
  * @param {Array<string>} searchTags
  */
 async function getPostList(lang, endCursor = "", searchTags = []) {
-	const tagQuery = searchTags.length != 0
-		? `, where: { tagSlugIn: [${searchTags.map(t => `"${t}"`).join(",")}] }`
-		: "";
-	const data = await fetchAPI(`
+  const tagQuery =
+    searchTags.length != 0
+      ? `, where: { tagSlugIn: [${searchTags.map((t) => `"${t}"`).join(",")}] }`
+      : "";
+  const data = await fetchAPI(`
 {
 	posts(first: 60, after: "${endCursor}" ${tagQuery}) {
 		pageInfo {
@@ -33,14 +36,16 @@ async function getPostList(lang, endCursor = "", searchTags = []) {
 	}
 }
 	`);
-	const { pageInfo, edges } = data?.posts
-	return { 
-		prop: pageInfo, 
-		posts: edges.map(node=>{
-			node.thumb = node.featuredImage?.node.mediaItemUrl;
-			node.featuredImage && delete node.featuredImage
-		}) 
-	}
+  const { pageInfo, edges } = data?.posts;
+  return {
+    prop: pageInfo,
+    posts: edges.map(({ node: { id, title, excerpt, featuredImage } }) => ({
+      id: id,
+      title: title,
+      excerpt: excerpt || title_holder,
+      thumb: featuredImage?.node.mediaItemUrl || alt_placeholder,
+    })),
+  };
 }
 
 /**
@@ -49,8 +54,8 @@ async function getPostList(lang, endCursor = "", searchTags = []) {
  * @param {any} idType
  */
 async function getSinglePost(lang, id, idType = undefined) {
-	const idTypeQuery = idType ? `, idType: "${idType}"` : "";
-	const data = await fetchAPI(`
+  const idTypeQuery = idType ? `, idType: "${idType}"` : "";
+  const data = await fetchAPI(`
 {
 	post(id: "${id}" ${idTypeQuery}) {
 		title
@@ -75,15 +80,19 @@ async function getSinglePost(lang, id, idType = undefined) {
 	}
 }
 	`);
-	const { post = {} } = data;
-	post.tags = post.tags?.nodes.map((tag) => tag.slug) || [];
-	post.author = post.author?.node.name || undefined;
-	post.thumb = post.featuredImage?.node.mediaItemUrl || undefined;
-	post.featuredImage && delete post.featuredImage;
-	return post;
+  const { post = {} } = data;
+  return {
+    title: post.title,
+    date: post.date,
+    excerpt: post.excerpt || title_holder,
+    thumb: post.featuredImage?.node.mediaItemUrl || alt_placeholder,
+    author: post.author?.node.name || undefined,
+    tags: post.tags?.nodes.map(({ slug }) => slug) || [],
+    content: post.content || "",
+  };
 }
 
 export default {
-	getPostList,
-	getSinglePost
-}
+  getPostList,
+  getSinglePost,
+};

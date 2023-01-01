@@ -42,16 +42,13 @@ fetchlang.gen;
 Object.entries(pages).forEach(([k, v]) =>
 	(([path, spath]) =>
 		v.forEach((name) => {
-			const extraVars = specialPages.indexOf(name) != -1 ? [`, ${name}`, `${name}ID="${name}"`] : ["",""];
+			const extraVars = specialPages.indexOf(name) != -1 ? [`, ${name}`, `${name}ID={${name}}`] : ["",""];
 			genPage(
 				"{lang}",
 				`src/pages/[lang]${path}`,
 				`/src/layouts${spath}`,
 				name,
 				`import Defaults from "/src/defaults"
-export function getStaticPaths () {
-	return Defaults.langMap
-}
 const { lang ${extraVars[0]} } = Astro.params`,
 			extraVars[1]
 			);

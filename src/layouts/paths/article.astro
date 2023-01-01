@@ -14,7 +14,7 @@ export interface PostRequired {
 	title: string
 }
 
-const { alt_placeholder: imghld, title_holder: tthld, defaultLanguage } = Defaults
+const { defaultLanguage, allowedLanguages } = Defaults
 
 const { lang, articleID } = Astro.props,
 	filename = "article",
@@ -36,17 +36,18 @@ const {
 } = (await import( /* @vite-ignore */ langfile, { assert: { type: 'json' } })) as ArticleRequired
 
 const { getSinglePost, getPostList } = Blog,
-	{ 
+	{
 		author = "Anonymous",
-		content = "",
+		content,
 		date = Date().toString(),
-		excerpt = tthld,
-		thumb = imghld,
-		tags = [],
+		excerpt,
+		thumb,
+		tags,
 		title
 	} = await getSinglePost(lang, articleID) as PostRequired
 
-const postDate = new Date(date).toLocaleString(lang, {
+const exlang = (lang == (defaultLanguage || allowedLanguages[0])) ? "" : ("/" + lang),
+	postDate = new Date(date).toLocaleString(lang, {
 		dateStyle: "full",
 		timeStyle: "short",
 		hour12: false,
@@ -57,7 +58,10 @@ const postDate = new Date(date).toLocaleString(lang, {
 		// (getDate(r) + r.size) // adition method
 		// ((r.size + 1) / (~~(+new Date/86400000) - getDate(r))) // division method
 
-const Related = await getPostList(lang, "", tags);
+const PostList = await getPostList(lang, "", tags),
+	path = Astro.url.pathname.split("/"),
+	Related = PostList.posts.filter(({ id })=> id != path[path.length-1])
+
 // (await Astro.glob('/src/pages/**/article/*.{md,mdx}'))
 // 	.filter(({ url }) => url !== Astro.props.url && url.includes(`/${lang}/`))
 // 	.map(post => ({
@@ -154,8 +158,8 @@ const Related = await getPostList(lang, "", tags);
 				<h3>Có thể bạn muốn đọc</h3>
 				{
 					Related.slice(0,3).map((post,i) => (
-						<a href={post.url} class={`show-on-scroll relitem${i}`}>
-							<img loading="lazy" src={post.image} alt={post.desc}/>
+						<a href={`${exlang}/article/${post.id}`} class={`show-on-scroll relitem${i}`}>
+							<img loading="lazy" src={post.thumb} alt={post.excerpt}/>
 							<span></span>
 							<h2>{post.title}</h2>
 						</a>
@@ -184,8 +188,8 @@ const Related = await getPostList(lang, "", tags);
 		<!-- <p>Related</p> -->
 			{
 				Related.map((post,i) => (
-					<a href={post.url} class={`show-on-scroll newsbg relitem${i}`}>
-						<img loading="lazy" src={post.image || imghld} alt={post.desc || tthld}/>
+					<a href={`${exlang}/article/${post.id}`} class={`show-on-scroll newsbg relitem${i}`}>
+						<img loading="lazy" src={post.thumb} alt={post.excerpt}/>
 						<span></span>
 						<h2>{post.title}</h2>
 					</a>

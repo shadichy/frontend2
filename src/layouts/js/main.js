@@ -89,3 +89,5 @@ window.addEventListener("DOMContentLoaded", e => {
   window["customfunc"].forEach((f) => f())
   tscr()
 })
+
+export default {}
