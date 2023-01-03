@@ -20,17 +20,18 @@
     "@types/dragula": "^3.7.1",
     "astro": "^1.8.0",
     "astro-compress": "^1.1.24",
-    "axios": "^1.2.1",
+    "astro-rollup": "^0.0.3",
+    "axios": "^1.2.2",
     "dragula": "^3.7.3",
     "hls.js": "^1.2.9",
     "intl-tel-input": "^17.0.19",
     "mongodb": "^4.13.0",
-    "rollup": "^3.9.0",
+    "rollup": "^3.9.1",
     "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "prettier": "^2.8.1"
   }
 }
